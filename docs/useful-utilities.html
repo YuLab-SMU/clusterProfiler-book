@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study</title>
+  <meta name="description" content="Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  
+  
+  
+
+<meta name="author" content="Guangchuang Yu">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="visualization-of-functional-enrichment-result.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="over-representation-analysis.html"><a href="over-representation-analysis.html"><i class="fa fa-check"></i><b>1</b> Over-representation analysis</a></li>
+<li class="chapter" data-level="2" data-path="gene-set-enrichment-analysis.html"><a href="gene-set-enrichment-analysis.html"><i class="fa fa-check"></i><b>2</b> Gene Set Enrichment Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="gene-set-enrichment-analysis.html"><a href="gene-set-enrichment-analysis.html#leading-edge-analysis-and-core-enriched-genes"><i class="fa fa-check"></i><b>2.1</b> Leading edge analysis and core enriched genes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="universal-enrichment-analysis.html"><a href="universal-enrichment-analysis.html"><i class="fa fa-check"></i><b>3</b> Universal enrichment analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="universal-enrichment-analysis.html"><a href="universal-enrichment-analysis.html#the-genelist-dataset"><i class="fa fa-check"></i><b>3.1</b> The <code>geneList</code> dataset</a></li>
+<li class="chapter" data-level="3.2" data-path="universal-enrichment-analysis.html"><a href="universal-enrichment-analysis.html#wikipathways-analysis"><i class="fa fa-check"></i><b>3.2</b> WikiPathways analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="disease-analysis.html"><a href="disease-analysis.html"><i class="fa fa-check"></i><b>4</b> Disease analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="disease-analysis.html"><a href="disease-analysis.html#enrichdo-function"><i class="fa fa-check"></i><b>4.1</b> <code>enrichDO</code> function</a></li>
+<li class="chapter" data-level="4.2" data-path="disease-analysis.html"><a href="disease-analysis.html#enrichncg-function"><i class="fa fa-check"></i><b>4.2</b> <code>enrichNCG</code> function</a></li>
+<li class="chapter" data-level="4.3" data-path="disease-analysis.html"><a href="disease-analysis.html#enrichdgn-and-enrichdgnv-functions"><i class="fa fa-check"></i><b>4.3</b> <code>enrichDGN</code> and <code>enrichDGNv</code> functions</a></li>
+<li class="chapter" data-level="4.4" data-path="disease-analysis.html"><a href="disease-analysis.html#gsedo-fuction"><i class="fa fa-check"></i><b>4.4</b> <code>gseDO</code> fuction</a></li>
+<li class="chapter" data-level="4.5" data-path="disease-analysis.html"><a href="disease-analysis.html#gsencg-fuction"><i class="fa fa-check"></i><b>4.5</b> <code>gseNCG</code> fuction</a></li>
+<li class="chapter" data-level="4.6" data-path="disease-analysis.html"><a href="disease-analysis.html#gsedgn-fuction"><i class="fa fa-check"></i><b>4.6</b> <code>gseDGN</code> fuction</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="go-analysis.html"><a href="go-analysis.html"><i class="fa fa-check"></i><b>5</b> GO Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="go-analysis.html"><a href="go-analysis.html#supported-organisms"><i class="fa fa-check"></i><b>5.1</b> Supported organisms</a></li>
+<li class="chapter" data-level="5.2" data-path="go-analysis.html"><a href="go-analysis.html#go-classification"><i class="fa fa-check"></i><b>5.2</b> GO classification</a></li>
+<li class="chapter" data-level="5.3" data-path="go-analysis.html"><a href="go-analysis.html#go-over-representation-test"><i class="fa fa-check"></i><b>5.3</b> GO over-representation test</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="go-analysis.html"><a href="go-analysis.html#drop-specific-go-terms-or-level"><i class="fa fa-check"></i><b>5.3.1</b> drop specific GO terms or level</a></li>
+<li class="chapter" data-level="5.3.2" data-path="go-analysis.html"><a href="go-analysis.html#test-go-at-sepcific-level"><i class="fa fa-check"></i><b>5.3.2</b> test GO at sepcific level</a></li>
+<li class="chapter" data-level="5.3.3" data-path="go-analysis.html"><a href="go-analysis.html#reduce-redundancy-of-enriched-go-terms"><i class="fa fa-check"></i><b>5.3.3</b> reduce redundancy of enriched GO terms</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="go-analysis.html"><a href="go-analysis.html#go-gene-set-enrichment-analysis"><i class="fa fa-check"></i><b>5.4</b> GO Gene Set Enrichment Analysis</a></li>
+<li class="chapter" data-level="5.5" data-path="go-analysis.html"><a href="go-analysis.html#go-semantic-similarity-analysis"><i class="fa fa-check"></i><b>5.5</b> GO Semantic Similarity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="kegg-analysis.html"><a href="kegg-analysis.html"><i class="fa fa-check"></i><b>6</b> KEGG analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-over-representation-test"><i class="fa fa-check"></i><b>6.1</b> KEGG over-representation test</a></li>
+<li class="chapter" data-level="6.2" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-gene-set-enrichment-analysis"><i class="fa fa-check"></i><b>6.2</b> KEGG Gene Set Enrichment Analysis</a></li>
+<li class="chapter" data-level="6.3" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-module-over-representation-test"><i class="fa fa-check"></i><b>6.3</b> KEGG Module over-representation test</a></li>
+<li class="chapter" data-level="6.4" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-module-gene-set-enrichment-analysis"><i class="fa fa-check"></i><b>6.4</b> KEGG Module Gene Set Enrichment Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="msigdb-analysis.html"><a href="msigdb-analysis.html"><i class="fa fa-check"></i><b>7</b> MSigDb analysis</a></li>
+<li class="chapter" data-level="8" data-path="reactome-pathway-analysis.html"><a href="reactome-pathway-analysis.html"><i class="fa fa-check"></i><b>8</b> Reactome pathway analysis</a></li>
+<li class="chapter" data-level="9" data-path="mesh-enrichment-analysis.html"><a href="mesh-enrichment-analysis.html"><i class="fa fa-check"></i><b>9</b> MeSH Enrichment Analysis</a></li>
+<li class="chapter" data-level="10" data-path="functional-enrichment-analysis-of-genomic-coordinations.html"><a href="functional-enrichment-analysis-of-genomic-coordinations.html"><i class="fa fa-check"></i><b>10</b> Functional enrichment analysis of genomic coordinations</a></li>
+<li class="chapter" data-level="11" data-path="biological-theme-comparison.html"><a href="biological-theme-comparison.html"><i class="fa fa-check"></i><b>11</b> Biological theme comparison</a><ul>
+<li class="chapter" data-level="11.1" data-path="biological-theme-comparison.html"><a href="biological-theme-comparison.html#formula-interface-of-comparecluster"><i class="fa fa-check"></i><b>11.1</b> Formula interface of compareCluster</a></li>
+<li class="chapter" data-level="11.2" data-path="biological-theme-comparison.html"><a href="biological-theme-comparison.html#visualization-of-profile-comparison"><i class="fa fa-check"></i><b>11.2</b> Visualization of profile comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html"><i class="fa fa-check"></i><b>12</b> Visualization of Functional Enrichment Result</a><ul>
+<li class="chapter" data-level="12.1" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#bar-plot"><i class="fa fa-check"></i><b>12.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="12.2" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#dot-plot"><i class="fa fa-check"></i><b>12.2</b> Dot plot</a></li>
+<li class="chapter" data-level="12.3" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#gene-concept-network"><i class="fa fa-check"></i><b>12.3</b> Gene-Concept Network</a></li>
+<li class="chapter" data-level="12.4" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#heatmap-like-functional-classification"><i class="fa fa-check"></i><b>12.4</b> Heatmap-like functional classification</a></li>
+<li class="chapter" data-level="12.5" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#enrichment-map"><i class="fa fa-check"></i><b>12.5</b> Enrichment Map</a></li>
+<li class="chapter" data-level="12.6" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#upset-plot"><i class="fa fa-check"></i><b>12.6</b> UpSet Plot</a></li>
+<li class="chapter" data-level="12.7" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#ridgeline-plot-for-expression-distribution-of-gsea-result"><i class="fa fa-check"></i><b>12.7</b> ridgeline plot for expression distribution of GSEA result</a></li>
+<li class="chapter" data-level="12.8" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#running-score-and-preranked-list-of-gsea-result"><i class="fa fa-check"></i><b>12.8</b> running score and preranked list of GSEA result</a></li>
+<li class="chapter" data-level="12.9" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#pubmed-trend-of-enriched-terms"><i class="fa fa-check"></i><b>12.9</b> pubmed trend of enriched terms</a></li>
+<li class="chapter" data-level="12.10" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#goplot"><i class="fa fa-check"></i><b>12.10</b> goplot</a></li>
+<li class="chapter" data-level="12.11" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
+<li class="chapter" data-level="12.12" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="useful-utilities.html"><a href="useful-utilities.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
+<li class="chapter" data-level="13.1" data-path="useful-utilities.html"><a href="useful-utilities.html#bitr-biological-id-translator"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="useful-utilities.html"><a href="useful-utilities.html#bitr_kegg-converting-biological-ids-using-kegg-api"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">clusterProfiler: universal enrichment tool for functional and comparative study</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="useful-utilities" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> Useful utilities</h1>
+<div id="bitr-biological-id-translator" class="section level2">
+<h2><span class="header-section-number">13.1</span> <code>bitr</code>: Biological Id TranslatoR</h2>
+<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides <code>bitr</code> and <code>bitr_kegg</code> for converting ID types. Both <code>bitr</code> and <code>bitr_kegg</code> support many species including model and many non-model organisms.</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GPX3&quot;</span>,  <span class="st">&quot;GLRX&quot;</span>,   <span class="st">&quot;LBP&quot;</span>,   <span class="st">&quot;CRYAB&quot;</span>, <span class="st">&quot;DEFB1&quot;</span>, <span class="st">&quot;HCLS1&quot;</span>,   <span class="st">&quot;SOD2&quot;</span>,   <span class="st">&quot;HSPA2&quot;</span>,
+       <span class="st">&quot;ORM1&quot;</span>,  <span class="st">&quot;IGFBP1&quot;</span>, <span class="st">&quot;PTHLH&quot;</span>, <span class="st">&quot;GPC3&quot;</span>,  <span class="st">&quot;IGFBP3&quot;</span>,<span class="st">&quot;TOB1&quot;</span>,    <span class="st">&quot;MITF&quot;</span>,   <span class="st">&quot;NDRG1&quot;</span>,
+       <span class="st">&quot;NR1H4&quot;</span>, <span class="st">&quot;FGFR3&quot;</span>,  <span class="st">&quot;PVR&quot;</span>,   <span class="st">&quot;IL6&quot;</span>,   <span class="st">&quot;PTPRM&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>,   <span class="st">&quot;NID2&quot;</span>,   <span class="st">&quot;LAMB1&quot;</span>,
+       <span class="st">&quot;COMP&quot;</span>,  <span class="st">&quot;PLS3&quot;</span>,   <span class="st">&quot;MCAM&quot;</span>,  <span class="st">&quot;SPP1&quot;</span>,  <span class="st">&quot;LAMC1&quot;</span>, <span class="st">&quot;COL4A2&quot;</span>,  <span class="st">&quot;COL4A1&quot;</span>, <span class="st">&quot;MYOC&quot;</span>,
+       <span class="st">&quot;ANXA4&quot;</span>, <span class="st">&quot;TFPI2&quot;</span>,  <span class="st">&quot;CST6&quot;</span>,  <span class="st">&quot;SLPI&quot;</span>,  <span class="st">&quot;TIMP2&quot;</span>, <span class="st">&quot;CPM&quot;</span>,     <span class="st">&quot;GGT1&quot;</span>,   <span class="st">&quot;NNMT&quot;</span>,
+       <span class="st">&quot;MAL&quot;</span>,   <span class="st">&quot;EEF1A2&quot;</span>, <span class="st">&quot;HGD&quot;</span>,   <span class="st">&quot;TCN2&quot;</span>,  <span class="st">&quot;CDA&quot;</span>,   <span class="st">&quot;PCCA&quot;</span>,    <span class="st">&quot;CRYM&quot;</span>,   <span class="st">&quot;PDXK&quot;</span>,
+       <span class="st">&quot;STC1&quot;</span>,  <span class="st">&quot;WARS&quot;</span>,  <span class="st">&quot;HMOX1&quot;</span>, <span class="st">&quot;FXYD2&quot;</span>, <span class="st">&quot;RBP4&quot;</span>,   <span class="st">&quot;SLC6A12&quot;</span>, <span class="st">&quot;KDELR3&quot;</span>, <span class="st">&quot;ITM2B&quot;</span>)
+eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="st">&quot;ENTREZID&quot;</span>, <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
+<span class="kw">head</span>(eg)</code></pre>
+<pre><code>##   SYMBOL ENTREZID
+## 1   GPX3     2878
+## 2   GLRX     2745
+## 3    LBP     3929
+## 4  CRYAB     1410
+## 5  DEFB1     1672
+## 6  HCLS1     3059</code></pre>
+<p>User should provides an annotation package, both <em>fromType</em> and <em>toType</em> can accept any types that supported.</p>
+<p>User can use <em>keytypes</em> to list all supporting types.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
+<span class="kw">keytypes</span>(org.Hs.eg.db)</code></pre>
+<pre><code>##  [1] &quot;ACCNUM&quot;       &quot;ALIAS&quot;        &quot;ENSEMBL&quot;     
+##  [4] &quot;ENSEMBLPROT&quot;  &quot;ENSEMBLTRANS&quot; &quot;ENTREZID&quot;    
+##  [7] &quot;ENZYME&quot;       &quot;EVIDENCE&quot;     &quot;EVIDENCEALL&quot; 
+## [10] &quot;GENENAME&quot;     &quot;GO&quot;           &quot;GOALL&quot;       
+## [13] &quot;IPI&quot;          &quot;MAP&quot;          &quot;OMIM&quot;        
+## [16] &quot;ONTOLOGY&quot;     &quot;ONTOLOGYALL&quot;  &quot;PATH&quot;        
+## [19] &quot;PFAM&quot;         &quot;PMID&quot;         &quot;PROSITE&quot;     
+## [22] &quot;REFSEQ&quot;       &quot;SYMBOL&quot;       &quot;UCSCKG&quot;      
+## [25] &quot;UNIGENE&quot;      &quot;UNIPROT&quot;</code></pre>
+<p>We can translate from one type to other types.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ids &lt;-<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="kw">c</span>(<span class="st">&quot;UNIPROT&quot;</span>, <span class="st">&quot;ENSEMBL&quot;</span>), <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
+<span class="kw">head</span>(ids)</code></pre>
+<pre><code>##   SYMBOL    UNIPROT         ENSEMBL
+## 1   GPX3     P22352 ENSG00000211445
+## 2   GLRX A0A024RAM2 ENSG00000173221
+## 3   GLRX     P35754 ENSG00000173221
+## 4    LBP     P18428 ENSG00000129988
+## 5    LBP     Q8TCF0 ENSG00000129988
+## 6  CRYAB     P02511 ENSG00000109846</code></pre>
+<p>For GO analysis, user don’t need to convert ID, all ID type provided by <code>OrgDb</code> can be used in <code>groupGO</code>, <code>enrichGO</code> and <code>gseGO</code> by specifying <code>keyType</code> parameter.</p>
+<div id="bitr_kegg-converting-biological-ids-using-kegg-api" class="section level3">
+<h3><span class="header-section-number">13.1.1</span> <code>bitr_kegg</code>: converting biological IDs using KEGG API</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
+hg &lt;-<span class="st"> </span>gcSample[[<span class="dv">1</span>]]
+<span class="kw">head</span>(hg)</code></pre>
+<pre><code>## [1] &quot;4597&quot;  &quot;7111&quot;  &quot;5266&quot;  &quot;2175&quot;  &quot;755&quot;   &quot;23046&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">eg2np &lt;-<span class="st"> </span><span class="kw">bitr_kegg</span>(hg, <span class="dt">fromType=</span><span class="st">&#39;kegg&#39;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;hsa&#39;</span>)
+<span class="kw">head</span>(eg2np)</code></pre>
+<pre><code>##    kegg ncbi-proteinid
+## 1 10001      NP_005457
+## 2 10209      NP_005792
+## 3 10232      NP_037536
+## 4 10324      NP_006054
+## 5 10411   NP_001092002
+## 6 10614      NP_006451</code></pre>
+<p>The ID type (both <code>fromType</code> &amp; <code>toType</code>) should be one of ‘kegg’, ‘ncbi-geneid’, ‘ncbi-proteinid’ or ‘uniprot’. The ‘kegg’ is the primary ID used in KEGG database. The data source of KEGG was from NCBI. A rule of thumb for the ‘kegg’ ID is <code>entrezgene</code> ID for eukaryote species and <code>Locus</code> ID for prokaryotes.</p>
+<p>Many prokaryote species don’t have entrezgene ID available. For example we can check the gene information of <code>ece:Z5100</code> in <a href="http://www.genome.jp/dbget-bin/www_bget?ece:Z5100" class="uri">http://www.genome.jp/dbget-bin/www_bget?ece:Z5100</a>, which have <code>NCBI-ProteinID</code> and <code>UnitProt</code> links in the <code>Other DBs</code> Entry, but not <code>NCBI-GeneID</code>.</p>
+<p>If we try to convert <code>Z5100</code> to <code>ncbi-geneid</code>, <code>bitr_kegg</code> will throw error of <code>ncbi-geneid is not supported</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-geneid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
+<pre><code>## Error in KEGG_convert(fromType, toType, organism) :
+## ncbi-geneid is not supported for ece ...</code></pre>
+<p>We can of course convert it to <code>ncbi-proteinid</code> and <code>uniprot</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
+<pre><code>##    kegg ncbi-proteinid
+## 1 Z5100       AAG58814</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;uniprot&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
+<pre><code>##    kegg    uniprot
+## 1 Z5100 A0A384KFP7</code></pre>
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualization-of-functional-enrichment-result.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

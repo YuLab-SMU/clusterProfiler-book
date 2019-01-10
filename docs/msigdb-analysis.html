@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
+  <meta name="description" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  
+  
+  
+
+<meta name="author" content="Guangchuang Yu">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="kegg-analysis.html">
+<link rel="next" href="reactome-pathway-analysis.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="over-representation-analysis.html"><a href="over-representation-analysis.html"><i class="fa fa-check"></i><b>1</b> Over-representation analysis</a></li>
+<li class="chapter" data-level="2" data-path="gene-set-enrichment-analysis.html"><a href="gene-set-enrichment-analysis.html"><i class="fa fa-check"></i><b>2</b> Gene Set Enrichment Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="gene-set-enrichment-analysis.html"><a href="gene-set-enrichment-analysis.html#leading-edge-analysis-and-core-enriched-genes"><i class="fa fa-check"></i><b>2.1</b> Leading edge analysis and core enriched genes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="universal-enrichment-analysis.html"><a href="universal-enrichment-analysis.html"><i class="fa fa-check"></i><b>3</b> Universal enrichment analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="universal-enrichment-analysis.html"><a href="universal-enrichment-analysis.html#the-genelist-dataset"><i class="fa fa-check"></i><b>3.1</b> The <code>geneList</code> dataset</a></li>
+<li class="chapter" data-level="3.2" data-path="universal-enrichment-analysis.html"><a href="universal-enrichment-analysis.html#wikipathways-analysis"><i class="fa fa-check"></i><b>3.2</b> WikiPathways analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="disease-analysis.html"><a href="disease-analysis.html"><i class="fa fa-check"></i><b>4</b> Disease analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="disease-analysis.html"><a href="disease-analysis.html#enrichdo-function"><i class="fa fa-check"></i><b>4.1</b> <code>enrichDO</code> function</a></li>
+<li class="chapter" data-level="4.2" data-path="disease-analysis.html"><a href="disease-analysis.html#enrichncg-function"><i class="fa fa-check"></i><b>4.2</b> <code>enrichNCG</code> function</a></li>
+<li class="chapter" data-level="4.3" data-path="disease-analysis.html"><a href="disease-analysis.html#enrichdgn-and-enrichdgnv-functions"><i class="fa fa-check"></i><b>4.3</b> <code>enrichDGN</code> and <code>enrichDGNv</code> functions</a></li>
+<li class="chapter" data-level="4.4" data-path="disease-analysis.html"><a href="disease-analysis.html#gsedo-fuction"><i class="fa fa-check"></i><b>4.4</b> <code>gseDO</code> fuction</a></li>
+<li class="chapter" data-level="4.5" data-path="disease-analysis.html"><a href="disease-analysis.html#gsencg-fuction"><i class="fa fa-check"></i><b>4.5</b> <code>gseNCG</code> fuction</a></li>
+<li class="chapter" data-level="4.6" data-path="disease-analysis.html"><a href="disease-analysis.html#gsedgn-fuction"><i class="fa fa-check"></i><b>4.6</b> <code>gseDGN</code> fuction</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="go-analysis.html"><a href="go-analysis.html"><i class="fa fa-check"></i><b>5</b> GO Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="go-analysis.html"><a href="go-analysis.html#supported-organisms"><i class="fa fa-check"></i><b>5.1</b> Supported organisms</a></li>
+<li class="chapter" data-level="5.2" data-path="go-analysis.html"><a href="go-analysis.html#go-classification"><i class="fa fa-check"></i><b>5.2</b> GO classification</a></li>
+<li class="chapter" data-level="5.3" data-path="go-analysis.html"><a href="go-analysis.html#go-over-representation-test"><i class="fa fa-check"></i><b>5.3</b> GO over-representation test</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="go-analysis.html"><a href="go-analysis.html#drop-specific-go-terms-or-level"><i class="fa fa-check"></i><b>5.3.1</b> drop specific GO terms or level</a></li>
+<li class="chapter" data-level="5.3.2" data-path="go-analysis.html"><a href="go-analysis.html#test-go-at-sepcific-level"><i class="fa fa-check"></i><b>5.3.2</b> test GO at sepcific level</a></li>
+<li class="chapter" data-level="5.3.3" data-path="go-analysis.html"><a href="go-analysis.html#reduce-redundancy-of-enriched-go-terms"><i class="fa fa-check"></i><b>5.3.3</b> reduce redundancy of enriched GO terms</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="go-analysis.html"><a href="go-analysis.html#go-gene-set-enrichment-analysis"><i class="fa fa-check"></i><b>5.4</b> GO Gene Set Enrichment Analysis</a></li>
+<li class="chapter" data-level="5.5" data-path="go-analysis.html"><a href="go-analysis.html#go-semantic-similarity-analysis"><i class="fa fa-check"></i><b>5.5</b> GO Semantic Similarity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="kegg-analysis.html"><a href="kegg-analysis.html"><i class="fa fa-check"></i><b>6</b> KEGG analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-over-representation-test"><i class="fa fa-check"></i><b>6.1</b> KEGG over-representation test</a></li>
+<li class="chapter" data-level="6.2" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-gene-set-enrichment-analysis"><i class="fa fa-check"></i><b>6.2</b> KEGG Gene Set Enrichment Analysis</a></li>
+<li class="chapter" data-level="6.3" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-module-over-representation-test"><i class="fa fa-check"></i><b>6.3</b> KEGG Module over-representation test</a></li>
+<li class="chapter" data-level="6.4" data-path="kegg-analysis.html"><a href="kegg-analysis.html#kegg-module-gene-set-enrichment-analysis"><i class="fa fa-check"></i><b>6.4</b> KEGG Module Gene Set Enrichment Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="msigdb-analysis.html"><a href="msigdb-analysis.html"><i class="fa fa-check"></i><b>7</b> MSigDb analysis</a></li>
+<li class="chapter" data-level="8" data-path="reactome-pathway-analysis.html"><a href="reactome-pathway-analysis.html"><i class="fa fa-check"></i><b>8</b> Reactome pathway analysis</a></li>
+<li class="chapter" data-level="9" data-path="mesh-enrichment-analysis.html"><a href="mesh-enrichment-analysis.html"><i class="fa fa-check"></i><b>9</b> MeSH Enrichment Analysis</a></li>
+<li class="chapter" data-level="10" data-path="functional-enrichment-analysis-of-genomic-coordinations.html"><a href="functional-enrichment-analysis-of-genomic-coordinations.html"><i class="fa fa-check"></i><b>10</b> Functional enrichment analysis of genomic coordinations</a></li>
+<li class="chapter" data-level="11" data-path="biological-theme-comparison.html"><a href="biological-theme-comparison.html"><i class="fa fa-check"></i><b>11</b> Biological theme comparison</a><ul>
+<li class="chapter" data-level="11.1" data-path="biological-theme-comparison.html"><a href="biological-theme-comparison.html#formula-interface-of-comparecluster"><i class="fa fa-check"></i><b>11.1</b> Formula interface of compareCluster</a></li>
+<li class="chapter" data-level="11.2" data-path="biological-theme-comparison.html"><a href="biological-theme-comparison.html#visualization-of-profile-comparison"><i class="fa fa-check"></i><b>11.2</b> Visualization of profile comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html"><i class="fa fa-check"></i><b>12</b> Visualization of Functional Enrichment Result</a><ul>
+<li class="chapter" data-level="12.1" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#bar-plot"><i class="fa fa-check"></i><b>12.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="12.2" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#dot-plot"><i class="fa fa-check"></i><b>12.2</b> Dot plot</a></li>
+<li class="chapter" data-level="12.3" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#gene-concept-network"><i class="fa fa-check"></i><b>12.3</b> Gene-Concept Network</a></li>
+<li class="chapter" data-level="12.4" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#heatmap-like-functional-classification"><i class="fa fa-check"></i><b>12.4</b> Heatmap-like functional classification</a></li>
+<li class="chapter" data-level="12.5" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#enrichment-map"><i class="fa fa-check"></i><b>12.5</b> Enrichment Map</a></li>
+<li class="chapter" data-level="12.6" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#upset-plot"><i class="fa fa-check"></i><b>12.6</b> UpSet Plot</a></li>
+<li class="chapter" data-level="12.7" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#ridgeline-plot-for-expression-distribution-of-gsea-result"><i class="fa fa-check"></i><b>12.7</b> ridgeline plot for expression distribution of GSEA result</a></li>
+<li class="chapter" data-level="12.8" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#running-score-and-preranked-list-of-gsea-result"><i class="fa fa-check"></i><b>12.8</b> running score and preranked list of GSEA result</a></li>
+<li class="chapter" data-level="12.9" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#pubmed-trend-of-enriched-terms"><i class="fa fa-check"></i><b>12.9</b> pubmed trend of enriched terms</a></li>
+<li class="chapter" data-level="12.10" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#goplot"><i class="fa fa-check"></i><b>12.10</b> goplot</a></li>
+<li class="chapter" data-level="12.11" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
+<li class="chapter" data-level="12.12" data-path="visualization-of-functional-enrichment-result.html"><a href="visualization-of-functional-enrichment-result.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="useful-utilities.html"><a href="useful-utilities.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
+<li class="chapter" data-level="13.1" data-path="useful-utilities.html"><a href="useful-utilities.html#bitr-biological-id-translator"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="useful-utilities.html"><a href="useful-utilities.html#bitr_kegg-converting-biological-ids-using-kegg-api"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">clusterProfiler: universal enrichment tool for functional and comparative study</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="msigdb-analysis" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> MSigDb analysis</h1>
+<p>The MSigDB is a collection of annotated gene sets, it include 8 major collections:</p>
+<ul>
+<li>H: hallmark gene sets</li>
+<li>C1: positional gene sets</li>
+<li>C2: curated gene sets</li>
+<li>C3: motif gene sets</li>
+<li>C4: computational gene sets</li>
+<li>C5: GO gene sets</li>
+<li>C6: oncogenic signatures</li>
+<li>C7: immunologic signatures</li>
+</ul>
+<p>Users can use <code>enricher</code> and <code>GSEA</code> function to analyze gene set collections downloaded from Molecular Signatures Database (<a href="http://www.broadinstitute.org/gsea/msigdb/index.jsp">MSigDb</a>). <a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides a function, <code>read.gmt</code>, to parse the <a href="www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">gmt file</a> into a <em>TERM2GENE</em> <code>data.frame</code> that is ready for both <code>enricher</code> and <code>GSEA</code> functions.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
+gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
+
+gmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;c5.cc.v5.0.entrez.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)
+c5 &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(gmtfile)
+
+egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>c5)
+<span class="kw">head</span>(egmt)</code></pre>
+<pre><code>##                                                ID
+## SPINDLE                                   SPINDLE
+## MICROTUBULE_CYTOSKELETON MICROTUBULE_CYTOSKELETON
+## CYTOSKELETAL_PART               CYTOSKELETAL_PART
+## SPINDLE_MICROTUBULE           SPINDLE_MICROTUBULE
+## MICROTUBULE                           MICROTUBULE
+## CYTOSKELETON                         CYTOSKELETON
+##                                       Description GeneRatio
+## SPINDLE                                   SPINDLE     11/82
+## MICROTUBULE_CYTOSKELETON MICROTUBULE_CYTOSKELETON     16/82
+## CYTOSKELETAL_PART               CYTOSKELETAL_PART     15/82
+## SPINDLE_MICROTUBULE           SPINDLE_MICROTUBULE      5/82
+## MICROTUBULE                           MICROTUBULE      6/82
+## CYTOSKELETON                         CYTOSKELETON     16/82
+##                           BgRatio       pvalue     p.adjust
+## SPINDLE                   39/5270 7.667674e-12 5.214018e-10
+## MICROTUBULE_CYTOSKELETON 152/5270 8.449298e-10 2.872761e-08
+## CYTOSKELETAL_PART        235/5270 2.414879e-06 5.237096e-05
+## SPINDLE_MICROTUBULE       16/5270 3.080645e-06 5.237096e-05
+## MICROTUBULE               32/5270 7.740446e-06 1.052701e-04
+## CYTOSKELETON             367/5270 1.308357e-04 1.482805e-03
+##                                qvalue
+## SPINDLE                  4.197043e-10
+## MICROTUBULE_CYTOSKELETON 2.312439e-08
+## CYTOSKELETAL_PART        4.215619e-05
+## SPINDLE_MICROTUBULE      4.215619e-05
+## MICROTUBULE              8.473751e-05
+## CYTOSKELETON             1.193589e-03
+##                                                                                                  geneID
+## SPINDLE                                           991/9493/9787/22974/983/332/3832/7272/9055/6790/24137
+## MICROTUBULE_CYTOSKELETON 991/9493/9133/7153/9787/22974/4751/983/332/3832/7272/9055/6790/24137/4137/7802
+## CYTOSKELETAL_PART             991/9493/7153/9787/22974/4751/983/332/3832/7272/9055/6790/24137/4137/7802
+## SPINDLE_MICROTUBULE                                                             983/332/3832/9055/24137
+## MICROTUBULE                                                                983/332/3832/9055/24137/4137
+## CYTOSKELETON             991/9493/9133/7153/9787/22974/4751/983/332/3832/7272/9055/6790/24137/4137/7802
+##                          Count
+## SPINDLE                     11
+## MICROTUBULE_CYTOSKELETON    16
+## CYTOSKELETAL_PART           15
+## SPINDLE_MICROTUBULE          5
+## MICROTUBULE                  6
+## CYTOSKELETON                16</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">egmt2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE=</span>c5, <span class="dt">verbose=</span><span class="ot">FALSE</span>)
+<span class="kw">head</span>(egmt2)</code></pre>
+<pre><code>##                                                                    ID
+## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
+## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
+## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
+## CELL_PROJECTION                                       CELL_PROJECTION
+## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
+##                                                           Description
+## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
+## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
+## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
+## CELL_PROJECTION                                       CELL_PROJECTION
+## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
+##                                    setSize enrichmentScore
+## EXTRACELLULAR_REGION                   401      -0.3860230
+## EXTRACELLULAR_REGION_PART              310      -0.4101043
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX      93      -0.6355317
+## EXTRACELLULAR_MATRIX                    95      -0.6229461
+## CELL_PROJECTION                         87      -0.4729701
+## EXTRACELLULAR_MATRIX_PART               54      -0.5908035
+##                                          NES      pvalue
+## EXTRACELLULAR_REGION               -1.695804 0.001253133
+## EXTRACELLULAR_REGION_PART          -1.759038 0.001302083
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX -2.380502 0.001501502
+## EXTRACELLULAR_MATRIX               -2.335046 0.001512859
+## CELL_PROJECTION                    -1.750931 0.001533742
+## EXTRACELLULAR_MATRIX_PART          -2.009953 0.001592357
+##                                      p.adjust    qvalues
+## EXTRACELLULAR_REGION               0.03079365 0.02389307
+## EXTRACELLULAR_REGION_PART          0.03079365 0.02389307
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX 0.03079365 0.02389307
+## EXTRACELLULAR_MATRIX               0.03079365 0.02389307
+## CELL_PROJECTION                    0.03079365 0.02389307
+## EXTRACELLULAR_MATRIX_PART          0.03079365 0.02389307
+##                                    rank
+## EXTRACELLULAR_REGION               1797
+## EXTRACELLULAR_REGION_PART          1897
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX 1473
+## EXTRACELLULAR_MATRIX               1473
+## CELL_PROJECTION                    2280
+## EXTRACELLULAR_MATRIX_PART          1794
+##                                                      leading_edge
+## EXTRACELLULAR_REGION               tags=29%, list=14%, signal=26%
+## EXTRACELLULAR_REGION_PART          tags=32%, list=15%, signal=28%
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX tags=49%, list=12%, signal=44%
+## EXTRACELLULAR_MATRIX               tags=48%, list=12%, signal=43%
+## CELL_PROJECTION                    tags=28%, list=18%, signal=23%
+## EXTRACELLULAR_MATRIX_PART          tags=59%, list=14%, signal=51%
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       core_enrichment
+## EXTRACELLULAR_REGION               3910/51162/2878/2717/3373/4153/10406/1301/6750/7474/4925/7450/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/11005/4256/3483/7482/8910/23037/27122/7042/3912/4322/167/2817/9353/6037/1278/2934/5176/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/4023/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/3625/2199/6444/6320/1294/3075/4653/5764/3991/3263/1462/1289/3908/4016/3909/4053/8817/7033/8292/5125/2162/5744/1842/5654/10631/2331/3730/2487/347/6863/5104/3913/27123/4982/1300/2200/9607/1287/7060/1489/9723/6424/1307/1311/4693/4148/1101/2922/10647
+## EXTRACELLULAR_REGION_PART                                                                                                  268/3567/57124/3910/2878/3373/4153/10406/1301/6750/7474/4925/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/4256/3483/7482/8910/27122/3912/4322/167/2817/1278/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/2199/6444/1294/3075/4653/5764/3991/3263/1462/1289/3908/3909/4053/8817/8292/5125/5744/1842/5654/10631/2331/3730/347/6863/3913/27123/1300/2200/9607/1287/7060/9723/6424/1307/1311/4693/4148/1101/2922/10647
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                              1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
+## EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                                            1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
+## CELL_PROJECTION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             4763/57147/64064/80184/322/54997/7248/5311/7042/323/4747/4744/1012/11346/2191/4741/4646/9576/114327/51466/27124/4137/7802
+## EXTRACELLULAR_MATRIX_PART                                                                                                                                                                                                                                                                                                                                                                                                                                                              3915/6443/55914/3910/1301/80781/1306/8082/8910/3912/1278/4060/283/30008/22795/1293/1295/1281/50509/1290/6444/1294/1289/3908/3909/8292/3913/1300/2200/1287/1307</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="kegg-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reactome-pathway-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

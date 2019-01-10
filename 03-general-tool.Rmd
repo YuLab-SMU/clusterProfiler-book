@@ -1,0 +1,76 @@
+# Universal enrichment analysis
+
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE, cache=TRUE)
+library(clusterProfiler)
+```
+
+
+[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) supports both hypergeometric test and gene set enrichment analyses of many ontology/pathway, but it's still not enough for users may want to analyze their data with unsupported organisms, slim version of GO, novel functional annotation (e.g. GO via BlastGO or KEGG via KAAS), unsupported ontologies/pathways or customized annotations.
+
+[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) provides `enricher` function for hypergeometric test and `GSEA` function for gene set enrichment analysis that are designed to accept user defined annotation. They accept two additional parameters _TERM2GENE_ and _TERM2NAME_. As indicated in the parameter names, _TERM2GENE_ is a data.frame with first column of term ID and second column of corresponding mapped gene and _TERM2NAME_ is a data.frame with first column of term ID and second column of corresponding term name. _TERM2NAME_ is optional.
+
+An example of using `enricher` and `GSEA` to analyze [DisGeNet](http://www.disgenet.org/web/DisGeNET/menu/home) annotation is presented in the post, [use clusterProfiler as an universal enrichment analysis tool](http://guangchuangyu.github.io/2015/05/use-clusterprofiler-as-an-universal-enrichment-analysis-tool/).
+
+
+## The `geneList` dataset
+
+`r Biocpkg("DOSE")` provides an example dataset `geneList` which was derived from `R` package `r Biocpkg("breastCancerMAINZ")` that contained 200 samples, including 29 samples in grade I, 136 samples in grade II and 35 samples in grade III. We computed the ratios of geometric means of grade III samples versus geometric means of grade I samples. Logarithm of these ratios (base 2) were stored in `geneList` dataset.
+
+
+## WikiPathways analysis
+
+In contrast to KEGG, [WikiPathways](https://www.wikipathways.org) is a continuously updated pathway database curated by a community of researchers and pathway enthusiasts. WikiPathways produces monthly releases of gmt files for supported organisms at [data.wikipathways.org](http://data.wikipathways.org/current/gmt/). Download the appropriate gmt file and then generate `TERM2GENE` and `TERM2NAME` to use `enricher` and `GSEA` functions. 
+
+```{r}
+library(magrittr)
+
+data(geneList, package="DOSE")
+gene <- names(geneList)[abs(geneList) > 2]
+
+wpgmtfile <- system.file("extdata", "wikipathways-20180810-gmt-Homo_sapiens.gmt", package="clusterProfiler")
+wp2gene <- read.gmt(wpgmtfile)
+wp2gene <- wp2gene %>% tidyr::separate(ont, c("name","version","wpid","org"), "%")
+wpid2gene <- wp2gene %>% dplyr::select(wpid, gene) #TERM2GENE
+wpid2name <- wp2gene %>% dplyr::select(wpid, name) #TERM2NAME
+
+ewp <- enricher(gene, TERM2GENE = wpid2gene, TERM2NAME = wpid2name)
+ewp <- setReadable(ewp, org.Hs.eg.db, keytype = "ENTREZID")
+head(ewp)
+
+ewp2 <- GSEA(geneList, TERM2GENE = wpid2gene, TERM2NAME = wpid2name, verbose=FALSE)
+ewp2 <- setReadable(ewp2, org.Hs.eg.db, keytype = "ENTREZID")
+head(ewp2)
+```
+
+As an alternative to manually downloading gmt files, install the [rWikiPathways package](https://bioconductor.org/packages/release/bioc/html/rWikiPathways.html) to gain scripting access to the latest gmt files using the `downloadPathwayArchive` function.
+
+<!--
+
+
+# DAVID functional analysis
+
+[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) provides enrichment and GSEA analysis with GO, KEGG, DO and Reactome pathway supported internally, some user may prefer GO and KEGG analysis with DAVID[@huang_david_2007] and still attracted by the visualization methods provided by [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler)[@paranjpe_genome_wid_2013]. To bridge the gap between DAVID and clusterProfiler, we implemented `enrichDAVID`. This function query enrichment analysis result from DAVID webserver via [RDAVIDWebService](https://www.bioconductor.org/packages/RDAVIDWebService)[@fresno_rdavidwebservice_2013] and stored the result as an `enrichResult` instance, so that we can use all the visualization functions in [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) to visualize DAVID results. `enrichDAVID` is fully compatible with `compareCluster` function and comparing enrichment results from different gene clusters is now available with DAVID.
+
+```{r eval=FALSE}
+david <- enrichDAVID(gene = gene,
+                     idType = "ENTREZ_GENE_ID",
+                     listType = "Gene",
+                     annotation = "KEGG_PATHWAY",
+                     david.user = "clusterProfiler@hku.hk")
+```
+
+DAVID Web Service has the following limitations:
+
++ A job with more than 3000 genes to generate gene or term cluster report will not be handled by DAVID due to resource limit.
++ No more than 200 jobs in a day from one user or computer.
++ DAVID Team reserves right to suspend any improper uses of the web service without notice.
+
+For more details, please refer to [http://david.abcc.ncifcrf.gov/content.jsp?file=WS.html](http://david.abcc.ncifcrf.gov/content.jsp?file=WS.html).
+
+As user has limited usage, please [register](http://david.abcc.ncifcrf.gov/webservice/register.htm) and use your own user account to run `enrichDAVID`.
+
+
+-->
