@@ -1,0 +1,18 @@
+book_filename: "clusterProfiler"
+chapter_name: "Chapter "
+output_dir: docs
+delete_merged_file: true
+rmd_files: ["index.Rmd",
+  "01-ORA.Rmd",
+  "02-GSEA.Rmd",
+  "03-general-tool.Rmd",
+  "04-disease.Rmd",
+  "05-gene-ontology.Rmd",
+  "06-KEGG.Rmd",
+  "07-msigdb.Rmd",
+  "08-reactome.Rmd",
+  "09-MeSH.Rmd",
+  "10-enrichplot.Rmd",
+  "11-utilities.Rmd",
+  "A-app.Rmd",
+  "B-references.Rmd"]
