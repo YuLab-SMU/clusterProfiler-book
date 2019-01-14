@@ -1,4 +1,4 @@
-# Disease analysis
+# Disease analysis {#chapter4}
 
 ```{r include=FALSE}
 library(knitr)

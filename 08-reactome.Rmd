@@ -1,5 +1,5 @@
 
-# Reactome pathway analysis
+# Reactome pathway analysis {#chapter8}
 
 ```{r include=FALSE}
 library(knitr)

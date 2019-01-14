@@ -1,5 +1,5 @@
 
-# KEGG analysis
+# KEGG analysis {#chapter6}
 
 ```{r include=FALSE}
 library(knitr)

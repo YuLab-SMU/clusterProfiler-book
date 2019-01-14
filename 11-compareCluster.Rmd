@@ -1,5 +1,5 @@
 
-# Biological theme comparison
+# Biological theme comparison {#chapter11}
 
 ```{r include=FALSE}
 library(knitr)

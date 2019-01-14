@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>clusterProfiler: universal enrichment tool for functional and comparative study</title>
-  <meta name="description" content="clusterProfiler: universal enrichment tool for functional and comparative study">
+  <title>Chapter 10 Functional enrichment analysis of genomic coordinations | clusterProfiler: universal enrichment tool for functional and comparative study</title>
+  <meta name="description" content="Chapter 10 Functional enrichment analysis of genomic coordinations | clusterProfiler: universal enrichment tool for functional and comparative study">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta property="og:title" content="Chapter 10 Functional enrichment analysis of genomic coordinations | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta name="twitter:title" content="Chapter 10 Functional enrichment analysis of genomic coordinations | clusterProfiler: universal enrichment tool for functional and comparative study" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="chapter1.html">
+<link rel="prev" href="chapter9.html">
+<link rel="next" href="chapter11.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,44 +206,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">clusterProfiler: universal enrichment tool for functional and comparative study</h1>
-<p class="author"><em>Guangchuang Yu</em></p>
+<div id="chapter10" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Functional enrichment analysis of genomic coordinations</h1>
+<p>Functional analysis using NGS data (eg, RNA-Seq and ChIP-Seq) can be performed by linking coding and non-coding regions to coding genes via <a href="http://bioconductor.org/packages/ChIPseeker">ChIPseeker</a><span class="citation">(Yu, Wang, and He <a href="#ref-yu_chipseeker_2015">2015</a>)</span> package, which can annotates genomic regions to their nearest genes, host genes, and flanking genes respectivly. In addtion, it provides a function, <code>seq2gene</code>, that simultaneously considering host genes, promoter region and flanking gene from intergenic region that may under control via cis-regulation. This function maps genomic regions to genes in a many-to-many manner and facilitate functional analysis. For more details, please refer to <a href="http://bioconductor.org/packages/ChIPseeker">ChIPseeker</a><span class="citation">(Yu, Wang, and He <a href="#ref-yu_chipseeker_2015">2015</a>)</span>.</p>
+
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>hello</p>
-<!--
-In recently years, high-throughput experimental techniques such as
-microarray, RNA-Seq and mass spectrometry can detect cellular
-molecules at systems-level. These kinds of analyses generate huge
-quantitaties of data, which need to be given a biological
-interpretation. A commonly used approach is via clustering in the gene
-dimension for grouping different genes based on their similarities[@yu2010].
-
-To search for shared functions among genes, a common way is to
-incorporate the biological knowledge, such as Gene Ontology (GO) and
-Kyoto Encyclopedia of Genes and Genomes (KEGG), for identifying
-predominant biological themes of a collection of genes.
-
-After clustering analysis, researchers not only want to determine
-whether there is a common theme of a particular gene cluster, but also
-to compare the biological themes among gene clusters. The manual step
-to choose interesting clusters followed by enrichment analysis on each
-selected cluster is slow and tedious. To bridge this gap, we designed
-[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler)[@yu2012], for comparing and visualizing functional
-profiles among gene clusters.
-
--->
-
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-yu_chipseeker_2015">
+<p>Yu, Guangchuang, Li-Gen Wang, and Qing-Yu He. 2015. “ChIPseeker: An R/Bioconductor Package for Chip Peak Annotation, Comparison and Visualization.” <em>Bioinformatics</em> 31 (14): 2382–3. <a href="https://doi.org/10.1093/bioinformatics/btv145">https://doi.org/10.1093/bioinformatics/btv145</a>.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="chapter1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter9.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter11.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

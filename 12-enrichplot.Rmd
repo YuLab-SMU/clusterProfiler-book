@@ -1,4 +1,4 @@
-# Visualization of Functional Enrichment Result
+# Visualization of Functional Enrichment Result {#chapter12}
 
 
 
