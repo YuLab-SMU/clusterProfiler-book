@@ -8,44 +8,157 @@ library(clusterProfiler)
 ```
 
 
+
+## Input data
+
+For over representation analysis, all we need is a gene vector, that is a vector of gene IDs. These gene IDs can be obtained by differential expression analysis (*e.g.* with [DESeq2](http://www.bioconductor.org/packages/DESeq2) package). 
+
+For gene set enrichment analysis, we need a ranked list of genes. `r Biocpkg("DOSE")` provides an example dataset `geneList` which was derived from `R` package `r Biocpkg("breastCancerMAINZ")` that contained 200 samples, including 29 samples in grade I, 136 samples in grade II and 35 samples in grade III. We computed the ratios of geometric means of grade III samples versus geometric means of grade I samples. Logarithm of these ratios (base 2) were stored in `geneList` dataset.
+
+The `geneList` contains three features:
+
+1. numeric vector: fold change or other type of numerical variable
+2. named vector: every number was named by the corresponding gene ID
+3. sorted vector: number should be sorted in decreasing order
+
+Suppose you are importing your own data from a *csv* file and the file contains two columns, one for gene ID (no duplicated allowed) and another one for fold change, you can prepare your own `geneList` via the following command:
+
+```r
+d <- read.csv(your_csv_file)
+## assume that 1st column is ID
+## 2nd column is fold change
+
+## feature 1: numeric vector
+geneList <- d[,2]
+
+## feature 2: named vector
+names(geneList) <- as.character(d[,1])
+
+## feature 3: decreasing order
+geneList <- sort(geneList, decreasing = TRUE)
+```
+
+We can load the sample data into R via:
+
+```{r}
+data(geneList, package="DOSE")
+head(geneList)
+```
+
+Suppose we define fold change greater than 2 as DEGs:
+
+```{r}
+gene <- names(geneList)[abs(geneList) > 2]
+head(gene)
+```
+
+## clusterProfiler as an universal enrichment analysis tool
+
+
 [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) supports both hypergeometric test and gene set enrichment analyses of many ontology/pathway, but it's still not enough for users may want to analyze their data with unsupported organisms, slim version of GO, novel functional annotation (e.g. GO via BlastGO or KEGG via KAAS), unsupported ontologies/pathways or customized annotations.
 
 [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) provides `enricher` function for hypergeometric test and `GSEA` function for gene set enrichment analysis that are designed to accept user defined annotation. They accept two additional parameters _TERM2GENE_ and _TERM2NAME_. As indicated in the parameter names, _TERM2GENE_ is a data.frame with first column of term ID and second column of corresponding mapped gene and _TERM2NAME_ is a data.frame with first column of term ID and second column of corresponding term name. _TERM2NAME_ is optional.
 
-An example of using `enricher` and `GSEA` to analyze [DisGeNet](http://www.disgenet.org/web/DisGeNET/menu/home) annotation is presented in the post, [use clusterProfiler as an universal enrichment analysis tool](http://guangchuangyu.github.io/2015/05/use-clusterprofiler-as-an-universal-enrichment-analysis-tool/).
+
+Here using *clusterProfiler* to analyze wiki pathways and molecular signatures database as examples. 
 
 
-## The `geneList` dataset
-
-`r Biocpkg("DOSE")` provides an example dataset `geneList` which was derived from `R` package `r Biocpkg("breastCancerMAINZ")` that contained 200 samples, including 29 samples in grade I, 136 samples in grade II and 35 samples in grade III. We computed the ratios of geometric means of grade III samples versus geometric means of grade I samples. Logarithm of these ratios (base 2) were stored in `geneList` dataset.
+### WikiPathways analysis
 
 
-## WikiPathways analysis
-
-In contrast to KEGG, [WikiPathways](https://www.wikipathways.org) is a continuously updated pathway database curated by a community of researchers and pathway enthusiasts. WikiPathways produces monthly releases of gmt files for supported organisms at [data.wikipathways.org](http://data.wikipathways.org/current/gmt/). Download the appropriate gmt file and then generate `TERM2GENE` and `TERM2NAME` to use `enricher` and `GSEA` functions. 
+[WikiPathways](https://www.wikipathways.org) is a continuously updated pathway database curated by a community of researchers and pathway enthusiasts. WikiPathways produces monthly releases of gmt files for supported organisms at [data.wikipathways.org](http://data.wikipathways.org/current/gmt/). Download the appropriate gmt file and then generate `TERM2GENE` and `TERM2NAME` to use `enricher` and `GSEA` functions. 
 
 ```{r}
 library(magrittr)
+library(clusterProfiler)
 
 data(geneList, package="DOSE")
 gene <- names(geneList)[abs(geneList) > 2]
 
-wpgmtfile <- system.file("extdata", "wikipathways-20180810-gmt-Homo_sapiens.gmt", package="clusterProfiler")
+wpgmtfile <- system.file("extdata/wikipathways-20180810-gmt-Homo_sapiens.gmt", package="clusterProfiler")
 wp2gene <- read.gmt(wpgmtfile)
 wp2gene <- wp2gene %>% tidyr::separate(ont, c("name","version","wpid","org"), "%")
 wpid2gene <- wp2gene %>% dplyr::select(wpid, gene) #TERM2GENE
 wpid2name <- wp2gene %>% dplyr::select(wpid, name) #TERM2NAME
 
 ewp <- enricher(gene, TERM2GENE = wpid2gene, TERM2NAME = wpid2name)
-ewp <- setReadable(ewp, org.Hs.eg.db, keytype = "ENTREZID")
 head(ewp)
 
 ewp2 <- GSEA(geneList, TERM2GENE = wpid2gene, TERM2NAME = wpid2name, verbose=FALSE)
-ewp2 <- setReadable(ewp2, org.Hs.eg.db, keytype = "ENTREZID")
+head(ewp2)
+```
+
+You may want to convert the gene IDs to gene symbols, which can be done by `setReadable` function. 
+
+
+```{r}
+library(org.Hs.eg.db)
+ewp <- setReadable(ewp, org.Hs.eg.db, keyType = "ENTREZID")
+ewp2 <- setReadable(ewp2, org.Hs.eg.db, keyType = "ENTREZID")
+head(ewp)
 head(ewp2)
 ```
 
 As an alternative to manually downloading gmt files, install the [rWikiPathways package](https://bioconductor.org/packages/release/bioc/html/rWikiPathways.html) to gain scripting access to the latest gmt files using the `downloadPathwayArchive` function.
+
+
+	
+
+### MSigDb analysis
+
+
+[Molecular Signatures Database](http://software.broadinstitute.org/gsea/msigdb) contains 8 major collections:
+
+* H: hallmark gene sets
+* C1: positional gene sets
+* C2: curated gene sets
+* C3: motif gene sets
+* C4: computational gene sets
+* C5: GO gene sets
+* C6: oncogenic signatures
+* C7: immunologic signatures
+
+Users can download GMT files from [Broad Institute](http://software.broadinstitute.org/gsea/msigdb) and use `read.gmt` to parse the file to be used in `enricher()` and `GSEA()`.
+
+There is an R package, [msigdbr](https://cran.r-project.org/package=msigdbr), that already packed the MSigDB gene sets in tidy data format that can be used directly with *clusterProfiler*.
+
+It supports several specices:
+
+```{r}
+library(msigdbr)
+msigdbr_show_species()
+```
+
+We can retrieve all human gene sets:
+
+```{r}
+m_df <- msigdbr(species = "Homo sapiens")
+head(m_df, 2) %>% as.data.frame
+```
+
+
+Or specific collection. Here we use C6, oncogenic gene sets as an example:
+```{r}
+m_t2g <- msigdbr(species = "Homo sapiens", category = "C6") %>% 
+  dplyr::select(gs_name, entrez_gene)
+head(m_t2g)
+
+em <- enricher(gene, TERM2GENE=m_t2g)
+em2 <- GSEA(geneList, TERM2GENE = m_t2g)
+head(em)
+head(em2)
+```
+
+We can test with other collections, for example, using C3 to test whether the genes are up/down-regulated by sharing specific motif.
+
+```{r}
+m_t2g <- msigdbr(species = "Homo sapiens", category = "C3") %>% 
+  dplyr::select(gs_name, entrez_gene)
+head(m_t2g)
+
+em3 <- GSEA(geneList, TERM2GENE = m_t2g)
+head(em3)
+```
 
 <!--
 

@@ -3,8 +3,8 @@ chapter_name: "Chapter "
 output_dir: docs
 delete_merged_file: true
 rmd_files: ["index.Rmd",
-  "01-ORA.Rmd",
-  "02-GSEA.Rmd",
+  "01-introduction.Rmd",
+  "02-methods.Rmd",
   "03-general-tool.Rmd",
   "04-disease.Rmd",
   "05-gene-ontology.Rmd",

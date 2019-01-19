@@ -9,7 +9,8 @@ library(clusterProfiler)
 
 The annotation package, `KEGG.db`, is not updated since 2012. It's now pretty old and in [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler), `enrichKEGG` (for KEGG pathway) and `enrichMKEGG` (for KEGG module) supports downloading latest online version of KEGG data for enrichment analysis. Using `KEGG.db` is also supported by explicitly setting _use\_internal\_data_ parameter to _TRUE_, but it's not recommended.
 
-With this new feature, organism is not restricted to those supported in previous release, it can be any species that have KEGG annotation data available in KEGG database. User should pass abbreviation of academic name to the _organism_ parameter. The full list of KEGG supported organisms can be accessed via [http://www.genome.jp/kegg/catalog/org_list.html](http://www.genome.jp/kegg/catalog/org_list.html).
+With this new feature, organism is not restricted to those supported in previous release, it can be any species that have KEGG annotation data available in KEGG database. User should pass abbreviation of academic name to the _organism_ parameter. The full list of KEGG supported organisms can be accessed via [http://www.genome.jp/kegg/catalog/org_list.html](http://www.genome.jp/kegg/catalog/org_list.html). 
+[KEGG Orthology](https://www.genome.jp/kegg/ko.html) (KO) Database is also supported by specifying `organism = "ko"`.
 
 [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) provides `search_kegg_organism()` function to help searching supported organisms.
 

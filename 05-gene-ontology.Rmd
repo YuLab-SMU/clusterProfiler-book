@@ -1,5 +1,5 @@
 
-# GO Analysis {#chapter5}
+# Gene Ontology Analysis {#chapter5}
 
 ```{r include=FALSE}
 library(knitr)
@@ -90,7 +90,9 @@ ego2 <- setReadable(ego2, OrgDb = org.Hs.eg.db)
 
 ### reduce redundancy of enriched GO terms
 
-According to [issue #28](https://github.com/GuangchuangYu/clusterProfiler/issues/28), I implement a `simplify` method to remove redundant GO terms obtained from `enrichGO`. An example can be found in [the blog post](https://guangchuangyu.github.io/2015/10/use-simplify-to-remove-redundancy-of-enriched-go-terms/). It internally call [GOSemSim](https://www.bioconductor.org/packages/GOSemSim) to calculate similarities among GO terms and remove those highly similar terms by keeping one representative term. The `simplify` method also works with both outputs from `enrichGO` and `compareCluster`.
+
+
+GO is organized in parent-child structure, thus a parent term can be overlap with a large proportion with all its child terms. This can result in redundant findings. To solve this issue, `r Biocpkg("clusterProfiler")` implement [`simplify`](https://github.com/GuangchuangYu/clusterProfiler/issues/28) method to reduce redundant GO terms from the outputs of `enrichGO` and `gseGO`. The function internally called `r Biocpkg("GOSemSim")` [@yu2010] to calculate semantic similarity among GO terms and remove those highly similar terms by keeping one representative term. An example can be found in [the blog post](https://guangchuangyu.github.io/2015/10/use-simplify-to-remove-redundancy-of-enriched-go-terms/).
 
 
 ## GO Gene Set Enrichment Analysis
@@ -121,3 +123,7 @@ page](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneLis
 
 GO semantic similarity can be calculated by [GOSemSim](https://www.bioconductor.org/packages/GOSemSim)[@yu2010]. We can use it to cluster genes/proteins into different clusters based on their functional similarity and can also use it to measure the similarities among GO terms to reduce the redundancy of GO enrichment results.
 
+
+### GO analysis for non-model organisms
+
+Both `enrichGO` and `gseGO` functions require an `OrgDb` object as background annotation. For organisms that don't have `OrgDb` provided by Bioconductor, users can query one (if available) online via `r Biocpkg("AnnotationHub")`. If there is no `OrgDb` available, users can obtain GO annotation from other sources, e.g. from `r Biocpkg("biomaRt")` or [Blast2GO](https://www.blast2go.com/). Then using `enricher` or `GSEA` function to analyze, similar to the examples using wikiPathways and MSigDB. Another solution is to create `OrgDb` by your own using `r Biocpkg("AnnotationForge")` package.

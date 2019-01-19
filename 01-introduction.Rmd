@@ -1,0 +1,39 @@
+
+# Introduction {#chapter1}
+
+
+
+
+## Terminology
+
+### Gene sets and pathway
+
+Gene sets are simple lists of usually functional related genes without further specification of relationships between genes.
+
+Pathways can be interpreted as specific gene sets, typically representing a group of genes that work together in a biological process. 
+
+### Gene Ontology (GO)
+
+
+[Gene Ontology](http://www.geneontology.org/) defines concepts/classes used to describe gene function, and relationships between these concepts. It classifies functions along three aspects:
+
++ MF: Molecular Function
+  - molecular activities of gene products
++ CC: Cellular Component
+  - where gene products are active
++ BP: Biological Process
+  - pathways and larger processes made up of the activities of multiple gene products
+
+GO terms are organized in a directed acyclic graph, where edge between the terms represent parent-child relationship.
+
+
+### Kyoto Encyclopedia of Genes and Genomes (KEGG)
+
+[KEGG](https://www.genome.jp/kegg/) is a collection of manually drawn pathway maps representing molecular interaction and reaction networks. These pathways cover a wide range of biochemical processes that can be divided in 7 broad categories: metabolism, genetic and environmental information processing, cellular processes, organismal systems, human diseases, and drug development.
+
+### Other gene sets
+
+GO and KEGG are most frequently used for the functional analysis. They are typically the first choice because their long-standing curation and availability for a wide range of species.
+
+
+Other gene sets including but not limited to Disease Ontology ([DO](http://disease-ontology.org/)), Disease Gene Network ([DisGeNET](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4397996/)), [wikiPathways](https://www.wikipathways.org), Molecular Signatures Database ([MSigDb](http://software.broadinstitute.org/gsea/msigdb)). 

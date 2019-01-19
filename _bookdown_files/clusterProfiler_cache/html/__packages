@@ -18,3 +18,7 @@ graph
 GSEABase
 ggplot2
 cowplot
+dplyr
+tibble
+msigdbr
+bindrcpp
