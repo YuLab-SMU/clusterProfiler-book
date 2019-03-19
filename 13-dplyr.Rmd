@@ -67,7 +67,7 @@ ggplot(y, showCategory = 20,
 
 
 ```{r p-bar, fig.width=8, fig.height=5}
-pi=seq(0, 1, length.out=10)
+pi=seq(0, 1, length.out=11)
 
 mutate(x, pp = cut(pvalue, pi)) %>%
   group_by(pp) %>% 

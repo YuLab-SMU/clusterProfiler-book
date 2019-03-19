@@ -45,14 +45,6 @@ p2 <- dotplot(edo2, showCategory=30) + ggtitle("dotplot for GSEA")
 plot_grid(p1, p2, ncol=2)
 ```
 
-Users can specify variable of x-axis, or using formual to specify derived variable.
-
-
-```{r}
-N <- as.numeric(sub("\\d+/", "", edo[1, "BgRatio"]))
-N
-dotplot(edo, showCategory=15, x = ~Count/N) + ggplot2::xlab("Rich Factor")
-```
 
 
 ## Gene-Concept Network
