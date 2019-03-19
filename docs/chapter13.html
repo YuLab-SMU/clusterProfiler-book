@@ -195,7 +195,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.11" data-path="chapter12.html"><a href="chapter12.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
 <li class="chapter" data-level="12.12" data-path="chapter12.html"><a href="chapter12.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a></li>
+<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a><ul>
+<li class="chapter" data-level="13.1" data-path="chapter13.html"><a href="chapter13.html#filter"><i class="fa fa-check"></i><b>13.1</b> filter</a></li>
+<li class="chapter" data-level="13.2" data-path="chapter13.html"><a href="chapter13.html#arrange"><i class="fa fa-check"></i><b>13.2</b> arrange</a></li>
+<li class="chapter" data-level="13.3" data-path="chapter13.html"><a href="chapter13.html#select"><i class="fa fa-check"></i><b>13.3</b> select</a></li>
+<li class="chapter" data-level="13.4" data-path="chapter13.html"><a href="chapter13.html#mutate"><i class="fa fa-check"></i><b>13.4</b> mutate</a></li>
+<li class="chapter" data-level="13.5" data-path="chapter13.html"><a href="chapter13.html#summarise"><i class="fa fa-check"></i><b>13.5</b> summarise</a></li>
+</ul></li>
 <li class="chapter" data-level="14" data-path="chapter14.html"><a href="chapter14.html"><i class="fa fa-check"></i><b>14</b> Useful utilities</a><ul>
 <li class="chapter" data-level="14.1" data-path="chapter14.html"><a href="chapter14.html#bitr"><i class="fa fa-check"></i><b>14.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
 <li class="chapter" data-level="14.1.1" data-path="chapter14.html"><a href="chapter14.html#bitr_kegg"><i class="fa fa-check"></i><b>14.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
@@ -227,10 +233,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DOSE)
 <span class="kw">data</span>(geneList)
 de =<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
-x =<span class="st"> </span><span class="kw">enrichDO</span>(de)
+x =<span class="st"> </span><span class="kw">enrichDO</span>(de)</code></pre>
+<div id="filter" class="section level2">
+<h2><span class="header-section-number">13.1</span> filter</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(clusterProfiler.dplyr)
 
-<span class="kw">library</span>(clusterProfiler.dplyr)
-y &lt;-<span class="st"> </span><span class="kw">mutate</span>(x, <span class="dt">richFactor =</span> Count <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(<span class="st">&quot;/</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;&quot;</span>, BgRatio)))
+<span class="kw">filter</span>(x, p.adjust <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>, qvalue <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.2</span>)</code></pre>
+<pre><code>## #
+## # over-representation test
+## #
+## #...@organism     Homo sapiens 
+## #...@ontology     DO 
+## #...@keytype      ENTREZID 
+## #...@gene     chr [1:100] &quot;4312&quot; &quot;8318&quot; &quot;10874&quot; &quot;55143&quot; &quot;55388&quot; ...
+## #...pvalues adjusted by &#39;BH&#39; with cutoff &lt;0.05 
+## #...28 enriched terms found
+## &#39;data.frame&#39;:    28 obs. of  9 variables:
+##  $ ID         : chr  &quot;DOID:0060071&quot; &quot;DOID:5295&quot; &quot;DOID:8719&quot; &quot;DOID:3007&quot; ...
+##  $ Description: chr  &quot;pre-malignant neoplasm&quot; &quot;intestinal disease&quot; &quot;in situ carcinoma&quot; &quot;breast ductal carcinoma&quot; ...
+##  $ GeneRatio  : chr  &quot;5/77&quot; &quot;9/77&quot; &quot;4/77&quot; &quot;4/77&quot; ...
+##  $ BgRatio    : chr  &quot;22/8007&quot; &quot;157/8007&quot; &quot;18/8007&quot; &quot;29/8007&quot; ...
+##  $ pvalue     : num  1.67e-06 1.76e-05 2.18e-05 1.56e-04 2.08e-04 ...
+##  $ p.adjust   : num  0.00064 0.00279 0.00279 0.0136 0.0136 ...
+##  $ qvalue     : num  0.000461 0.002008 0.002008 0.009796 0.009796 ...
+##  $ geneID     : chr  &quot;6280/6278/10232/332/4321&quot; &quot;4312/6279/3627/10563/4283/890/366/4902/3620&quot; &quot;6280/6278/10232/332&quot; &quot;6280/6279/4751/6286&quot; ...
+##  $ Count      : int  5 9 4 4 13 6 13 5 5 6 ...
+## #...Citation
+##   Guangchuang Yu, Li-Gen Wang, Guang-Rong Yan, Qing-Yu He. DOSE: an
+##   R/Bioconductor package for Disease Ontology Semantic and Enrichment
+##   analysis. Bioinformatics 2015, 31(4):608-609</code></pre>
+</div>
+<div id="arrange" class="section level2">
+<h2><span class="header-section-number">13.2</span> arrange</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(x, <span class="dt">geneRatio =</span> <span class="kw">parse_ratio</span>(GeneRatio)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(geneRatio))</code></pre>
+<pre><code>## #
+## # over-representation test
+## #
+## #...@organism     Homo sapiens 
+## #...@ontology     DO 
+## #...@keytype      ENTREZID 
+## #...@gene     chr [1:100] &quot;4312&quot; &quot;8318&quot; &quot;10874&quot; &quot;55143&quot; &quot;55388&quot; ...
+## #...pvalues adjusted by &#39;BH&#39; with cutoff &lt;0.05 
+## #...28 enriched terms found
+## &#39;data.frame&#39;:    28 obs. of  10 variables:
+##  $ ID         : chr  &quot;DOID:3908&quot; &quot;DOID:120&quot; &quot;DOID:2394&quot; &quot;DOID:3459&quot; ...
+##  $ Description: chr  &quot;non-small cell lung carcinoma&quot; &quot;female reproductive organ cancer&quot; &quot;ovarian cancer&quot; &quot;breast carcinoma&quot; ...
+##  $ GeneRatio  : chr  &quot;13/77&quot; &quot;13/77&quot; &quot;10/77&quot; &quot;10/77&quot; ...
+##  $ BgRatio    : chr  &quot;431/8007&quot; &quot;455/8007&quot; &quot;312/8007&quot; &quot;383/8007&quot; ...
+##  $ pvalue     : num  2.08e-04 3.52e-04 7.54e-04 3.48e-03 1.76e-05 ...
+##  $ p.adjust   : num  0.0136 0.01928 0.02625 0.04756 0.00279 ...
+##  $ qvalue     : num  0.0098 0.01389 0.0189 0.03424 0.00201 ...
+##  $ geneID     : chr  &quot;6280/2305/9133/6279/7153/6278/6241/11065/10232/332/6286/3002/9212&quot; &quot;4312/6279/7153/3627/820/983/10232/6362/332/6286/9212/4321/6790&quot; &quot;4312/820/983/10232/6362/332/6286/9212/4321/6790&quot; &quot;4312/6280/6279/7153/4751/890/4085/332/6286/6790&quot; ...
+##  $ Count      : int  13 13 10 10 9 7 7 6 6 6 ...
+##  $ geneRatio  : num  0.169 0.169 0.13 0.13 0.117 ...
+## #...Citation
+##   Guangchuang Yu, Li-Gen Wang, Guang-Rong Yan, Qing-Yu He. DOSE: an
+##   R/Bioconductor package for Disease Ontology Semantic and Enrichment
+##   analysis. Bioinformatics 2015, 31(4):608-609</code></pre>
+</div>
+<div id="select" class="section level2">
+<h2><span class="header-section-number">13.3</span> select</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(x, <span class="op">-</span>geneID) <span class="op">%&gt;%</span><span class="st"> </span>head</code></pre>
+<pre><code>##                        ID                   Description
+## DOID:0060071 DOID:0060071        pre-malignant neoplasm
+## DOID:5295       DOID:5295            intestinal disease
+## DOID:8719       DOID:8719             in situ carcinoma
+## DOID:3007       DOID:3007       breast ductal carcinoma
+## DOID:3908       DOID:3908 non-small cell lung carcinoma
+## DOID:0050589 DOID:0050589    inflammatory bowel disease
+##              GeneRatio  BgRatio       pvalue     p.adjust
+## DOID:0060071      5/77  22/8007 1.671524e-06 0.0006401937
+## DOID:5295         9/77 157/8007 1.759049e-05 0.0027885022
+## DOID:8719         4/77  18/8007 2.184205e-05 0.0027885022
+## DOID:3007         4/77  29/8007 1.564603e-04 0.0136037018
+## DOID:3908        13/77 431/8007 2.075001e-04 0.0136037018
+## DOID:0050589      6/77  90/8007 2.131128e-04 0.0136037018
+##                    qvalue Count
+## DOID:0060071 0.0004609887     5
+## DOID:5295    0.0020079362     9
+## DOID:8719    0.0020079362     4
+## DOID:3007    0.0097957122     4
+## DOID:3908    0.0097957122    13
+## DOID:0050589 0.0097957122     6</code></pre>
+</div>
+<div id="mutate" class="section level2">
+<h2><span class="header-section-number">13.4</span> mutate</h2>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">mutate</span>(x, <span class="dt">richFactor =</span> Count <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(<span class="st">&quot;/</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;&quot;</span>, BgRatio)))
 y</code></pre>
 <pre><code>## #
 ## # over-representation test
@@ -270,8 +359,23 @@ y</code></pre>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;rich factor&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Enriched Disease Ontology&quot;</span>)</code></pre>
-<p><img src="clusterProfiler_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="clusterProfiler_files/figure-html/dot-richfactor-1.png" width="672" /></p>
+</div>
+<div id="summarise" class="section level2">
+<h2><span class="header-section-number">13.5</span> summarise</h2>
+<pre class="sourceCode r"><code class="sourceCode r">pi=<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out=</span><span class="dv">10</span>)
 
+<span class="kw">mutate</span>(x, <span class="dt">pp =</span> <span class="kw">cut</span>(pvalue, pi)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(pp) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">cnt =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(pp, cnt)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;p value intervals&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;p value distribution&quot;</span>)</code></pre>
+<p><img src="clusterProfiler_files/figure-html/p-bar-1.png" width="768" /></p>
+
+</div>
 </div>
             </section>
 

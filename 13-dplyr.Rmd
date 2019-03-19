@@ -9,6 +9,7 @@ library(clusterProfiler.dplyr)
 library(ggplot2)
 library(forcats)
 library(enrichplot)
+theme_set(theme_grey())
 ```
 
 
@@ -17,14 +18,35 @@ library(DOSE)
 data(geneList)
 de = names(geneList)[1:100]
 x = enrichDO(de)
-
-library(clusterProfiler.dplyr)
-y <- mutate(x, richFactor = Count / as.numeric(sub("/\\d+", "", BgRatio)))
-y
 ```
 
+## filter
 
 ```{r}
+library(clusterProfiler.dplyr)
+
+filter(x, p.adjust < .05, qvalue < 0.2)
+```
+
+## arrange
+```{r}
+mutate(x, geneRatio = parse_ratio(GeneRatio)) %>%
+  arrange(desc(geneRatio))
+```
+
+## select
+
+```{r}
+select(x, -geneID) %>% head
+```
+
+## mutate
+
+
+```{r dot-richfactor, fig.width=7, fig.height=7}
+y <- mutate(x, richFactor = Count / as.numeric(sub("/\\d+", "", BgRatio)))
+y
+
 library(ggplot2)
 library(forcats)
 library(enrichplot)
@@ -41,4 +63,19 @@ ggplot(y, showCategory = 20,
   ggtitle("Enriched Disease Ontology")
 ```
 
+## summarise
+
+
+```{r p-bar, fig.width=8, fig.height=5}
+pi=seq(0, 1, length.out=10)
+
+mutate(x, pp = cut(pvalue, pi)) %>%
+  group_by(pp) %>% 
+  summarise(cnt = n()) %>% 
+  ggplot(aes(pp, cnt)) + geom_col() + 
+  theme_minimal() +
+  xlab("p value intervals") +
+  ylab("Frequency") + 
+  ggtitle("p value distribution")
+```
 
