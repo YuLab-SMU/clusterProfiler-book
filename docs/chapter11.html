@@ -195,11 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.11" data-path="chapter12.html"><a href="chapter12.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
 <li class="chapter" data-level="12.12" data-path="chapter12.html"><a href="chapter12.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
-<li class="chapter" data-level="13.1" data-path="chapter13.html"><a href="chapter13.html#bitr"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="chapter13.html"><a href="chapter13.html#bitr_kegg"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a></li>
+<li class="chapter" data-level="14" data-path="chapter14.html"><a href="chapter14.html"><i class="fa fa-check"></i><b>14</b> Useful utilities</a><ul>
+<li class="chapter" data-level="14.1" data-path="chapter14.html"><a href="chapter14.html#bitr"><i class="fa fa-check"></i><b>14.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="chapter14.html"><a href="chapter14.html#bitr_kegg"><i class="fa fa-check"></i><b>14.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="chapter13.html"><a href="chapter13.html#setReadable"><i class="fa fa-check"></i><b>13.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter14.html"><a href="chapter14.html#setReadable"><i class="fa fa-check"></i><b>14.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -222,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter11" class="section level1">
 <h1><span class="header-section-number">Chapter 11</span> Biological theme comparison</h1>
-<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> was developed for biological theme comparison<span class="citation">(Yu et al. <a href="#ref-yu2012">2012</a>)</span>, and it provides a function, <code>compareCluster</code>, to automatically calculate enriched functional categories of each gene clusters.</p>
+<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> was developed for biological theme comparison<span class="citation">(Yu et al. <a href="#ref-yu2012" role="doc-biblioref">2012</a>)</span>, and it provides a function, <code>compareCluster</code>, to automatically calculate enriched functional categories of each gene clusters.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
 <span class="kw">lapply</span>(gcSample, head)</code></pre>
 <pre><code>## $X1
@@ -346,13 +347,13 @@ be plotted.</p>
 <p>To provide the full information, we also provide number of identified genes in each category (numbers in parentheses) when <em>by</em> is setting to <em>rowPercentage</em> and number of gene clusters in each cluster label (numbers in parentheses) when <em>by</em> is setting to <em>geneRatio</em>, as shown in Figure 3. If the dot sizes were based on <em>count</em>, the row numbers will not shown.</p>
 <p>The p-values indicate that which categories are more likely to have biological meanings. The dots in the plot are color-coded based on their corresponding p-values. Color gradient ranging from red to blue correspond to in order of increasing p-values. That is, red indicate low p-values (high enrichment), and blue indicate high p-values (low enrichment). P-values and adjusted p-values were filtered out by the threshold giving by
 parameter <em>pvalueCutoff</em>, and FDR can be estimated by <em>qvalue</em>.</p>
-<p>User can refer to the example in Yu (2012)<span class="citation">(Yu et al. <a href="#ref-yu2012">2012</a>)</span>; we analyzed the publicly available expression dataset of breast tumour tissues from 200 patients (GSE11121, Gene Expression Omnibus)<span class="citation">(Schmidt et al. <a href="#ref-schmidt2008">2008</a>)</span>. We identified 8 gene clusters from differentially expressed genes, and using <code>compareCluster</code> to compare these gene clusters by their enriched biological process.</p>
+<p>User can refer to the example in Yu (2012)<span class="citation">(Yu et al. <a href="#ref-yu2012" role="doc-biblioref">2012</a>)</span>; we analyzed the publicly available expression dataset of breast tumour tissues from 200 patients (GSE11121, Gene Expression Omnibus)<span class="citation">(Schmidt et al. <a href="#ref-schmidt2008" role="doc-biblioref">2008</a>)</span>. We identified 8 gene clusters from differentially expressed genes, and using <code>compareCluster</code> to compare these gene clusters by their enriched biological process.</p>
 <p>The comparison function was designed as a framework for comparing gene
 clusters of any kind of ontology associations, not only <code>groupGO</code>,
 <code>enrichGO</code>, <code>enrichKEGG</code> and <code>enricher</code> provided in this package, but
 also other biological and biomedical ontologies, for instance,
-<code>enrichDO</code> from <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span>, <code>enrichMeSH</code> from
-<a href="https://www.bioconductor.org/packages/meshes">meshes</a> and <code>enrichPathway</code> from <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a> work fine with <code>compareCluster</code> for comparing biological themes in disease and reactome pathway perspective. More details can be found in the vignettes of <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span> and <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a>.</p>
+<code>enrichDO</code> from <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span>, <code>enrichMeSH</code> from
+<a href="https://www.bioconductor.org/packages/meshes">meshes</a> and <code>enrichPathway</code> from <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a> work fine with <code>compareCluster</code> for comparing biological themes in disease and reactome pathway perspective. More details can be found in the vignettes of <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span> and <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a>.</p>
 
 </div>
 </div>

@@ -195,11 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.11" data-path="chapter12.html"><a href="chapter12.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
 <li class="chapter" data-level="12.12" data-path="chapter12.html"><a href="chapter12.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
-<li class="chapter" data-level="13.1" data-path="chapter13.html"><a href="chapter13.html#bitr"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="chapter13.html"><a href="chapter13.html#bitr_kegg"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a></li>
+<li class="chapter" data-level="14" data-path="chapter14.html"><a href="chapter14.html"><i class="fa fa-check"></i><b>14</b> Useful utilities</a><ul>
+<li class="chapter" data-level="14.1" data-path="chapter14.html"><a href="chapter14.html#bitr"><i class="fa fa-check"></i><b>14.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="chapter14.html"><a href="chapter14.html#bitr_kegg"><i class="fa fa-check"></i><b>14.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="chapter13.html"><a href="chapter13.html#setReadable"><i class="fa fa-check"></i><b>13.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter14.html"><a href="chapter14.html#setReadable"><i class="fa fa-check"></i><b>14.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -224,9 +225,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 12</span> Visualization of Functional Enrichment Result</h1>
 <p>The <a href="http://bioconductor.org/packages/enrichplot">enrichplot</a> package implements several visualization methods
 to help interpreting enrichment results. It supports visualizing enrichment
-results obtained from <a href="http://bioconductor.org/packages/DOSE">DOSE</a> <span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span>,
+results obtained from <a href="http://bioconductor.org/packages/DOSE">DOSE</a> <span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span>,
 <a href="http://bioconductor.org/packages/clusterProfiler">clusterProfiler</a> <span class="citation">(<span class="citeproc-not-found" data-reference-id="yu_2012"><strong>???</strong></span>)</span>,
-<a href="http://bioconductor.org/packages/ReactomePA">ReactomePA</a> <span class="citation">(Yu and He <a href="#ref-yu_reactomepa_2016">2016</a>)</span> and <a href="http://bioconductor.org/packages/meshes">meshes</a>. Both
+<a href="http://bioconductor.org/packages/ReactomePA">ReactomePA</a> <span class="citation">(Yu and He <a href="#ref-yu_reactomepa_2016" role="doc-biblioref">2016</a>)</span> and <a href="http://bioconductor.org/packages/meshes">meshes</a>. Both
 over representation analysis (ORA) and gene set enrichment analysis (GSEA) are
 supported.</p>
 <div id="bar-plot" class="section level2">
@@ -383,7 +384,7 @@ p2 &lt;-<span class="st"> </span><span class="kw">pmcplot</span>(terms, <span cl
 </div>
 <div id="pathview-from-pathview-package" class="section level2">
 <h2><span class="header-section-number">12.12</span> pathview from pathview package</h2>
-<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> users can also use <code>pathview</code> from the <a href="https://www.bioconductor.org/packages/pathview">pathview</a><span class="citation">(Luo and Brouwer <a href="#ref-luo_pathview">2013</a>)</span> to visualize KEGG pathway.</p>
+<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> users can also use <code>pathview</code> from the <a href="https://www.bioconductor.org/packages/pathview">pathview</a><span class="citation">(Luo and Brouwer <a href="#ref-luo_pathview" role="doc-biblioref">2013</a>)</span> to visualize KEGG pathway.</p>
 <p>The following example illustrate how to visualize “hsa04110” pathway, which was enriched in our previous analysis.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pathview&quot;</span>)
 hsa04110 &lt;-<span class="st"> </span><span class="kw">pathview</span>(<span class="dt">gene.data  =</span> geneList,
@@ -391,7 +392,7 @@ hsa04110 &lt;-<span class="st"> </span><span class="kw">pathview</span>(<span cl
                      <span class="dt">species    =</span> <span class="st">&quot;hsa&quot;</span>,
                      <span class="dt">limit      =</span> <span class="kw">list</span>(<span class="dt">gene=</span><span class="kw">max</span>(<span class="kw">abs</span>(geneList)), <span class="dt">cpd=</span><span class="dv">1</span>))</code></pre>
 <p><img src="figures/hsa04110_pathview.png" /></p>
-<p>For further information, please refer to the vignette of <a href="https://www.bioconductor.org/packages/pathview">pathview</a><span class="citation">(Luo and Brouwer <a href="#ref-luo_pathview">2013</a>)</span>.</p>
+<p>For further information, please refer to the vignette of <a href="https://www.bioconductor.org/packages/pathview">pathview</a><span class="citation">(Luo and Brouwer <a href="#ref-luo_pathview" role="doc-biblioref">2013</a>)</span>.</p>
 
 </div>
 </div>

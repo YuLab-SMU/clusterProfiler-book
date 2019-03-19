@@ -195,11 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.11" data-path="chapter12.html"><a href="chapter12.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
 <li class="chapter" data-level="12.12" data-path="chapter12.html"><a href="chapter12.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
-<li class="chapter" data-level="13.1" data-path="chapter13.html"><a href="chapter13.html#bitr"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="chapter13.html"><a href="chapter13.html#bitr_kegg"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a></li>
+<li class="chapter" data-level="14" data-path="chapter14.html"><a href="chapter14.html"><i class="fa fa-check"></i><b>14</b> Useful utilities</a><ul>
+<li class="chapter" data-level="14.1" data-path="chapter14.html"><a href="chapter14.html#bitr"><i class="fa fa-check"></i><b>14.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="chapter14.html"><a href="chapter14.html#bitr_kegg"><i class="fa fa-check"></i><b>14.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="chapter13.html"><a href="chapter13.html#setReadable"><i class="fa fa-check"></i><b>13.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter14.html"><a href="chapter14.html#setReadable"><i class="fa fa-check"></i><b>14.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -222,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter10" class="section level1">
 <h1><span class="header-section-number">Chapter 10</span> Functional enrichment analysis of genomic coordinations</h1>
-<p>Functional analysis using NGS data (eg, RNA-Seq and ChIP-Seq) can be performed by linking coding and non-coding regions to coding genes via <a href="http://bioconductor.org/packages/ChIPseeker">ChIPseeker</a><span class="citation">(Yu, Wang, and He <a href="#ref-yu_chipseeker_2015">2015</a>)</span> package, which can annotates genomic regions to their nearest genes, host genes, and flanking genes respectivly. In addtion, it provides a function, <code>seq2gene</code>, that simultaneously considering host genes, promoter region and flanking gene from intergenic region that may under control via cis-regulation. This function maps genomic regions to genes in a many-to-many manner and facilitate functional analysis. For more details, please refer to <a href="http://bioconductor.org/packages/ChIPseeker">ChIPseeker</a><span class="citation">(Yu, Wang, and He <a href="#ref-yu_chipseeker_2015">2015</a>)</span>.</p>
+<p>Functional analysis using NGS data (eg, RNA-Seq and ChIP-Seq) can be performed by linking coding and non-coding regions to coding genes via <a href="http://bioconductor.org/packages/ChIPseeker">ChIPseeker</a><span class="citation">(Yu, Wang, and He <a href="#ref-yu_chipseeker_2015" role="doc-biblioref">2015</a>)</span> package, which can annotates genomic regions to their nearest genes, host genes, and flanking genes respectivly. In addtion, it provides a function, <code>seq2gene</code>, that simultaneously considering host genes, promoter region and flanking gene from intergenic region that may under control via cis-regulation. This function maps genomic regions to genes in a many-to-many manner and facilitate functional analysis. For more details, please refer to <a href="http://bioconductor.org/packages/ChIPseeker">ChIPseeker</a><span class="citation">(Yu, Wang, and He <a href="#ref-yu_chipseeker_2015" role="doc-biblioref">2015</a>)</span>.</p>
 
 </div>
 <h3>References</h3>

@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study</title>
-  <meta name="description" content="Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study">
+  <title>Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study</title>
+  <meta name="description" content="Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta property="og:title" content="Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta name="twitter:title" content="Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study" />
   
   
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="chapter12.html">
-<link rel="next" href="references.html">
+<link rel="next" href="chapter14.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -195,11 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.11" data-path="chapter12.html"><a href="chapter12.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
 <li class="chapter" data-level="12.12" data-path="chapter12.html"><a href="chapter12.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
-<li class="chapter" data-level="13.1" data-path="chapter13.html"><a href="chapter13.html#bitr"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="chapter13.html"><a href="chapter13.html#bitr_kegg"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a></li>
+<li class="chapter" data-level="14" data-path="chapter14.html"><a href="chapter14.html"><i class="fa fa-check"></i><b>14</b> Useful utilities</a><ul>
+<li class="chapter" data-level="14.1" data-path="chapter14.html"><a href="chapter14.html#bitr"><i class="fa fa-check"></i><b>14.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="chapter14.html"><a href="chapter14.html#bitr_kegg"><i class="fa fa-check"></i><b>14.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="chapter13.html"><a href="chapter13.html#setReadable"><i class="fa fa-check"></i><b>13.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter14.html"><a href="chapter14.html#setReadable"><i class="fa fa-check"></i><b>14.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -221,128 +222,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="chapter13" class="section level1">
-<h1><span class="header-section-number">Chapter 13</span> Useful utilities</h1>
-<div id="bitr" class="section level2">
-<h2><span class="header-section-number">13.1</span> <code>bitr</code>: Biological Id TranslatoR</h2>
-<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides <code>bitr</code> and <code>bitr_kegg</code> for converting ID types. Both <code>bitr</code> and <code>bitr_kegg</code> support many species including model and many non-model organisms.</p>
-<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GPX3&quot;</span>,  <span class="st">&quot;GLRX&quot;</span>,   <span class="st">&quot;LBP&quot;</span>,   <span class="st">&quot;CRYAB&quot;</span>, <span class="st">&quot;DEFB1&quot;</span>, <span class="st">&quot;HCLS1&quot;</span>,   <span class="st">&quot;SOD2&quot;</span>,   <span class="st">&quot;HSPA2&quot;</span>,
-       <span class="st">&quot;ORM1&quot;</span>,  <span class="st">&quot;IGFBP1&quot;</span>, <span class="st">&quot;PTHLH&quot;</span>, <span class="st">&quot;GPC3&quot;</span>,  <span class="st">&quot;IGFBP3&quot;</span>,<span class="st">&quot;TOB1&quot;</span>,    <span class="st">&quot;MITF&quot;</span>,   <span class="st">&quot;NDRG1&quot;</span>,
-       <span class="st">&quot;NR1H4&quot;</span>, <span class="st">&quot;FGFR3&quot;</span>,  <span class="st">&quot;PVR&quot;</span>,   <span class="st">&quot;IL6&quot;</span>,   <span class="st">&quot;PTPRM&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>,   <span class="st">&quot;NID2&quot;</span>,   <span class="st">&quot;LAMB1&quot;</span>,
-       <span class="st">&quot;COMP&quot;</span>,  <span class="st">&quot;PLS3&quot;</span>,   <span class="st">&quot;MCAM&quot;</span>,  <span class="st">&quot;SPP1&quot;</span>,  <span class="st">&quot;LAMC1&quot;</span>, <span class="st">&quot;COL4A2&quot;</span>,  <span class="st">&quot;COL4A1&quot;</span>, <span class="st">&quot;MYOC&quot;</span>,
-       <span class="st">&quot;ANXA4&quot;</span>, <span class="st">&quot;TFPI2&quot;</span>,  <span class="st">&quot;CST6&quot;</span>,  <span class="st">&quot;SLPI&quot;</span>,  <span class="st">&quot;TIMP2&quot;</span>, <span class="st">&quot;CPM&quot;</span>,     <span class="st">&quot;GGT1&quot;</span>,   <span class="st">&quot;NNMT&quot;</span>,
-       <span class="st">&quot;MAL&quot;</span>,   <span class="st">&quot;EEF1A2&quot;</span>, <span class="st">&quot;HGD&quot;</span>,   <span class="st">&quot;TCN2&quot;</span>,  <span class="st">&quot;CDA&quot;</span>,   <span class="st">&quot;PCCA&quot;</span>,    <span class="st">&quot;CRYM&quot;</span>,   <span class="st">&quot;PDXK&quot;</span>,
-       <span class="st">&quot;STC1&quot;</span>,  <span class="st">&quot;WARS&quot;</span>,  <span class="st">&quot;HMOX1&quot;</span>, <span class="st">&quot;FXYD2&quot;</span>, <span class="st">&quot;RBP4&quot;</span>,   <span class="st">&quot;SLC6A12&quot;</span>, <span class="st">&quot;KDELR3&quot;</span>, <span class="st">&quot;ITM2B&quot;</span>)
-eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="st">&quot;ENTREZID&quot;</span>, <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
-<span class="kw">head</span>(eg)</code></pre>
-<pre><code>##   SYMBOL ENTREZID
-## 1   GPX3     2878
-## 2   GLRX     2745
-## 3    LBP     3929
-## 4  CRYAB     1410
-## 5  DEFB1     1672
-## 6  HCLS1     3059</code></pre>
-<p>User should provides an annotation package, both <em>fromType</em> and <em>toType</em> can accept any types that supported.</p>
-<p>User can use <em>keytypes</em> to list all supporting types.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
-<span class="kw">keytypes</span>(org.Hs.eg.db)</code></pre>
-<pre><code>##  [1] &quot;ACCNUM&quot;       &quot;ALIAS&quot;        &quot;ENSEMBL&quot;     
-##  [4] &quot;ENSEMBLPROT&quot;  &quot;ENSEMBLTRANS&quot; &quot;ENTREZID&quot;    
-##  [7] &quot;ENZYME&quot;       &quot;EVIDENCE&quot;     &quot;EVIDENCEALL&quot; 
-## [10] &quot;GENENAME&quot;     &quot;GO&quot;           &quot;GOALL&quot;       
-## [13] &quot;IPI&quot;          &quot;MAP&quot;          &quot;OMIM&quot;        
-## [16] &quot;ONTOLOGY&quot;     &quot;ONTOLOGYALL&quot;  &quot;PATH&quot;        
-## [19] &quot;PFAM&quot;         &quot;PMID&quot;         &quot;PROSITE&quot;     
-## [22] &quot;REFSEQ&quot;       &quot;SYMBOL&quot;       &quot;UCSCKG&quot;      
-## [25] &quot;UNIGENE&quot;      &quot;UNIPROT&quot;</code></pre>
-<p>We can translate from one type to other types.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ids &lt;-<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="kw">c</span>(<span class="st">&quot;UNIPROT&quot;</span>, <span class="st">&quot;ENSEMBL&quot;</span>), <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
-<span class="kw">head</span>(ids)</code></pre>
-<pre><code>##   SYMBOL    UNIPROT         ENSEMBL
-## 1   GPX3     P22352 ENSG00000211445
-## 2   GLRX A0A024RAM2 ENSG00000173221
-## 3   GLRX     P35754 ENSG00000173221
-## 4    LBP     P18428 ENSG00000129988
-## 5    LBP     Q8TCF0 ENSG00000129988
-## 6  CRYAB     P02511 ENSG00000109846</code></pre>
-<p>For GO analysis, user don’t need to convert ID, all ID type provided by <code>OrgDb</code> can be used in <code>groupGO</code>, <code>enrichGO</code> and <code>gseGO</code> by specifying <code>keyType</code> parameter.</p>
-<div id="bitr_kegg" class="section level3">
-<h3><span class="header-section-number">13.1.1</span> <code>bitr_kegg</code>: converting biological IDs using KEGG API</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
-hg &lt;-<span class="st"> </span>gcSample[[<span class="dv">1</span>]]
-<span class="kw">head</span>(hg)</code></pre>
-<pre><code>## [1] &quot;4597&quot;  &quot;7111&quot;  &quot;5266&quot;  &quot;2175&quot;  &quot;755&quot;   &quot;23046&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">eg2np &lt;-<span class="st"> </span><span class="kw">bitr_kegg</span>(hg, <span class="dt">fromType=</span><span class="st">&#39;kegg&#39;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;hsa&#39;</span>)
-<span class="kw">head</span>(eg2np)</code></pre>
-<pre><code>##    kegg ncbi-proteinid
-## 1 10001      NP_005457
-## 2 10209      NP_005792
-## 3 10232      NP_037536
-## 4 10324      NP_006054
-## 5 10411   NP_001092002
-## 6 10614      NP_006451</code></pre>
-<p>The ID type (both <code>fromType</code> &amp; <code>toType</code>) should be one of ‘kegg’, ‘ncbi-geneid’, ‘ncbi-proteinid’ or ‘uniprot’. The ‘kegg’ is the primary ID used in KEGG database. The data source of KEGG was from NCBI. A rule of thumb for the ‘kegg’ ID is <code>entrezgene</code> ID for eukaryote species and <code>Locus</code> ID for prokaryotes.</p>
-<p>Many prokaryote species don’t have entrezgene ID available. For example we can check the gene information of <code>ece:Z5100</code> in <a href="http://www.genome.jp/dbget-bin/www_bget?ece:Z5100" class="uri">http://www.genome.jp/dbget-bin/www_bget?ece:Z5100</a>, which have <code>NCBI-ProteinID</code> and <code>UnitProt</code> links in the <code>Other DBs</code> Entry, but not <code>NCBI-GeneID</code>.</p>
-<p>If we try to convert <code>Z5100</code> to <code>ncbi-geneid</code>, <code>bitr_kegg</code> will throw error of <code>ncbi-geneid is not supported</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-geneid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
-<pre><code>## Error in KEGG_convert(fromType, toType, organism) :
-## ncbi-geneid is not supported for ece ...</code></pre>
-<p>We can of course convert it to <code>ncbi-proteinid</code> and <code>uniprot</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
-<pre><code>##    kegg ncbi-proteinid
-## 1 Z5100       AAG58814</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;uniprot&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
-<pre><code>##    kegg    uniprot
-## 1 Z5100 A0A384KFP7</code></pre>
-</div>
-</div>
-<div id="setReadable" class="section level2">
-<h2><span class="header-section-number">13.2</span> <code>setReadable</code>: translating gene IDs to human readable symbols</h2>
-<p>Some of the functions, especially those internally supported for <a href="chapter4.html#chapter4">DO</a>, <a href="chapter5.html#chapter5">GO</a>, and <a href="chapter8.html#chapter8">Reactome Pathway</a>, support a parameter, <code>readable</code>. If <code>readable = TRUE</code>, all the gene IDs will be translated to gene symbols. The <code>readable</code> parameter is not available for enrichment analysis of KEGG or using user’s own annotation. KEGG analysis using <code>enrichKEGG</code> and <code>gseKEGG</code>, internally query annotation information from KEEGG database and thus support all species if it is available in the KEGG database. However, KEGG database doesn’t provide gene ID to symbol mapping information. For analysis using user’s own annotation data, we even don’t know what species is in analyzed. Translating gene IDs to gene symbols is partly supported using the <code>setReadable</code> function if and only if there is an <code>OrgDb</code> available.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
-<span class="kw">library</span>(clusterProfiler)
+<h1><span class="header-section-number">Chapter 13</span> dplyr verbs for clusterProfiler</h1>
+<p><a href="https://github.com/YuLab-SMU/clusterProfiler.dplyr">clusterProfiler.dplyr</a> package.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DOSE)
+<span class="kw">data</span>(geneList)
+de =<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
+x =<span class="st"> </span><span class="kw">enrichDO</span>(de)
 
-<span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-de &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
-x &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(de)
-<span class="co">## The geneID column is ENTREZID</span>
-<span class="kw">head</span>(x, <span class="dv">3</span>)</code></pre>
-<pre><code>##                ID         Description GeneRatio  BgRatio
-## hsa04110 hsa04110          Cell cycle      8/47 124/7471
-## hsa04218 hsa04218 Cellular senescence      7/47 160/7471
-## hsa04114 hsa04114      Oocyte meiosis      6/47 125/7471
-##                pvalue     p.adjust       qvalue
-## hsa04110 8.395705e-07 9.403189e-05 8.837584e-05
-## hsa04218 5.545590e-05 3.105531e-03 2.918732e-03
-## hsa04114 1.191240e-04 4.447297e-03 4.179790e-03
-##                                        geneID Count
-## hsa04110 8318/991/9133/890/983/4085/7272/1111     8
-## hsa04218    2305/4605/9133/890/983/51806/1111     7
-## hsa04114         991/9133/983/4085/51806/6790     6</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">setReadable</span>(x, <span class="dt">OrgDb =</span> org.Hs.eg.db, <span class="dt">keyType=</span><span class="st">&quot;ENTREZID&quot;</span>)
-<span class="co">## The geneID column is translated to symbol</span>
-<span class="kw">head</span>(y, <span class="dv">3</span>)</code></pre>
-<pre><code>##                ID         Description GeneRatio  BgRatio
-## hsa04110 hsa04110          Cell cycle      8/47 124/7471
-## hsa04218 hsa04218 Cellular senescence      7/47 160/7471
-## hsa04114 hsa04114      Oocyte meiosis      6/47 125/7471
-##                pvalue     p.adjust       qvalue
-## hsa04110 8.395705e-07 9.403189e-05 8.837584e-05
-## hsa04218 5.545590e-05 3.105531e-03 2.918732e-03
-## hsa04114 1.191240e-04 4.447297e-03 4.179790e-03
-##                                                 geneID
-## hsa04110 CDC45/CDC20/CCNB2/CCNA2/CDK1/MAD2L1/TTK/CHEK1
-## hsa04218     FOXM1/MYBL2/CCNB2/CCNA2/CDK1/CALML5/CHEK1
-## hsa04114          CDC20/CCNB2/CDK1/MAD2L1/CALML5/AURKA
-##          Count
-## hsa04110     8
-## hsa04218     7
-## hsa04114     6</code></pre>
-<p>For those functions that internally support <code>readable</code> parameter, user can also use <code>setReadable</code> for translating gene IDs.</p>
+<span class="kw">library</span>(clusterProfiler.dplyr)
+y &lt;-<span class="st"> </span><span class="kw">mutate</span>(x, <span class="dt">richFactor =</span> Count <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(<span class="st">&quot;/</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;&quot;</span>, BgRatio)))
+y</code></pre>
+<pre><code>## #
+## # over-representation test
+## #
+## #...@organism     Homo sapiens 
+## #...@ontology     DO 
+## #...@keytype      ENTREZID 
+## #...@gene     chr [1:100] &quot;4312&quot; &quot;8318&quot; &quot;10874&quot; &quot;55143&quot; &quot;55388&quot; ...
+## #...pvalues adjusted by &#39;BH&#39; with cutoff &lt;0.05 
+## #...28 enriched terms found
+## &#39;data.frame&#39;:    28 obs. of  10 variables:
+##  $ ID         : chr  &quot;DOID:0060071&quot; &quot;DOID:5295&quot; &quot;DOID:8719&quot; &quot;DOID:3007&quot; ...
+##  $ Description: chr  &quot;pre-malignant neoplasm&quot; &quot;intestinal disease&quot; &quot;in situ carcinoma&quot; &quot;breast ductal carcinoma&quot; ...
+##  $ GeneRatio  : chr  &quot;5/77&quot; &quot;9/77&quot; &quot;4/77&quot; &quot;4/77&quot; ...
+##  $ BgRatio    : chr  &quot;22/8007&quot; &quot;157/8007&quot; &quot;18/8007&quot; &quot;29/8007&quot; ...
+##  $ pvalue     : num  1.67e-06 1.76e-05 2.18e-05 1.56e-04 2.08e-04 ...
+##  $ p.adjust   : num  0.00064 0.00279 0.00279 0.0136 0.0136 ...
+##  $ qvalue     : num  0.000461 0.002008 0.002008 0.009796 0.009796 ...
+##  $ geneID     : chr  &quot;6280/6278/10232/332/4321&quot; &quot;4312/6279/3627/10563/4283/890/366/4902/3620&quot; &quot;6280/6278/10232/332&quot; &quot;6280/6279/4751/6286&quot; ...
+##  $ Count      : int  5 9 4 4 13 6 13 5 5 6 ...
+##  $ richFactor : num  0.2273 0.0573 0.2222 0.1379 0.0302 ...
+## #...Citation
+##   Guangchuang Yu, Li-Gen Wang, Guang-Rong Yan, Qing-Yu He. DOSE: an
+##   R/Bioconductor package for Disease Ontology Semantic and Enrichment
+##   analysis. Bioinformatics 2015, 31(4):608-609</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(forcats)
+<span class="kw">library</span>(enrichplot)
 
-</div>
-</div>
-
-
+<span class="kw">ggplot</span>(y, <span class="dt">showCategory =</span> <span class="dv">20</span>, 
+  <span class="kw">aes</span>(richFactor, <span class="kw">fct_reorder</span>(Description, richFactor))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span><span class="dv">0</span>, <span class="dt">yend =</span> Description)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>p.adjust, <span class="dt">size =</span> Count)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_viridis_c</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_size_continuous</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">10</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;rich factor&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Enriched Disease Ontology&quot;</span>)</code></pre>
+<p><img src="clusterProfiler_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 
 </div>
             </section>
@@ -351,7 +279,7 @@ x &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(de)
         </div>
       </div>
 <a href="chapter12.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

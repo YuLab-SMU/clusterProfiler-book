@@ -22,3 +22,5 @@ dplyr
 tibble
 msigdbr
 bindrcpp
+clusterProfiler.dplyr
+forcats

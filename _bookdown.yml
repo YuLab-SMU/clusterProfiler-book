@@ -15,6 +15,7 @@ rmd_files: ["index.Rmd",
   "10-ROI.Rmd",
   "11-compareCluster.Rmd",
   "12-enrichplot.Rmd",
-  "13-utilities.Rmd",
+  "13-dplyr.Rmd",
+  "14-utilities.Rmd",
   "A-app.Rmd",
   "B-references.Rmd"]

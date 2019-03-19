@@ -195,11 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.11" data-path="chapter12.html"><a href="chapter12.html#browsekegg"><i class="fa fa-check"></i><b>12.11</b> browseKEGG</a></li>
 <li class="chapter" data-level="12.12" data-path="chapter12.html"><a href="chapter12.html#pathview-from-pathview-package"><i class="fa fa-check"></i><b>12.12</b> pathview from pathview package</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> Useful utilities</a><ul>
-<li class="chapter" data-level="13.1" data-path="chapter13.html"><a href="chapter13.html#bitr"><i class="fa fa-check"></i><b>13.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="chapter13.html"><a href="chapter13.html#bitr_kegg"><i class="fa fa-check"></i><b>13.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
+<li class="chapter" data-level="13" data-path="chapter13.html"><a href="chapter13.html"><i class="fa fa-check"></i><b>13</b> dplyr verbs for clusterProfiler</a></li>
+<li class="chapter" data-level="14" data-path="chapter14.html"><a href="chapter14.html"><i class="fa fa-check"></i><b>14</b> Useful utilities</a><ul>
+<li class="chapter" data-level="14.1" data-path="chapter14.html"><a href="chapter14.html#bitr"><i class="fa fa-check"></i><b>14.1</b> <code>bitr</code>: Biological Id TranslatoR</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="chapter14.html"><a href="chapter14.html#bitr_kegg"><i class="fa fa-check"></i><b>14.1.1</b> <code>bitr_kegg</code>: converting biological IDs using KEGG API</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="chapter13.html"><a href="chapter13.html#setReadable"><i class="fa fa-check"></i><b>13.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter14.html"><a href="chapter14.html#setReadable"><i class="fa fa-check"></i><b>14.2</b> <code>setReadable</code>: translating gene IDs to human readable symbols</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -222,8 +223,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter4" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Disease analysis</h1>
-<p><a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span> supports Disease Ontology (DO) Semantic and Enrichment analysis. The <code>enrichDO</code> function is very useful for identifying disease association of interesting genes, and function <code>gseDO</code> function is designed for gene set enrichment analysis of <em>DO</em>.</p>
-<p>In addition, <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a> also supports enrichment analysis of <a href="http://ncg.kcl.ac.uk/">Network of Cancer Gene</a> (NCG)<span class="citation">(A. et al. <a href="#ref-omer_ncg">2016</a>)</span> and <a href="http://disgenet.org/">Disease Gene Network</a><span class="citation">(Janet et al. <a href="#ref-janet_disgenet">2015</a>)</span>, please refer to the <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a> vignettes.</p>
+<p><a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span> supports Disease Ontology (DO) Semantic and Enrichment analysis. The <code>enrichDO</code> function is very useful for identifying disease association of interesting genes, and function <code>gseDO</code> function is designed for gene set enrichment analysis of <em>DO</em>.</p>
+<p>In addition, <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a> also supports enrichment analysis of <a href="http://ncg.kcl.ac.uk/">Network of Cancer Gene</a> (NCG)<span class="citation">(A. et al. <a href="#ref-omer_ncg" role="doc-biblioref">2016</a>)</span> and <a href="http://disgenet.org/">Disease Gene Network</a><span class="citation">(Janet et al. <a href="#ref-janet_disgenet" role="doc-biblioref">2015</a>)</span>, please refer to the <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a> vignettes.</p>
 <div id="enrichdo-function" class="section level2">
 <h2><span class="header-section-number">4.1</span> <code>enrichDO</code> function</h2>
 <p>In the following example, we selected fold change above 1 as the differential genes and analyzing their disease association.</p>
@@ -278,7 +279,7 @@ gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span
 ## DOID:824      16
 ## DOID:3905     43</code></pre>
 <p>The <code>enrichDO</code> function requires an entrezgene ID vector as input, mostly is the differential gene list of gene expression profile studies. If user needs to convert other gene ID type to entrezgene ID, we recommend using <code>bitr</code> function provided by <a href="http://bioconductor.org/packages/clusterProfiler">clusterProfiler</a>.</p>
-<p>The <code>ont</code> parameter can be “DO” or “DOLite”, DOLite<span class="citation">(Du et al. <a href="#ref-Du15062009">2009</a>)</span> was constructed to aggregate the redundant DO terms. The DOLite data is not updated, we recommend user use <code>ont="DO"</code>. <code>pvalueCutoff</code> setting the cutoff value of <em>p</em> value and <em>p</em> value adjust; <code>pAdjustMethod</code> setting the <em>p</em> value correction methods, include the Bonferroni correction (“bonferroni”), Holm (“holm”), Hochberg (“hochberg”), Hommel (“hommel”), Benjamini &amp; Hochberg (“BH”) and Benjamini &amp; Yekutieli (“BY”) while <code>qvalueCutoff</code> is used to control <em>q</em>-values.</p>
+<p>The <code>ont</code> parameter can be “DO” or “DOLite”, DOLite<span class="citation">(Du et al. <a href="#ref-Du15062009" role="doc-biblioref">2009</a>)</span> was constructed to aggregate the redundant DO terms. The DOLite data is not updated, we recommend user use <code>ont="DO"</code>. <code>pvalueCutoff</code> setting the cutoff value of <em>p</em> value and <em>p</em> value adjust; <code>pAdjustMethod</code> setting the <em>p</em> value correction methods, include the Bonferroni correction (“bonferroni”), Holm (“holm”), Hochberg (“hochberg”), Hommel (“hommel”), Benjamini &amp; Hochberg (“BH”) and Benjamini &amp; Yekutieli (“BY”) while <code>qvalueCutoff</code> is used to control <em>q</em>-values.</p>
 <p>The <code>universe</code> setting the background gene universe for testing. If user do not explicitly setting this parameter, <code>enrichDO</code> will set the universe to all human genes that have DO annotation.</p>
 <p>The <code>minGSSize</code> (and <code>maxGSSize</code>) indicates that only those DO terms that have more than <code>minGSSize</code> (and less than <code>maxGSSize</code>) genes annotated will be tested.</p>
 <p>The <code>readable</code> is a logical parameter, indicates whether the entrezgene IDs will mapping to gene symbols or not.</p>
@@ -323,7 +324,7 @@ gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span
 </div>
 <div id="enrichncg-function" class="section level2">
 <h2><span class="header-section-number">4.2</span> <code>enrichNCG</code> function</h2>
-<p><a href="http://ncg.kcl.ac.uk/">Network of Cancer Gene</a> (NCG)<span class="citation">(A. et al. <a href="#ref-omer_ncg">2016</a>)</span> is a manually curated repository of cancer genes. NCG release 5.0 (Aug. 2015) collects 1,571 cancer genes from 175 published studies. <a href="http://bioconductor.org/packages/DOSE">DOSE</a> supports analyzing gene list and determine whether they are enriched in genes known to be mutated in a given cancer type.</p>
+<p><a href="http://ncg.kcl.ac.uk/">Network of Cancer Gene</a> (NCG)<span class="citation">(A. et al. <a href="#ref-omer_ncg" role="doc-biblioref">2016</a>)</span> is a manually curated repository of cancer genes. NCG release 5.0 (Aug. 2015) collects 1,571 cancer genes from 175 published studies. <a href="http://bioconductor.org/packages/DOSE">DOSE</a> supports analyzing gene list and determine whether they are enriched in genes known to be mutated in a given cancer type.</p>
 <pre class="sourceCode r"><code class="sourceCode r">gene2 &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]
 ncg &lt;-<span class="st"> </span><span class="kw">enrichNCG</span>(gene2)
 <span class="kw">head</span>(ncg)</code></pre>
@@ -350,7 +351,7 @@ ncg &lt;-<span class="st"> </span><span class="kw">enrichNCG</span>(gene2)
 </div>
 <div id="enrichdgn-and-enrichdgnv-functions" class="section level2">
 <h2><span class="header-section-number">4.3</span> <code>enrichDGN</code> and <code>enrichDGNv</code> functions</h2>
-<p><a href="http://disgenet.org/">DisGeNET</a><span class="citation">(Janet et al. <a href="#ref-janet_disgenet">2015</a>)</span> is an integrative and comprehensive resources of gene-disease associations from several public data sources and the literature. It contains gene-disease associations and snp-gene-disease associations.</p>
+<p><a href="http://disgenet.org/">DisGeNET</a><span class="citation">(Janet et al. <a href="#ref-janet_disgenet" role="doc-biblioref">2015</a>)</span> is an integrative and comprehensive resources of gene-disease associations from several public data sources and the literature. It contains gene-disease associations and snp-gene-disease associations.</p>
 <p>The enrichment analysis of disease-gene associations is supported by the <code>enrichDGN</code> function and analysis of snp-gene-disease associations is supported by the <code>enrichDGNv</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r">dgn &lt;-<span class="st"> </span><span class="kw">enrichDGN</span>(gene)
 <span class="kw">head</span>(dgn)</code></pre>

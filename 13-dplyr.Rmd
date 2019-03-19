@@ -1,0 +1,44 @@
+# dplyr verbs for clusterProfiler {#chapter13}
+
+[clusterProfiler.dplyr](https://github.com/YuLab-SMU/clusterProfiler.dplyr) package.
+
+
+```{r include=F}
+library(DOSE)
+library(clusterProfiler.dplyr)
+library(ggplot2)
+library(forcats)
+library(enrichplot)
+```
+
+
+```{r}
+library(DOSE)
+data(geneList)
+de = names(geneList)[1:100]
+x = enrichDO(de)
+
+library(clusterProfiler.dplyr)
+y <- mutate(x, richFactor = Count / as.numeric(sub("/\\d+", "", BgRatio)))
+y
+```
+
+
+```{r}
+library(ggplot2)
+library(forcats)
+library(enrichplot)
+
+ggplot(y, showCategory = 20, 
+  aes(richFactor, fct_reorder(Description, richFactor))) + 
+  geom_segment(aes(xend=0, yend = Description)) +
+  geom_point(aes(color=p.adjust, size = Count)) +
+  scale_color_viridis_c() +
+  scale_size_continuous(range=c(2, 10)) +
+  theme_minimal() + 
+  xlab("rich factor") +
+  ylab(NULL) + 
+  ggtitle("Enriched Disease Ontology")
+```
+
+

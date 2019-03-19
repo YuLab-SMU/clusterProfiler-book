@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
-  <meta name="description" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study">
+  <title>Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study</title>
+  <meta name="description" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta property="og:title" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta name="twitter:title" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="chapter6.html">
-<link rel="next" href="chapter8.html">
+<link rel="prev" href="chapter13.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -221,128 +221,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter7" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> MSigDb analysis</h1>
-<p>The MSigDB is a collection of annotated gene sets, it include 8 major collections:</p>
-<ul>
-<li>H: hallmark gene sets</li>
-<li>C1: positional gene sets</li>
-<li>C2: curated gene sets</li>
-<li>C3: motif gene sets</li>
-<li>C4: computational gene sets</li>
-<li>C5: GO gene sets</li>
-<li>C6: oncogenic signatures</li>
-<li>C7: immunologic signatures</li>
-</ul>
-<p>Users can use <code>enricher</code> and <code>GSEA</code> function to analyze gene set collections downloaded from Molecular Signatures Database (<a href="http://www.broadinstitute.org/gsea/msigdb/index.jsp">MSigDb</a>). <a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides a function, <code>read.gmt</code>, to parse the <a href="www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">gmt file</a> into a <em>TERM2GENE</em> <code>data.frame</code> that is ready for both <code>enricher</code> and <code>GSEA</code> functions.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
+<div id="chapter14" class="section level1">
+<h1><span class="header-section-number">Chapter 14</span> Useful utilities</h1>
+<div id="bitr" class="section level2">
+<h2><span class="header-section-number">14.1</span> <code>bitr</code>: Biological Id TranslatoR</h2>
+<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides <code>bitr</code> and <code>bitr_kegg</code> for converting ID types. Both <code>bitr</code> and <code>bitr_kegg</code> support many species including model and many non-model organisms.</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GPX3&quot;</span>,  <span class="st">&quot;GLRX&quot;</span>,   <span class="st">&quot;LBP&quot;</span>,   <span class="st">&quot;CRYAB&quot;</span>, <span class="st">&quot;DEFB1&quot;</span>, <span class="st">&quot;HCLS1&quot;</span>,   <span class="st">&quot;SOD2&quot;</span>,   <span class="st">&quot;HSPA2&quot;</span>,
+       <span class="st">&quot;ORM1&quot;</span>,  <span class="st">&quot;IGFBP1&quot;</span>, <span class="st">&quot;PTHLH&quot;</span>, <span class="st">&quot;GPC3&quot;</span>,  <span class="st">&quot;IGFBP3&quot;</span>,<span class="st">&quot;TOB1&quot;</span>,    <span class="st">&quot;MITF&quot;</span>,   <span class="st">&quot;NDRG1&quot;</span>,
+       <span class="st">&quot;NR1H4&quot;</span>, <span class="st">&quot;FGFR3&quot;</span>,  <span class="st">&quot;PVR&quot;</span>,   <span class="st">&quot;IL6&quot;</span>,   <span class="st">&quot;PTPRM&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>,   <span class="st">&quot;NID2&quot;</span>,   <span class="st">&quot;LAMB1&quot;</span>,
+       <span class="st">&quot;COMP&quot;</span>,  <span class="st">&quot;PLS3&quot;</span>,   <span class="st">&quot;MCAM&quot;</span>,  <span class="st">&quot;SPP1&quot;</span>,  <span class="st">&quot;LAMC1&quot;</span>, <span class="st">&quot;COL4A2&quot;</span>,  <span class="st">&quot;COL4A1&quot;</span>, <span class="st">&quot;MYOC&quot;</span>,
+       <span class="st">&quot;ANXA4&quot;</span>, <span class="st">&quot;TFPI2&quot;</span>,  <span class="st">&quot;CST6&quot;</span>,  <span class="st">&quot;SLPI&quot;</span>,  <span class="st">&quot;TIMP2&quot;</span>, <span class="st">&quot;CPM&quot;</span>,     <span class="st">&quot;GGT1&quot;</span>,   <span class="st">&quot;NNMT&quot;</span>,
+       <span class="st">&quot;MAL&quot;</span>,   <span class="st">&quot;EEF1A2&quot;</span>, <span class="st">&quot;HGD&quot;</span>,   <span class="st">&quot;TCN2&quot;</span>,  <span class="st">&quot;CDA&quot;</span>,   <span class="st">&quot;PCCA&quot;</span>,    <span class="st">&quot;CRYM&quot;</span>,   <span class="st">&quot;PDXK&quot;</span>,
+       <span class="st">&quot;STC1&quot;</span>,  <span class="st">&quot;WARS&quot;</span>,  <span class="st">&quot;HMOX1&quot;</span>, <span class="st">&quot;FXYD2&quot;</span>, <span class="st">&quot;RBP4&quot;</span>,   <span class="st">&quot;SLC6A12&quot;</span>, <span class="st">&quot;KDELR3&quot;</span>, <span class="st">&quot;ITM2B&quot;</span>)
+eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="st">&quot;ENTREZID&quot;</span>, <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
+<span class="kw">head</span>(eg)</code></pre>
+<pre><code>##   SYMBOL ENTREZID
+## 1   GPX3     2878
+## 2   GLRX     2745
+## 3    LBP     3929
+## 4  CRYAB     1410
+## 5  DEFB1     1672
+## 6  HCLS1     3059</code></pre>
+<p>User should provides an annotation package, both <em>fromType</em> and <em>toType</em> can accept any types that supported.</p>
+<p>User can use <em>keytypes</em> to list all supporting types.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
+<span class="kw">keytypes</span>(org.Hs.eg.db)</code></pre>
+<pre><code>##  [1] &quot;ACCNUM&quot;       &quot;ALIAS&quot;        &quot;ENSEMBL&quot;     
+##  [4] &quot;ENSEMBLPROT&quot;  &quot;ENSEMBLTRANS&quot; &quot;ENTREZID&quot;    
+##  [7] &quot;ENZYME&quot;       &quot;EVIDENCE&quot;     &quot;EVIDENCEALL&quot; 
+## [10] &quot;GENENAME&quot;     &quot;GO&quot;           &quot;GOALL&quot;       
+## [13] &quot;IPI&quot;          &quot;MAP&quot;          &quot;OMIM&quot;        
+## [16] &quot;ONTOLOGY&quot;     &quot;ONTOLOGYALL&quot;  &quot;PATH&quot;        
+## [19] &quot;PFAM&quot;         &quot;PMID&quot;         &quot;PROSITE&quot;     
+## [22] &quot;REFSEQ&quot;       &quot;SYMBOL&quot;       &quot;UCSCKG&quot;      
+## [25] &quot;UNIGENE&quot;      &quot;UNIPROT&quot;</code></pre>
+<p>We can translate from one type to other types.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ids &lt;-<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="kw">c</span>(<span class="st">&quot;UNIPROT&quot;</span>, <span class="st">&quot;ENSEMBL&quot;</span>), <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
+<span class="kw">head</span>(ids)</code></pre>
+<pre><code>##   SYMBOL    UNIPROT         ENSEMBL
+## 1   GPX3     P22352 ENSG00000211445
+## 2   GLRX A0A024RAM2 ENSG00000173221
+## 3   GLRX     P35754 ENSG00000173221
+## 4    LBP     P18428 ENSG00000129988
+## 5    LBP     Q8TCF0 ENSG00000129988
+## 6  CRYAB     P02511 ENSG00000109846</code></pre>
+<p>For GO analysis, user don’t need to convert ID, all ID type provided by <code>OrgDb</code> can be used in <code>groupGO</code>, <code>enrichGO</code> and <code>gseGO</code> by specifying <code>keyType</code> parameter.</p>
+<div id="bitr_kegg" class="section level3">
+<h3><span class="header-section-number">14.1.1</span> <code>bitr_kegg</code>: converting biological IDs using KEGG API</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
+hg &lt;-<span class="st"> </span>gcSample[[<span class="dv">1</span>]]
+<span class="kw">head</span>(hg)</code></pre>
+<pre><code>## [1] &quot;4597&quot;  &quot;7111&quot;  &quot;5266&quot;  &quot;2175&quot;  &quot;755&quot;   &quot;23046&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">eg2np &lt;-<span class="st"> </span><span class="kw">bitr_kegg</span>(hg, <span class="dt">fromType=</span><span class="st">&#39;kegg&#39;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;hsa&#39;</span>)
+<span class="kw">head</span>(eg2np)</code></pre>
+<pre><code>##    kegg ncbi-proteinid
+## 1 10001      NP_005457
+## 2 10232      NP_037536
+## 3 10209      NP_005792
+## 4 10324      NP_006054
+## 5 10411   NP_001092002
+## 6 10614      NP_006451</code></pre>
+<p>The ID type (both <code>fromType</code> &amp; <code>toType</code>) should be one of ‘kegg’, ‘ncbi-geneid’, ‘ncbi-proteinid’ or ‘uniprot’. The ‘kegg’ is the primary ID used in KEGG database. The data source of KEGG was from NCBI. A rule of thumb for the ‘kegg’ ID is <code>entrezgene</code> ID for eukaryote species and <code>Locus</code> ID for prokaryotes.</p>
+<p>Many prokaryote species don’t have entrezgene ID available. For example we can check the gene information of <code>ece:Z5100</code> in <a href="http://www.genome.jp/dbget-bin/www_bget?ece:Z5100" class="uri">http://www.genome.jp/dbget-bin/www_bget?ece:Z5100</a>, which have <code>NCBI-ProteinID</code> and <code>UnitProt</code> links in the <code>Other DBs</code> Entry, but not <code>NCBI-GeneID</code>.</p>
+<p>If we try to convert <code>Z5100</code> to <code>ncbi-geneid</code>, <code>bitr_kegg</code> will throw error of <code>ncbi-geneid is not supported</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-geneid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
+<pre><code>## Error in KEGG_convert(fromType, toType, organism) :
+## ncbi-geneid is not supported for ece ...</code></pre>
+<p>We can of course convert it to <code>ncbi-proteinid</code> and <code>uniprot</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
+<pre><code>##    kegg ncbi-proteinid
+## 1 Z5100       AAG58814</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;uniprot&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
+<pre><code>##    kegg    uniprot
+## 1 Z5100 A0A384KFP7</code></pre>
+</div>
+</div>
+<div id="setReadable" class="section level2">
+<h2><span class="header-section-number">14.2</span> <code>setReadable</code>: translating gene IDs to human readable symbols</h2>
+<p>Some of the functions, especially those internally supported for <a href="chapter4.html#chapter4">DO</a>, <a href="chapter5.html#chapter5">GO</a>, and <a href="chapter8.html#chapter8">Reactome Pathway</a>, support a parameter, <code>readable</code>. If <code>readable = TRUE</code>, all the gene IDs will be translated to gene symbols. The <code>readable</code> parameter is not available for enrichment analysis of KEGG or using user’s own annotation. KEGG analysis using <code>enrichKEGG</code> and <code>gseKEGG</code>, internally query annotation information from KEEGG database and thus support all species if it is available in the KEGG database. However, KEGG database doesn’t provide gene ID to symbol mapping information. For analysis using user’s own annotation data, we even don’t know what species is in analyzed. Translating gene IDs to gene symbols is partly supported using the <code>setReadable</code> function if and only if there is an <code>OrgDb</code> available.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
+<span class="kw">library</span>(clusterProfiler)
 
-gmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;c5.cc.v5.0.entrez.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)
-c5 &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(gmtfile)
+<span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
+de &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
+x &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(de)
+<span class="co">## The geneID column is ENTREZID</span>
+<span class="kw">head</span>(x, <span class="dv">3</span>)</code></pre>
+<pre><code>##                ID         Description GeneRatio  BgRatio
+## hsa04110 hsa04110          Cell cycle      8/47 124/7471
+## hsa04218 hsa04218 Cellular senescence      7/47 160/7471
+## hsa04114 hsa04114      Oocyte meiosis      6/47 125/7471
+##                pvalue     p.adjust       qvalue
+## hsa04110 8.395705e-07 9.403189e-05 8.837584e-05
+## hsa04218 5.545590e-05 3.105531e-03 2.918732e-03
+## hsa04114 1.191240e-04 4.447297e-03 4.179790e-03
+##                                        geneID Count
+## hsa04110 8318/991/9133/890/983/4085/7272/1111     8
+## hsa04218    2305/4605/9133/890/983/51806/1111     7
+## hsa04114         991/9133/983/4085/51806/6790     6</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">setReadable</span>(x, <span class="dt">OrgDb =</span> org.Hs.eg.db, <span class="dt">keyType=</span><span class="st">&quot;ENTREZID&quot;</span>)
+<span class="co">## The geneID column is translated to symbol</span>
+<span class="kw">head</span>(y, <span class="dv">3</span>)</code></pre>
+<pre><code>##                ID         Description GeneRatio  BgRatio
+## hsa04110 hsa04110          Cell cycle      8/47 124/7471
+## hsa04218 hsa04218 Cellular senescence      7/47 160/7471
+## hsa04114 hsa04114      Oocyte meiosis      6/47 125/7471
+##                pvalue     p.adjust       qvalue
+## hsa04110 8.395705e-07 9.403189e-05 8.837584e-05
+## hsa04218 5.545590e-05 3.105531e-03 2.918732e-03
+## hsa04114 1.191240e-04 4.447297e-03 4.179790e-03
+##                                                 geneID
+## hsa04110 CDC45/CDC20/CCNB2/CCNA2/CDK1/MAD2L1/TTK/CHEK1
+## hsa04218     FOXM1/MYBL2/CCNB2/CCNA2/CDK1/CALML5/CHEK1
+## hsa04114          CDC20/CCNB2/CDK1/MAD2L1/CALML5/AURKA
+##          Count
+## hsa04110     8
+## hsa04218     7
+## hsa04114     6</code></pre>
+<p>For those functions that internally support <code>readable</code> parameter, user can also use <code>setReadable</code> for translating gene IDs.</p>
 
-egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>c5)
-<span class="kw">head</span>(egmt)</code></pre>
-<pre><code>##                                                ID
-## SPINDLE                                   SPINDLE
-## MICROTUBULE_CYTOSKELETON MICROTUBULE_CYTOSKELETON
-## CYTOSKELETAL_PART               CYTOSKELETAL_PART
-## SPINDLE_MICROTUBULE           SPINDLE_MICROTUBULE
-## MICROTUBULE                           MICROTUBULE
-## CYTOSKELETON                         CYTOSKELETON
-##                                       Description GeneRatio
-## SPINDLE                                   SPINDLE     11/82
-## MICROTUBULE_CYTOSKELETON MICROTUBULE_CYTOSKELETON     16/82
-## CYTOSKELETAL_PART               CYTOSKELETAL_PART     15/82
-## SPINDLE_MICROTUBULE           SPINDLE_MICROTUBULE      5/82
-## MICROTUBULE                           MICROTUBULE      6/82
-## CYTOSKELETON                         CYTOSKELETON     16/82
-##                           BgRatio       pvalue     p.adjust
-## SPINDLE                   39/5270 7.667674e-12 5.214018e-10
-## MICROTUBULE_CYTOSKELETON 152/5270 8.449298e-10 2.872761e-08
-## CYTOSKELETAL_PART        235/5270 2.414879e-06 5.237096e-05
-## SPINDLE_MICROTUBULE       16/5270 3.080645e-06 5.237096e-05
-## MICROTUBULE               32/5270 7.740446e-06 1.052701e-04
-## CYTOSKELETON             367/5270 1.308357e-04 1.482805e-03
-##                                qvalue
-## SPINDLE                  4.197043e-10
-## MICROTUBULE_CYTOSKELETON 2.312439e-08
-## CYTOSKELETAL_PART        4.215619e-05
-## SPINDLE_MICROTUBULE      4.215619e-05
-## MICROTUBULE              8.473751e-05
-## CYTOSKELETON             1.193589e-03
-##                                                                                                  geneID
-## SPINDLE                                           991/9493/9787/22974/983/332/3832/7272/9055/6790/24137
-## MICROTUBULE_CYTOSKELETON 991/9493/9133/7153/9787/22974/4751/983/332/3832/7272/9055/6790/24137/4137/7802
-## CYTOSKELETAL_PART             991/9493/7153/9787/22974/4751/983/332/3832/7272/9055/6790/24137/4137/7802
-## SPINDLE_MICROTUBULE                                                             983/332/3832/9055/24137
-## MICROTUBULE                                                                983/332/3832/9055/24137/4137
-## CYTOSKELETON             991/9493/9133/7153/9787/22974/4751/983/332/3832/7272/9055/6790/24137/4137/7802
-##                          Count
-## SPINDLE                     11
-## MICROTUBULE_CYTOSKELETON    16
-## CYTOSKELETAL_PART           15
-## SPINDLE_MICROTUBULE          5
-## MICROTUBULE                  6
-## CYTOSKELETON                16</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">egmt2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE=</span>c5, <span class="dt">verbose=</span><span class="ot">FALSE</span>)
-<span class="kw">head</span>(egmt2)</code></pre>
-<pre><code>##                                                                    ID
-## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
-## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
-## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
-## CELL_PROJECTION                                       CELL_PROJECTION
-## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
-##                                                           Description
-## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
-## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
-## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
-## CELL_PROJECTION                                       CELL_PROJECTION
-## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
-##                                    setSize enrichmentScore
-## EXTRACELLULAR_REGION                   401      -0.3860230
-## EXTRACELLULAR_REGION_PART              310      -0.4101043
-## EXTRACELLULAR_MATRIX                    95      -0.6229461
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX      93      -0.6355317
-## CELL_PROJECTION                         87      -0.4729701
-## EXTRACELLULAR_MATRIX_PART               54      -0.5908035
-##                                          NES      pvalue
-## EXTRACELLULAR_REGION               -1.707494 0.001240695
-## EXTRACELLULAR_REGION_PART          -1.771931 0.001302083
-## EXTRACELLULAR_MATRIX               -2.312620 0.001567398
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX -2.351901 0.001577287
-## CELL_PROJECTION                    -1.729178 0.001597444
-## EXTRACELLULAR_MATRIX_PART          -2.020073 0.001620746
-##                                      p.adjust    qvalues
-## EXTRACELLULAR_REGION               0.02345261 0.01819709
-## EXTRACELLULAR_REGION_PART          0.02345261 0.01819709
-## EXTRACELLULAR_MATRIX               0.02345261 0.01819709
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX 0.02345261 0.01819709
-## CELL_PROJECTION                    0.02345261 0.01819709
-## EXTRACELLULAR_MATRIX_PART          0.02345261 0.01819709
-##                                    rank
-## EXTRACELLULAR_REGION               1797
-## EXTRACELLULAR_REGION_PART          1897
-## EXTRACELLULAR_MATRIX               1473
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX 1473
-## CELL_PROJECTION                    2280
-## EXTRACELLULAR_MATRIX_PART          1794
-##                                                      leading_edge
-## EXTRACELLULAR_REGION               tags=29%, list=14%, signal=26%
-## EXTRACELLULAR_REGION_PART          tags=32%, list=15%, signal=28%
-## EXTRACELLULAR_MATRIX               tags=48%, list=12%, signal=43%
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX tags=49%, list=12%, signal=44%
-## CELL_PROJECTION                    tags=28%, list=18%, signal=23%
-## EXTRACELLULAR_MATRIX_PART          tags=59%, list=14%, signal=51%
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       core_enrichment
-## EXTRACELLULAR_REGION               3910/51162/2878/2717/3373/4153/10406/1301/6750/7474/4925/7450/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/11005/4256/3483/7482/8910/23037/27122/7042/3912/4322/167/2817/9353/6037/1278/2934/5176/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/4023/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/3625/2199/6444/6320/1294/3075/4653/5764/3991/3263/1462/1289/3908/4016/3909/4053/8817/7033/8292/5125/2162/5744/1842/5654/10631/2331/3730/2487/347/6863/5104/3913/27123/4982/1300/2200/9607/1287/7060/1489/9723/6424/1307/1311/4693/4148/1101/2922/10647
-## EXTRACELLULAR_REGION_PART                                                                                                  268/3567/57124/3910/2878/3373/4153/10406/1301/6750/7474/4925/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/4256/3483/7482/8910/27122/3912/4322/167/2817/1278/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/2199/6444/1294/3075/4653/5764/3991/3263/1462/1289/3908/3909/4053/8817/8292/5125/5744/1842/5654/10631/2331/3730/347/6863/3913/27123/1300/2200/9607/1287/7060/9723/6424/1307/1311/4693/4148/1101/2922/10647
-## EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                                            1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                              1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
-## CELL_PROJECTION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             4763/57147/64064/80184/322/54997/7248/5311/7042/323/4747/4744/1012/11346/2191/4741/4646/9576/114327/51466/27124/4137/7802
-## EXTRACELLULAR_MATRIX_PART                                                                                                                                                                                                                                                                                                                                                                                                                                                              3915/6443/55914/3910/1301/80781/1306/8082/8910/3912/1278/4060/283/30008/22795/1293/1295/1281/50509/1290/6444/1294/1289/3908/3909/8292/3913/1300/2200/1287/1307</code></pre>
+</div>
+</div>
+
+
 
 </div>
             </section>
@@ -350,8 +351,8 @@ egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span 
           </div>
         </div>
       </div>
-<a href="chapter6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter13.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
