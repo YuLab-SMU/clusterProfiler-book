@@ -1,1 +1,4 @@
 _bookdown_files
+*_cache*
+*_cache/*
+clusterProfiler.Rmd
