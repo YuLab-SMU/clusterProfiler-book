@@ -24,3 +24,6 @@ msigdbr
 bindrcpp
 clusterProfiler.dplyr
 forcats
+meshes
+MeSHDbi
+MeSH.Hsa.eg.db

@@ -10,6 +10,7 @@ results obtained from `r Biocpkg("DOSE")` [@yu_dose_2015],
 over representation analysis (ORA) and gene set enrichment analysis (GSEA) are
 supported.
 
+Many of these visualization methods were first implemented in `r Biocpkg("DOSE")` and rewrote from scratch using `ggplot2`. If you want to use old methods^[<https://www.biostars.org/p/375555>], you can use the [doseplot](https://github.com/GuangchuangYu/doseplot) package.
 
 ## Bar Plot
 
@@ -244,3 +245,5 @@ hsa04110 <- pathview(gene.data  = geneList,
 ![](figures/hsa04110_pathview.png)
 
 For further information, please refer to the vignette of [pathview](https://www.bioconductor.org/packages/pathview)[@luo_pathview].
+
+
