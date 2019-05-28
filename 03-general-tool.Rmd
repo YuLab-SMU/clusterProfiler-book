@@ -102,7 +102,8 @@ As an alternative to manually downloading gmt files, install the [rWikiPathways 
 ```{r}
 cell_markers <- vroom::vroom('http://bio-bigdata.hrbmu.edu.cn/CellMarker/download/Human_cell_markers.txt') %>%
    tidyr::unite("cellMarker", tissueType, cancerType, cellName, sep=", ") %>% 
-   dplyr::select(cellMarker, geneID)
+   dplyr::select(cellMarker, geneID) %>%
+   dplyr::mutate(geneID = strsplit(geneID, ', '))
 cell_markers
 y <- enricher(gene, TERM2GENE=cell_markers, minGSSize=1)
 DT::datatable(as.data.frame(y))
