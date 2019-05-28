@@ -10,6 +10,7 @@ library(ggplot2)
 library(forcats)
 library(enrichplot)
 theme_set(theme_grey())
+select <- clusterProfiler.dplyr:::select.enrichResult
 ```
 
 

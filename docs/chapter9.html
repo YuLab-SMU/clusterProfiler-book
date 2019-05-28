@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
-  <meta name="description" content="Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -22,13 +21,13 @@
   
   
 
-<meta name="author" content="Guangchuang Yu">
+<meta name="author" content="Guangchuang Yu" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="chapter8.html">
@@ -47,70 +46,52 @@
 
 
 
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.6/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 </head>
@@ -141,10 +122,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> Universal enrichment analysis</a><ul>
 <li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#input-data"><i class="fa fa-check"></i><b>3.1</b> Input data</a></li>
-<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#clusterprofiler-as-an-universal-enrichment-analysis-tool"><i class="fa fa-check"></i><b>3.2</b> clusterProfiler as an universal enrichment analysis tool</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="chapter3.html"><a href="chapter3.html#wikipathways-analysis"><i class="fa fa-check"></i><b>3.2.1</b> WikiPathways analysis</a></li>
-<li class="chapter" data-level="3.2.2" data-path="chapter3.html"><a href="chapter3.html#msigdb-analysis"><i class="fa fa-check"></i><b>3.2.2</b> MSigDb analysis</a></li>
-</ul></li>
+<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#wikipathways-analysis"><i class="fa fa-check"></i><b>3.2</b> WikiPathways analysis</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#cell-marker"><i class="fa fa-check"></i><b>3.3</b> Cell Marker</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#msigdb-analysis"><i class="fa fa-check"></i><b>3.4</b> MSigDb analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Disease analysis</a><ul>
 <li class="chapter" data-level="4.1" data-path="chapter4.html"><a href="chapter4.html#enrichdo-function"><i class="fa fa-check"></i><b>4.1</b> <code>enrichDO</code> function</a></li>
@@ -229,7 +209,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter9" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> MeSH Enrichment Analysis</h1>
+<p><code>meshes</code> supports enrichment analysis (over-representation analysis and gene set enrichment analysis) of gene list or whole expression profile using MeSH annotation. Data source from <code>gendoo</code>, <code>gene2pubmed</code> and <code>RBBH</code> are all supported. User can selecte interesting category to test. All 16 categories are supported. The analysis supports &gt;70 species listed in <a href="https://bioconductor.org/packages/release/BiocViews.html#___MeSHDb">MeSHDb BiocView</a>.</p>
+<p>For algorithm details, please refer to the vignettes of <a href="http://bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(meshes)
+<span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
+de &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
+x &lt;-<span class="st"> </span><span class="kw">enrichMeSH</span>(de, <span class="dt">MeSHDb =</span> <span class="st">&quot;MeSH.Hsa.eg.db&quot;</span>, <span class="dt">database=</span><span class="st">&#39;gendoo&#39;</span>, <span class="dt">category =</span> <span class="st">&#39;C&#39;</span>)
+<span class="kw">head</span>(x)</code></pre></div>
+<pre><code>##              ID              Description GeneRatio
+## D043171 D043171  Chromosomal Instability     16/96
+## D000782 D000782               Aneuploidy     17/96
+## D042822 D042822      Genomic Instability     16/96
+## D012595 D012595    Scleroderma, Systemic     11/96
+## D009303 D009303 Nasopharyngeal Neoplasms     11/96
+## D019698 D019698     Hepatitis C, Chronic     11/96
+##           BgRatio       pvalue     p.adjust       qvalue
+## D043171 198/16528 2.794765e-14 2.459394e-11 1.815127e-11
+## D000782 320/16528 3.866830e-12 1.701405e-09 1.255702e-09
+## D042822 312/16528 3.007419e-11 8.821761e-09 6.510798e-09
+## D012595 279/16528 6.449334e-07 1.418854e-04 1.047168e-04
+## D009303 314/16528 2.049315e-06 3.295389e-04 2.432123e-04
+## D019698 317/16528 2.246856e-06 3.295389e-04 2.432123e-04
+##                                                                                      geneID
+## D043171    4312/991/2305/1062/4605/10403/7153/55355/4751/4085/81620/332/7272/9212/1111/6790
+## D000782 4312/55143/991/1062/7153/4751/79019/55839/890/983/4085/332/7272/9212/8208/1111/6790
+## D042822     55143/991/1062/4605/7153/1381/9787/4751/10635/890/4085/81620/332/9212/1111/6790
+## D012595                              4312/6280/1062/4605/7153/3627/4283/6362/7850/3002/4321
+## D009303                                4312/7153/3627/6241/983/4085/5918/332/3002/4321/6790
+## D019698                               4312/3627/10563/6373/4283/983/6362/7850/332/3002/3620
+##         Count
+## D043171    16
+## D000782    17
+## D042822    16
+## D012595    11
+## D009303    11
+## D019698    11</code></pre>
+<p>In the over-representation analysis, we use data source from <code>gendoo</code> and <code>C</code> (Diseases) category.</p>
+<p>In the following example, we use data source from <code>gene2pubmed</code> and test category <code>G</code> (Phenomena and Processes) using GSEA.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">gseMeSH</span>(geneList, <span class="dt">MeSHDb =</span> <span class="st">&quot;MeSH.Hsa.eg.db&quot;</span>, <span class="dt">database =</span> <span class="st">&#39;gene2pubmed&#39;</span>, <span class="dt">category =</span> <span class="st">&quot;G&quot;</span>)
+<span class="kw">head</span>(y)</code></pre></div>
+<pre><code>##              ID        Description setSize enrichmentScore
+## D009043 D009043     Motor Activity     462      -0.3223426
+## D012038 D012038       Regeneration     425      -0.3214414
+## D009119 D009119 Muscle Contraction     437      -0.3248434
+## D006339 D006339         Heart Rate     336      -0.3640991
+## D049629 D049629    Waist-Hip Ratio     321      -0.3659337
+## D001846 D001846   Bone Development     322      -0.3722690
+##               NES      pvalue   p.adjust    qvalues rank
+## D009043 -1.448248 0.001201923 0.03354713 0.02470833 2176
+## D012038 -1.435228 0.001209190 0.03354713 0.02470833 2132
+## D009119 -1.453427 0.001210654 0.03354713 0.02470833 2517
+## D006339 -1.592891 0.001272265 0.03354713 0.02470833 2405
+## D049629 -1.591404 0.001293661 0.03354713 0.02470833 2176
+## D001846 -1.619019 0.001295337 0.03354713 0.02470833 2100
+##                           leading_edge
+## D009043 tags=23%, list=17%, signal=20%
+## D012038 tags=27%, list=17%, signal=23%
+## D009119 tags=27%, list=20%, signal=22%
+## D006339 tags=29%, list=19%, signal=24%
+## D049629 tags=27%, list=17%, signal=23%
+## D001846 tags=27%, list=17%, signal=23%
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        core_enrichment
+## D009043                                                10550/9759/23405/1499/6453/8945/7157/25970/627/408/2908/22881/27445/11132/2752/9445/6548/2571/23621/3082/1291/2915/1543/7466/3240/3350/947/55304/181/3632/2169/27306/1621/80169/9627/196/8678/8863/23284/81627/4692/5799/11076/2259/3087/1278/283/1277/3953/4747/2247/6414/210/4744/5468/8835/89795/4023/8522/4319/3485/3952/79068/8864/4313/2944/2273/2099/3480/8528/4908/56892/3339/5138/57161/4741/4306/6571/79750/4915/5744/2487/58503/347/6863/2952/5327/367/4982/4128/4059/3572/150/7060/9358/7166/3479/9254/5348/4129/9370/3708/1311/5105/4137/1408/5241
+## D012038                        5087/1499/7157/79960/627/2252/4088/825/9149/8038/4017/7010/2752/3248/3082/22921/3791/4005/182/7402/7474/596/947/9976/9315/8840/1490/54209/1280/4804/4314/324/6019/8425/595/10979/6843/4929/79026/2246/5029/4803/7042/4322/8829/7048/10216/79679/5176/55384/7078/5549/7216/727/10516/2247/6591/56944/210/5468/23345/6469/216/8076/26509/90865/11167/7075/7058/4313/3861/91851/2199/113146/6444/9201/1294/4254/4856/6720/3480/5764/6387/6833/5159/11117/857/1289/3908/4016/6678/7033/23030/7704/174/1191/2737/5744/11098/10631/9429/214/7043/2200/1634/4582/7031/3479/7373/2066/3169/2625
+## D009119 10174/2150/5562/3611/22859/4604/7070/4985/7139/3784/154/1760/3315/9732/72/5595/3092/6416/9759/270/6558/627/953/408/2908/7138/5563/6794/5564/3567/2104/845/3371/6548/831/182/3554/126393/7402/1129/7201/3350/5590/5592/7168/79923/2149/4628/23426/8082/5021/2318/23284/844/79026/4208/3790/2308/1907/253959/54795/4311/2247/10580/1848/2281/10398/5166/50507/1012/6876/10203/83700/11167/2317/3952/3778/1009/5733/10468/3693/6253/9499/7481/5159/3991/857/1289/1909/6678/7041/32/8639/5350/3551/1264/2697/185/55107/7043/3357/2205/253190/5327/25802/1634/3572/8490/3679/3479/5348/9370/9122/4629/652/7021/5241
+## D006339                                                                                                                           4985/7139/8929/3784/10681/3375/154/1760/9781/5139/118/2702/6532/6416/2869/270/7157/627/2908/7138/5563/3643/1129/7779/947/1901/2034/4179/4804/64388/1621/4881/8863/5021/844/4212/11030/5797/6403/4803/84059/79789/5176/3953/5243/5468/1012/2868/5793/4023/7056/3952/5577/126/2946/3778/477/5733/4313/2944/9201/3075/9499/2273/2099/1471/857/775/5138/4306/4487/213/5350/5744/23245/2152/2697/2791/185/6863/2952/5327/80206/2200/9607/3572/150/8490/3479/2006/55259/9370/125/652/55351
+## D049629                                                                                                                                              8609/9563/23405/10206/7157/23314/4776/25970/627/2908/490/4057/268/3567/23429/283450/1543/3240/3174/81490/23047/55304/5099/54808/4179/2169/948/8082/4018/54465/4256/3087/5919/253461/26470/10903/1581/56172/3953/5950/5468/1012/8835/4023/594/4214/7350/3952/79068/51232/2202/6444/9369/2099/6833/3991/4016/2690/57161/79750/4915/5125/5167/8639/11188/10631/3551/2487/2697/6935/3487/367/4982/3667/4059/150/9358/1489/3479/6424/9370/4629/652/5346/7021/4239/5241
+## D001846                                                                                                                                              8945/7157/57798/79048/627/6500/8038/4057/860/2752/4882/3371/2915/5745/63971/54455/3791/819/57045/596/2034/54808/80781/1280/64388/2261/4054/11059/3483/9900/26234/4734/9452/4208/4322/253461/1278/7048/51280/10903/30008/7869/1277/3953/10516/10411/8835/79776/11167/2317/3485/3952/5274/54681/4488/10486/1009/2202/91851/2099/5764/23327/3339/8817/83716/6678/4915/633/658/54361/5744/165/5654/10631/3487/367/4982/3667/79971/1634/3479/114899/9370/652/8614/4969</code></pre>
+<p>User can use visualization methods implemented in <a href="http://bioconductor.org/packages/enrichplot">enrichplot</a> (i.e.<code>barplot</code>, <code>dotplot</code>, <code>cnetplot</code>, <code>emapplot</code> and <code>gseaplot</code>) to visualize these enrichment results. With these visualization methods, it’s much easier to interpret enriched results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(x)</code></pre></div>
+<p><img src="clusterProfiler_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gseaplot</span>(y, y[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">title=</span>y[<span class="dv">1</span>,<span class="dv">2</span>])</code></pre></div>
+<p><img src="clusterProfiler_files/figure-html/unnamed-chunk-39-2.png" width="672" /></p>
 
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-yu_dose_2015">
+<p>Yu, Guangchuang, Li-Gen Wang, Guang-Rong Yan, and Qing-Yu He. 2015. “DOSE: An R/Bioconductor Package for Disease Ontology Semantic and Enrichment Analysis.” <em>Bioinformatics</em> 31 (4): 608–9. doi:<a href="https://doi.org/10.1093/bioinformatics/btu684">10.1093/bioinformatics/btu684</a>.</p>
+</div>
 </div>
             </section>
 
@@ -287,7 +345,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

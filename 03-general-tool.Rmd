@@ -8,6 +8,10 @@ library(clusterProfiler)
 ```
 
 
+[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) supports both hypergeometric test and gene set enrichment analyses of many ontology/pathway, but it's still not enough for users may want to analyze their data with unsupported organisms, slim version of GO, novel functional annotation (e.g. GO via BlastGO or KEGG via KAAS), unsupported ontologies/pathways or customized annotations.
+
+[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) provides `enricher` function for hypergeometric test and `GSEA` function for gene set enrichment analysis that are designed to accept user defined annotation. They accept two additional parameters _TERM2GENE_ and _TERM2NAME_. As indicated in the parameter names, _TERM2GENE_ is a data.frame with first column of term ID and second column of corresponding mapped gene and _TERM2NAME_ is a data.frame with first column of term ID and second column of corresponding term name. _TERM2NAME_ is optional.
+
 
 ## Input data
 
@@ -52,18 +56,9 @@ gene <- names(geneList)[abs(geneList) > 2]
 head(gene)
 ```
 
-## clusterProfiler as an universal enrichment analysis tool
 
 
-[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) supports both hypergeometric test and gene set enrichment analyses of many ontology/pathway, but it's still not enough for users may want to analyze their data with unsupported organisms, slim version of GO, novel functional annotation (e.g. GO via BlastGO or KEGG via KAAS), unsupported ontologies/pathways or customized annotations.
-
-[clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler) provides `enricher` function for hypergeometric test and `GSEA` function for gene set enrichment analysis that are designed to accept user defined annotation. They accept two additional parameters _TERM2GENE_ and _TERM2NAME_. As indicated in the parameter names, _TERM2GENE_ is a data.frame with first column of term ID and second column of corresponding mapped gene and _TERM2NAME_ is a data.frame with first column of term ID and second column of corresponding term name. _TERM2NAME_ is optional.
-
-
-Here using *clusterProfiler* to analyze wiki pathways and molecular signatures database as examples. 
-
-
-### WikiPathways analysis
+## WikiPathways analysis
 
 
 [WikiPathways](https://www.wikipathways.org) is a continuously updated pathway database curated by a community of researchers and pathway enthusiasts. WikiPathways produces monthly releases of gmt files for supported organisms at [data.wikipathways.org](http://data.wikipathways.org/current/gmt/). Download the appropriate gmt file and then generate `TERM2GENE` and `TERM2NAME` to use `enricher` and `GSEA` functions. 
@@ -102,9 +97,21 @@ head(ewp2)
 As an alternative to manually downloading gmt files, install the [rWikiPathways package](https://bioconductor.org/packages/release/bioc/html/rWikiPathways.html) to gain scripting access to the latest gmt files using the `downloadPathwayArchive` function.
 
 
-	
+## Cell Marker	
 
-### MSigDb analysis
+```{r}
+cell_markers <- vroom::vroom('http://bio-bigdata.hrbmu.edu.cn/CellMarker/download/Human_cell_markers.txt') %>%
+   tidyr::unite("cellMarker", tissueType, cancerType, cellName, sep=", ") %>% 
+   dplyr::select(cellMarker, geneID)
+cell_markers
+y <- enricher(gene, TERM2GENE=cell_markers, minGSSize=1)
+DT::datatable(as.data.frame(y))
+```
+
+
+
+
+## MSigDb analysis
 
 
 [Molecular Signatures Database](http://software.broadinstitute.org/gsea/msigdb) contains 8 major collections:
