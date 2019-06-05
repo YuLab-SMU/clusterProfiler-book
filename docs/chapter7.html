@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,41 +57,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -221,14 +247,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>C7: immunologic signatures</li>
 </ul>
 <p>Users can use <code>enricher</code> and <code>GSEA</code> function to analyze gene set collections downloaded from Molecular Signatures Database (<a href="http://www.broadinstitute.org/gsea/msigdb/index.jsp">MSigDb</a>). <a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides a function, <code>read.gmt</code>, to parse the <a href="www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">gmt file</a> into a <em>TERM2GENE</em> <code>data.frame</code> that is ready for both <code>enricher</code> and <code>GSEA</code> functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
 gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
 
 gmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;c5.cc.v5.0.entrez.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)
 c5 &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(gmtfile)
 
 egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>c5)
-<span class="kw">head</span>(egmt)</code></pre></div>
+<span class="kw">head</span>(egmt)</code></pre>
 <pre><code>##                                                ID
 ## SPINDLE                                   SPINDLE
 ## MICROTUBULE_CYTOSKELETON MICROTUBULE_CYTOSKELETON
@@ -271,56 +297,63 @@ egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span 
 ## SPINDLE_MICROTUBULE          5
 ## MICROTUBULE                  6
 ## CYTOSKELETON                16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">egmt2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE=</span>c5, <span class="dt">verbose=</span><span class="ot">FALSE</span>)
-<span class="kw">head</span>(egmt2)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">egmt2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE=</span>c5, <span class="dt">verbose=</span><span class="ot">FALSE</span>)
+<span class="kw">head</span>(egmt2)</code></pre>
 <pre><code>##                                                                    ID
 ## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
 ## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
-## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
 ## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
 ## CELL_PROJECTION                                       CELL_PROJECTION
+## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
 ## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
 ##                                                           Description
 ## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
 ## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
-## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
 ## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
 ## CELL_PROJECTION                                       CELL_PROJECTION
+## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
 ## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
 ##                                    setSize enrichmentScore
 ## EXTRACELLULAR_REGION                   401      -0.3860230
 ## EXTRACELLULAR_REGION_PART              310      -0.4101043
-## EXTRACELLULAR_MATRIX                    95      -0.6229461
 ## PROTEINACEOUS_EXTRACELLULAR_MATRIX      93      -0.6355317
 ## CELL_PROJECTION                         87      -0.4729701
+## EXTRACELLULAR_MATRIX                    95      -0.6229461
 ## EXTRACELLULAR_MATRIX_PART               54      -0.5908035
 ##                                          NES      pvalue
-## EXTRACELLULAR_REGION               -1.676480 0.001236094
-## EXTRACELLULAR_REGION_PART          -1.736670 0.001293661
-## EXTRACELLULAR_MATRIX               -2.308091 0.001466276
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX -2.345758 0.001474926
-## CELL_PROJECTION                    -1.722629 0.001501502
-## EXTRACELLULAR_MATRIX_PART          -1.980259 0.001557632
-##                                      p.adjust  qvalues rank
-## EXTRACELLULAR_REGION               0.03018985 0.023916 1797
-## EXTRACELLULAR_REGION_PART          0.03018985 0.023916 1897
-## EXTRACELLULAR_MATRIX               0.03018985 0.023916 1473
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX 0.03018985 0.023916 1473
-## CELL_PROJECTION                    0.03018985 0.023916 2280
-## EXTRACELLULAR_MATRIX_PART          0.03018985 0.023916 1794
+## EXTRACELLULAR_REGION               -1.706579 0.001267427
+## EXTRACELLULAR_REGION_PART          -1.777988 0.001312336
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX -2.371763 0.001564945
+## CELL_PROJECTION                    -1.752701 0.001569859
+## EXTRACELLULAR_MATRIX               -2.311324 0.001597444
+## EXTRACELLULAR_MATRIX_PART          -2.022947 0.001600000
+##                                      p.adjust    qvalues
+## EXTRACELLULAR_REGION               0.02422577 0.01879699
+## EXTRACELLULAR_REGION_PART          0.02422577 0.01879699
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX 0.02422577 0.01879699
+## CELL_PROJECTION                    0.02422577 0.01879699
+## EXTRACELLULAR_MATRIX               0.02422577 0.01879699
+## EXTRACELLULAR_MATRIX_PART          0.02422577 0.01879699
+##                                    rank
+## EXTRACELLULAR_REGION               1797
+## EXTRACELLULAR_REGION_PART          1897
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX 1473
+## CELL_PROJECTION                    2280
+## EXTRACELLULAR_MATRIX               1473
+## EXTRACELLULAR_MATRIX_PART          1794
 ##                                                      leading_edge
 ## EXTRACELLULAR_REGION               tags=29%, list=14%, signal=26%
 ## EXTRACELLULAR_REGION_PART          tags=32%, list=15%, signal=28%
-## EXTRACELLULAR_MATRIX               tags=48%, list=12%, signal=43%
 ## PROTEINACEOUS_EXTRACELLULAR_MATRIX tags=49%, list=12%, signal=44%
 ## CELL_PROJECTION                    tags=28%, list=18%, signal=23%
+## EXTRACELLULAR_MATRIX               tags=48%, list=12%, signal=43%
 ## EXTRACELLULAR_MATRIX_PART          tags=59%, list=14%, signal=51%
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       core_enrichment
 ## EXTRACELLULAR_REGION               3910/51162/2878/2717/3373/4153/10406/1301/6750/7474/4925/7450/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/11005/4256/3483/7482/8910/23037/27122/7042/3912/4322/167/2817/9353/6037/1278/2934/5176/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/4023/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/3625/2199/6444/6320/1294/3075/4653/5764/3991/3263/1462/1289/3908/4016/3909/4053/8817/7033/8292/5125/2162/5744/1842/5654/10631/2331/3730/2487/347/6863/5104/3913/27123/4982/1300/2200/9607/1287/7060/1489/9723/6424/1307/1311/4693/4148/1101/2922/10647
 ## EXTRACELLULAR_REGION_PART                                                                                                  268/3567/57124/3910/2878/3373/4153/10406/1301/6750/7474/4925/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/4256/3483/7482/8910/27122/3912/4322/167/2817/1278/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/2199/6444/1294/3075/4653/5764/3991/3263/1462/1289/3908/3909/4053/8817/8292/5125/5744/1842/5654/10631/2331/3730/347/6863/3913/27123/1300/2200/9607/1287/7060/9723/6424/1307/1311/4693/4148/1101/2922/10647
-## EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                                            1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
 ## PROTEINACEOUS_EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                              1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
 ## CELL_PROJECTION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             4763/57147/64064/80184/322/54997/7248/5311/7042/323/4747/4744/1012/11346/2191/4741/4646/9576/114327/51466/27124/4137/7802
+## EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                                            1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
 ## EXTRACELLULAR_MATRIX_PART                                                                                                                                                                                                                                                                                                                                                                                                                                                              3915/6443/55914/3910/1301/80781/1306/8082/8910/3912/1278/4060/283/30008/22795/1293/1295/1281/50509/1290/6444/1294/1289/3908/3909/8292/3913/1300/2200/1287/1307</code></pre>
 
 </div>
@@ -380,7 +413,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

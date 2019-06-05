@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,41 +57,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -212,7 +238,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="bitr" class="section level2">
 <h2><span class="header-section-number">14.1</span> <code>bitr</code>: Biological Id TranslatoR</h2>
 <p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides <code>bitr</code> and <code>bitr_kegg</code> for converting ID types. Both <code>bitr</code> and <code>bitr_kegg</code> support many species including model and many non-model organisms.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GPX3&quot;</span>,  <span class="st">&quot;GLRX&quot;</span>,   <span class="st">&quot;LBP&quot;</span>,   <span class="st">&quot;CRYAB&quot;</span>, <span class="st">&quot;DEFB1&quot;</span>, <span class="st">&quot;HCLS1&quot;</span>,   <span class="st">&quot;SOD2&quot;</span>,   <span class="st">&quot;HSPA2&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GPX3&quot;</span>,  <span class="st">&quot;GLRX&quot;</span>,   <span class="st">&quot;LBP&quot;</span>,   <span class="st">&quot;CRYAB&quot;</span>, <span class="st">&quot;DEFB1&quot;</span>, <span class="st">&quot;HCLS1&quot;</span>,   <span class="st">&quot;SOD2&quot;</span>,   <span class="st">&quot;HSPA2&quot;</span>,
        <span class="st">&quot;ORM1&quot;</span>,  <span class="st">&quot;IGFBP1&quot;</span>, <span class="st">&quot;PTHLH&quot;</span>, <span class="st">&quot;GPC3&quot;</span>,  <span class="st">&quot;IGFBP3&quot;</span>,<span class="st">&quot;TOB1&quot;</span>,    <span class="st">&quot;MITF&quot;</span>,   <span class="st">&quot;NDRG1&quot;</span>,
        <span class="st">&quot;NR1H4&quot;</span>, <span class="st">&quot;FGFR3&quot;</span>,  <span class="st">&quot;PVR&quot;</span>,   <span class="st">&quot;IL6&quot;</span>,   <span class="st">&quot;PTPRM&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>,   <span class="st">&quot;NID2&quot;</span>,   <span class="st">&quot;LAMB1&quot;</span>,
        <span class="st">&quot;COMP&quot;</span>,  <span class="st">&quot;PLS3&quot;</span>,   <span class="st">&quot;MCAM&quot;</span>,  <span class="st">&quot;SPP1&quot;</span>,  <span class="st">&quot;LAMC1&quot;</span>, <span class="st">&quot;COL4A2&quot;</span>,  <span class="st">&quot;COL4A1&quot;</span>, <span class="st">&quot;MYOC&quot;</span>,
@@ -220,7 +246,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
        <span class="st">&quot;MAL&quot;</span>,   <span class="st">&quot;EEF1A2&quot;</span>, <span class="st">&quot;HGD&quot;</span>,   <span class="st">&quot;TCN2&quot;</span>,  <span class="st">&quot;CDA&quot;</span>,   <span class="st">&quot;PCCA&quot;</span>,    <span class="st">&quot;CRYM&quot;</span>,   <span class="st">&quot;PDXK&quot;</span>,
        <span class="st">&quot;STC1&quot;</span>,  <span class="st">&quot;WARS&quot;</span>,  <span class="st">&quot;HMOX1&quot;</span>, <span class="st">&quot;FXYD2&quot;</span>, <span class="st">&quot;RBP4&quot;</span>,   <span class="st">&quot;SLC6A12&quot;</span>, <span class="st">&quot;KDELR3&quot;</span>, <span class="st">&quot;ITM2B&quot;</span>)
 eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="st">&quot;ENTREZID&quot;</span>, <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
-<span class="kw">head</span>(eg)</code></pre></div>
+<span class="kw">head</span>(eg)</code></pre>
 <pre><code>##   SYMBOL ENTREZID
 ## 1   GPX3     2878
 ## 2   GLRX     2745
@@ -230,8 +256,8 @@ eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fr
 ## 6  HCLS1     3059</code></pre>
 <p>User should provides an annotation package, both <em>fromType</em> and <em>toType</em> can accept any types that supported.</p>
 <p>User can use <em>keytypes</em> to list all supporting types.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
-<span class="kw">keytypes</span>(org.Hs.eg.db)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
+<span class="kw">keytypes</span>(org.Hs.eg.db)</code></pre>
 <pre><code>##  [1] &quot;ACCNUM&quot;       &quot;ALIAS&quot;        &quot;ENSEMBL&quot;     
 ##  [4] &quot;ENSEMBLPROT&quot;  &quot;ENSEMBLTRANS&quot; &quot;ENTREZID&quot;    
 ##  [7] &quot;ENZYME&quot;       &quot;EVIDENCE&quot;     &quot;EVIDENCEALL&quot; 
@@ -242,8 +268,8 @@ eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fr
 ## [22] &quot;REFSEQ&quot;       &quot;SYMBOL&quot;       &quot;UCSCKG&quot;      
 ## [25] &quot;UNIGENE&quot;      &quot;UNIPROT&quot;</code></pre>
 <p>We can translate from one type to other types.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ids &lt;-<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="kw">c</span>(<span class="st">&quot;UNIPROT&quot;</span>, <span class="st">&quot;ENSEMBL&quot;</span>), <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
-<span class="kw">head</span>(ids)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ids &lt;-<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fromType=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">toType=</span><span class="kw">c</span>(<span class="st">&quot;UNIPROT&quot;</span>, <span class="st">&quot;ENSEMBL&quot;</span>), <span class="dt">OrgDb=</span><span class="st">&quot;org.Hs.eg.db&quot;</span>)
+<span class="kw">head</span>(ids)</code></pre>
 <pre><code>##   SYMBOL    UNIPROT         ENSEMBL
 ## 1   GPX3     P22352 ENSG00000211445
 ## 2   GLRX A0A024RAM2 ENSG00000173221
@@ -254,12 +280,12 @@ eg =<span class="st"> </span><span class="kw">bitr</span>(x, <span class="dt">fr
 <p>For GO analysis, user don’t need to convert ID, all ID type provided by <code>OrgDb</code> can be used in <code>groupGO</code>, <code>enrichGO</code> and <code>gseGO</code> by specifying <code>keyType</code> parameter.</p>
 <div id="bitr_kegg" class="section level3">
 <h3><span class="header-section-number">14.1.1</span> <code>bitr_kegg</code>: converting biological IDs using KEGG API</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
 hg &lt;-<span class="st"> </span>gcSample[[<span class="dv">1</span>]]
-<span class="kw">head</span>(hg)</code></pre></div>
+<span class="kw">head</span>(hg)</code></pre>
 <pre><code>## [1] &quot;4597&quot;  &quot;7111&quot;  &quot;5266&quot;  &quot;2175&quot;  &quot;755&quot;   &quot;23046&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eg2np &lt;-<span class="st"> </span><span class="kw">bitr_kegg</span>(hg, <span class="dt">fromType=</span><span class="st">&#39;kegg&#39;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;hsa&#39;</span>)
-<span class="kw">head</span>(eg2np)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">eg2np &lt;-<span class="st"> </span><span class="kw">bitr_kegg</span>(hg, <span class="dt">fromType=</span><span class="st">&#39;kegg&#39;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;hsa&#39;</span>)
+<span class="kw">head</span>(eg2np)</code></pre>
 <pre><code>##    kegg ncbi-proteinid
 ## 1 10001      NP_005457
 ## 2 10209      NP_005792
@@ -270,14 +296,14 @@ hg &lt;-<span class="st"> </span>gcSample[[<span class="dv">1</span>]]
 <p>The ID type (both <code>fromType</code> &amp; <code>toType</code>) should be one of ‘kegg’, ‘ncbi-geneid’, ‘ncbi-proteinid’ or ‘uniprot’. The ‘kegg’ is the primary ID used in KEGG database. The data source of KEGG was from NCBI. A rule of thumb for the ‘kegg’ ID is <code>entrezgene</code> ID for eukaryote species and <code>Locus</code> ID for prokaryotes.</p>
 <p>Many prokaryote species don’t have entrezgene ID available. For example we can check the gene information of <code>ece:Z5100</code> in <a href="http://www.genome.jp/dbget-bin/www_bget?ece:Z5100" class="uri">http://www.genome.jp/dbget-bin/www_bget?ece:Z5100</a>, which have <code>NCBI-ProteinID</code> and <code>UnitProt</code> links in the <code>Other DBs</code> Entry, but not <code>NCBI-GeneID</code>.</p>
 <p>If we try to convert <code>Z5100</code> to <code>ncbi-geneid</code>, <code>bitr_kegg</code> will throw error of <code>ncbi-geneid is not supported</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-geneid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-geneid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
 <pre><code>## Error in KEGG_convert(fromType, toType, organism) :
 ## ncbi-geneid is not supported for ece ...</code></pre>
 <p>We can of course convert it to <code>ncbi-proteinid</code> and <code>uniprot</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;ncbi-proteinid&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
 <pre><code>##    kegg ncbi-proteinid
 ## 1 Z5100       AAG58814</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;uniprot&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;uniprot&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</code></pre>
 <pre><code>##    kegg    uniprot
 ## 1 Z5100 A0A3G4X4E3</code></pre>
 </div>
@@ -285,37 +311,37 @@ hg &lt;-<span class="st"> </span>gcSample[[<span class="dv">1</span>]]
 <div id="setReadable" class="section level2">
 <h2><span class="header-section-number">14.2</span> <code>setReadable</code>: translating gene IDs to human readable symbols</h2>
 <p>Some of the functions, especially those internally supported for <a href="chapter4.html#chapter4">DO</a>, <a href="chapter5.html#chapter5">GO</a>, and <a href="chapter8.html#chapter8">Reactome Pathway</a>, support a parameter, <code>readable</code>. If <code>readable = TRUE</code>, all the gene IDs will be translated to gene symbols. The <code>readable</code> parameter is not available for enrichment analysis of KEGG or using user’s own annotation. KEGG analysis using <code>enrichKEGG</code> and <code>gseKEGG</code>, internally query annotation information from KEEGG database and thus support all species if it is available in the KEGG database. However, KEGG database doesn’t provide gene ID to symbol mapping information. For analysis using user’s own annotation data, we even don’t know what species is in analyzed. Translating gene IDs to gene symbols is partly supported using the <code>setReadable</code> function if and only if there is an <code>OrgDb</code> available.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
 <span class="kw">library</span>(clusterProfiler)
 
 <span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
 de &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
 x &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(de)
-## The geneID column is ENTREZID
-<span class="kw">head</span>(x, <span class="dv">3</span>)</code></pre></div>
+<span class="co">## The geneID column is ENTREZID</span>
+<span class="kw">head</span>(x, <span class="dv">3</span>)</code></pre>
 <pre><code>##                ID         Description GeneRatio  BgRatio
-## hsa04110 hsa04110          Cell cycle      8/48 124/7856
-## hsa04218 hsa04218 Cellular senescence      7/48 160/7856
-## hsa04114 hsa04114      Oocyte meiosis      6/48 125/7856
+## hsa04110 hsa04110          Cell cycle      8/48 124/7860
+## hsa04218 hsa04218 Cellular senescence      7/48 160/7860
+## hsa04114 hsa04114      Oocyte meiosis      6/48 125/7860
 ##                pvalue     p.adjust       qvalue
-## hsa04110 6.830542e-07 7.650207e-05 7.118144e-05
-## hsa04218 4.651672e-05 2.604936e-03 2.423766e-03
-## hsa04114 1.021826e-04 3.814817e-03 3.549501e-03
+## hsa04110 6.804611e-07 7.689211e-05 7.091121e-05
+## hsa04218 4.636787e-05 2.619785e-03 2.416010e-03
+## hsa04114 1.018994e-04 3.838210e-03 3.539662e-03
 ##                                        geneID Count
 ## hsa04110 8318/991/9133/890/983/4085/7272/1111     8
 ## hsa04218    2305/4605/9133/890/983/51806/1111     7
 ## hsa04114         991/9133/983/4085/51806/6790     6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">setReadable</span>(x, <span class="dt">OrgDb =</span> org.Hs.eg.db, <span class="dt">keyType=</span><span class="st">&quot;ENTREZID&quot;</span>)
-## The geneID column is translated to symbol
-<span class="kw">head</span>(y, <span class="dv">3</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">setReadable</span>(x, <span class="dt">OrgDb =</span> org.Hs.eg.db, <span class="dt">keyType=</span><span class="st">&quot;ENTREZID&quot;</span>)
+<span class="co">## The geneID column is translated to symbol</span>
+<span class="kw">head</span>(y, <span class="dv">3</span>)</code></pre>
 <pre><code>##                ID         Description GeneRatio  BgRatio
-## hsa04110 hsa04110          Cell cycle      8/48 124/7856
-## hsa04218 hsa04218 Cellular senescence      7/48 160/7856
-## hsa04114 hsa04114      Oocyte meiosis      6/48 125/7856
+## hsa04110 hsa04110          Cell cycle      8/48 124/7860
+## hsa04218 hsa04218 Cellular senescence      7/48 160/7860
+## hsa04114 hsa04114      Oocyte meiosis      6/48 125/7860
 ##                pvalue     p.adjust       qvalue
-## hsa04110 6.830542e-07 7.650207e-05 7.118144e-05
-## hsa04218 4.651672e-05 2.604936e-03 2.423766e-03
-## hsa04114 1.021826e-04 3.814817e-03 3.549501e-03
+## hsa04110 6.804611e-07 7.689211e-05 7.091121e-05
+## hsa04218 4.636787e-05 2.619785e-03 2.416010e-03
+## hsa04114 1.018994e-04 3.838210e-03 3.539662e-03
 ##                                                 geneID
 ## hsa04110 CDC45/CDC20/CCNB2/CCNA2/CDK1/MAD2L1/TTK/CHEK1
 ## hsa04218     FOXM1/MYBL2/CCNB2/CCNA2/CDK1/CALML5/CHEK1
@@ -388,7 +414,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

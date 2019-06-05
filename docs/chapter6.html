@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 KEGG analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 6 KEGG analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 KEGG analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,41 +57,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -210,18 +236,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="chapter6" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> KEGG analysis</h1>
 <p>The annotation package, <code>KEGG.db</code>, is not updated since 2012. It’s now pretty old and in <a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a>, <code>enrichKEGG</code> (for KEGG pathway) and <code>enrichMKEGG</code> (for KEGG module) supports downloading latest online version of KEGG data for enrichment analysis. Using <code>KEGG.db</code> is also supported by explicitly setting <em>use_internal_data</em> parameter to <em>TRUE</em>, but it’s not recommended.</p>
-<p>With this new feature, organism is not restricted to those supported in previous release, it can be any species that have KEGG annotation data available in KEGG database. User should pass abbreviation of academic name to the <em>organism</em> parameter. The full list of KEGG supported organisms can be accessed via <a href="http://www.genome.jp/kegg/catalog/org_list.html" class="uri">http://www.genome.jp/kegg/catalog/org_list.html</a>. <a href="https://www.genome.jp/kegg/ko.html">KEGG Orthology</a> (KO) Database is also supported by specifying <code>organism = &quot;ko&quot;</code>.</p>
+<p>With this new feature, organism is not restricted to those supported in previous release, it can be any species that have KEGG annotation data available in KEGG database. User should pass abbreviation of academic name to the <em>organism</em> parameter. The full list of KEGG supported organisms can be accessed via <a href="http://www.genome.jp/kegg/catalog/org_list.html">http://www.genome.jp/kegg/catalog/org_list.html</a>.
+<a href="https://www.genome.jp/kegg/ko.html">KEGG Orthology</a> (KO) Database is also supported by specifying <code>organism = "ko"</code>.</p>
 <p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides <code>search_kegg_organism()</code> function to help searching supported organisms.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(clusterProfiler)
-<span class="kw">search_kegg_organism</span>(<span class="st">&#39;ece&#39;</span>, <span class="dt">by=</span><span class="st">&#39;kegg_code&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(clusterProfiler)
+<span class="kw">search_kegg_organism</span>(<span class="st">&#39;ece&#39;</span>, <span class="dt">by=</span><span class="st">&#39;kegg_code&#39;</span>)</code></pre>
 <pre><code>##     kegg_code                        scientific_name
 ## 366       ece Escherichia coli O157:H7 EDL933 (EHEC)
 ##     common_name
 ## 366        &lt;NA&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ecoli &lt;-<span class="st"> </span><span class="kw">search_kegg_organism</span>(<span class="st">&#39;Escherichia coli&#39;</span>, <span class="dt">by=</span><span class="st">&#39;scientific_name&#39;</span>)
-<span class="kw">dim</span>(ecoli)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ecoli &lt;-<span class="st"> </span><span class="kw">search_kegg_organism</span>(<span class="st">&#39;Escherichia coli&#39;</span>, <span class="dt">by=</span><span class="st">&#39;scientific_name&#39;</span>)
+<span class="kw">dim</span>(ecoli)</code></pre>
 <pre><code>## [1] 65  3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ecoli)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ecoli)</code></pre>
 <pre><code>##     kegg_code                        scientific_name
 ## 361       eco           Escherichia coli K-12 MG1655
 ## 362       ecj            Escherichia coli K-12 W3110
@@ -238,98 +265,105 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 366        &lt;NA&gt;</code></pre>
 <div id="kegg-over-representation-test" class="section level2">
 <h2><span class="header-section-number">6.1</span> KEGG over-representation test</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
 gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
 
 kk &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(<span class="dt">gene         =</span> gene,
                  <span class="dt">organism     =</span> <span class="st">&#39;hsa&#39;</span>,
                  <span class="dt">pvalueCutoff =</span> <span class="fl">0.05</span>)
-<span class="kw">head</span>(kk)</code></pre></div>
-<pre><code>##                ID                             Description
-## hsa04110 hsa04110                              Cell cycle
-## hsa04114 hsa04114                          Oocyte meiosis
-## hsa04218 hsa04218                     Cellular senescence
-## hsa03320 hsa03320                  PPAR signaling pathway
-## hsa04914 hsa04914 Progesterone-mediated oocyte maturation
-## hsa04115 hsa04115                   p53 signaling pathway
+<span class="kw">head</span>(kk)</code></pre>
+<pre><code>##                ID
+## hsa04110 hsa04110
+## hsa04114 hsa04114
+## hsa04218 hsa04218
+## hsa04061 hsa04061
+## hsa03320 hsa03320
+## hsa04914 hsa04914
+##                                                            Description
+## hsa04110                                                    Cell cycle
+## hsa04114                                                Oocyte meiosis
+## hsa04218                                           Cellular senescence
+## hsa04061 Viral protein interaction with cytokine and cytokine receptor
+## hsa03320                                        PPAR signaling pathway
+## hsa04914                       Progesterone-mediated oocyte maturation
 ##          GeneRatio  BgRatio       pvalue     p.adjust
-## hsa04110     11/93 124/7856 1.979335e-07 3.820117e-05
-## hsa04114     10/93 125/7856 1.918748e-06 1.851592e-04
-## hsa04218     10/93 160/7856 1.752068e-05 1.127164e-03
-## hsa03320      7/93  74/7856 2.449069e-05 1.181676e-03
-## hsa04914      7/93  99/7856 1.594018e-04 6.152911e-03
-## hsa04115      5/93  72/7856 1.562676e-03 4.902654e-02
+## hsa04110     11/93 124/7860 1.969378e-07 3.820594e-05
+## hsa04114     10/93 125/7860 1.910090e-06 1.852788e-04
+## hsa04218     10/93 160/7860 1.744466e-05 9.471695e-04
+## hsa04061      8/93 100/7860 2.164004e-05 9.471695e-04
+## hsa03320      7/93  74/7860 2.441158e-05 9.471695e-04
+## hsa04914      7/93  99/7860 1.589063e-04 5.137971e-03
 ##                qvalue
-## hsa04110 3.750319e-05
-## hsa04114 1.817761e-04
-## hsa04218 1.106569e-03
-## hsa03320 1.160086e-03
-## hsa04914 6.040491e-03
-## hsa04115 4.813078e-02
+## hsa04110 3.731454e-05
+## hsa04114 1.809559e-04
+## hsa04218 9.250706e-04
+## hsa04061 9.250706e-04
+## hsa03320 9.250706e-04
+## hsa04914 5.018095e-03
 ##                                                      geneID
 ## hsa04110 8318/991/9133/890/983/4085/7272/1111/891/4174/9232
 ## hsa04114    991/9133/983/4085/51806/6790/891/9232/3708/5241
 ## hsa04218     2305/4605/9133/890/983/51806/1111/891/776/3708
+## hsa04061           3627/10563/6373/4283/6362/6355/9547/1524
 ## hsa03320                 4312/9415/9370/5105/2167/3158/5346
 ## hsa04914                    9133/890/983/4085/6790/891/5241
-## hsa04115                             9133/6241/983/1111/891
 ##          Count
 ## hsa04110    11
 ## hsa04114    10
 ## hsa04218    10
+## hsa04061     8
 ## hsa03320     7
-## hsa04914     7
-## hsa04115     5</code></pre>
+## hsa04914     7</code></pre>
 <p>Input ID type can be <code>kegg</code>, <code>ncbi-geneid</code>, <code>ncbi-proteinid</code> or <code>uniprot</code>, an example can be found in <a href="https://guangchuangyu.github.io/2016/05/convert-biological-id-with-kegg-api-using-clusterprofiler/">the post</a>.</p>
 </div>
 <div id="kegg-gene-set-enrichment-analysis" class="section level2">
 <h2><span class="header-section-number">6.2</span> KEGG Gene Set Enrichment Analysis</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kk2 &lt;-<span class="st"> </span><span class="kw">gseKEGG</span>(<span class="dt">geneList     =</span> geneList,
+<pre class="sourceCode r"><code class="sourceCode r">kk2 &lt;-<span class="st"> </span><span class="kw">gseKEGG</span>(<span class="dt">geneList     =</span> geneList,
                <span class="dt">organism     =</span> <span class="st">&#39;hsa&#39;</span>,
                <span class="dt">nPerm        =</span> <span class="dv">1000</span>,
                <span class="dt">minGSSize    =</span> <span class="dv">120</span>,
                <span class="dt">pvalueCutoff =</span> <span class="fl">0.05</span>,
                <span class="dt">verbose      =</span> <span class="ot">FALSE</span>)
-<span class="kw">head</span>(kk2)</code></pre></div>
-<pre><code>##                ID                Description setSize
-## hsa04151 hsa04151 PI3K-Akt signaling pathway     322
-## hsa04510 hsa04510             Focal adhesion     188
-## hsa04218 hsa04218        Cellular senescence     143
-## hsa03013 hsa03013              RNA transport     131
-## hsa05203 hsa05203       Viral carcinogenesis     164
-## hsa05152 hsa05152               Tuberculosis     162
+<span class="kw">head</span>(kk2)</code></pre>
+<pre><code>##                ID                 Description setSize
+## hsa04510 hsa04510              Focal adhesion     188
+## hsa04151 hsa04151  PI3K-Akt signaling pathway     322
+## hsa03013 hsa03013               RNA transport     131
+## hsa04218 hsa04218         Cellular senescence     143
+## hsa04210 hsa04210                   Apoptosis     130
+## hsa04062 hsa04062 Chemokine signaling pathway     166
 ##          enrichmentScore       NES      pvalue   p.adjust
-## hsa04151      -0.3482755 -1.502526 0.001308901 0.01962067
-## hsa04510      -0.4188582 -1.709298 0.001440922 0.01962067
-## hsa04218       0.4153718  1.784930 0.002958580 0.01962067
-## hsa03013       0.4116488  1.730304 0.003012048 0.01962067
-## hsa05203       0.3523856  1.538780 0.003095975 0.01962067
-## hsa05152       0.3745153  1.629560 0.003134796 0.01962067
+## hsa04510      -0.4188582 -1.720923 0.001377410 0.02089864
+## hsa04151      -0.3482755 -1.503644 0.002614379 0.02089864
+## hsa03013       0.4116488  1.738012 0.003205128 0.02089864
+## hsa04218       0.4153718  1.775025 0.003215434 0.02089864
+## hsa04210       0.3538776  1.494004 0.003246753 0.02089864
+## hsa04062       0.3747836  1.620257 0.003521127 0.02089864
 ##             qvalues rank                   leading_edge
-## hsa04151 0.01308044 1997 tags=23%, list=16%, signal=20%
-## hsa04510 0.01308044 2183 tags=27%, list=17%, signal=23%
-## hsa04218 0.01308044 1155  tags=17%, list=9%, signal=16%
-## hsa03013 0.01308044 3383 tags=40%, list=27%, signal=29%
-## hsa05203 0.01308044 3112 tags=35%, list=25%, signal=26%
-## hsa05152 0.01308044 2823 tags=34%, list=23%, signal=27%
+## hsa04510 0.01356578 2183 tags=27%, list=17%, signal=23%
+## hsa04151 0.01356578 1997 tags=23%, list=16%, signal=20%
+## hsa03013 0.01356578 3383 tags=40%, list=27%, signal=29%
+## hsa04218 0.01356578 1155  tags=17%, list=9%, signal=16%
+## hsa04210 0.01356578 2394 tags=29%, list=19%, signal=24%
+## hsa04062 0.01356578 1298 tags=20%, list=10%, signal=19%
 ##                                                                                                                                                                                                                                                                                                                                                                                 core_enrichment
-## hsa04151 2252/7059/92579/5563/5295/6794/1288/7010/3910/3371/3082/1291/4602/3791/1027/90993/3441/3643/1129/2322/1975/7450/596/3685/1942/2149/1280/4804/3675/595/2261/7248/2246/4803/3912/1902/1278/1277/2846/2057/1293/2247/55970/5618/7058/10161/56034/3693/4254/3480/4908/5159/1292/3908/2690/3909/8817/9223/4915/3551/2791/63923/3913/9863/3667/1287/3679/7060/3479/80310/1311/5105/2066/1101
 ## hsa04510                                                                                                                         5228/7424/1499/4636/83660/7059/5295/1288/23396/3910/3371/3082/1291/394/3791/7450/596/3685/1280/3675/595/2318/3912/1793/1278/1277/1293/10398/55742/2317/7058/25759/56034/3693/3480/5159/857/1292/3908/3909/63923/3913/1287/3679/7060/3479/10451/80310/1311/1101
-## hsa04218                                                                                                                                                                                                                                                             2305/4605/9133/890/983/51806/1111/891/993/3576/1978/898/9134/4609/1869/1029/22808/3804/1871/5499/91860/292/1019/11200/1875
+## hsa04151 2252/7059/92579/5563/5295/6794/1288/7010/3910/3371/3082/1291/4602/3791/1027/90993/3441/3643/1129/2322/1975/7450/596/3685/1942/2149/1280/4804/3675/595/2261/7248/2246/4803/3912/1902/1278/1277/2846/2057/1293/2247/55970/5618/7058/10161/56034/3693/4254/3480/4908/5159/1292/3908/2690/3909/8817/9223/4915/3551/2791/63923/3913/9863/3667/1287/3679/7060/3479/80310/1311/5105/2066/1101
 ## hsa03013                                                                                         10460/1978/55110/54913/9688/8894/11260/10799/9631/4116/5042/8761/6396/23165/8662/10248/55706/79833/9775/29107/23636/5905/9513/5901/10775/10557/4927/79902/1981/26986/11171/10762/8480/8891/11097/26019/10940/4686/9972/81929/10556/3646/9470/387082/1977/57122/8563/7514/79023/3837/9818/56000
-## hsa05203                                                                                            991/890/983/1111/898/9134/6502/85236/1237/1029/8970/4067/2957/5902/55697/3066/578/1019/1234/8345/7534/5315/3018/468/6850/1030/4055/7186/1959/3135/5933/5610/1642/5594/9734/4792/5567/3134/23352/7185/10379/5366/4893/1232/2960/23513/9114/2958/10971/7533/9519/5568/836/1233/6714/3106/8379
-## hsa05152                                                                                                  820/51806/6772/64581/3126/3112/8767/3654/1054/1051/3458/1520/11151/1594/50617/54205/91860/8877/3329/637/3689/7096/2207/3929/4360/5603/929/533/3452/6850/7124/1509/3569/7097/1378/8772/64170/3119/843/2213/8625/3920/2215/3587/5594/3593/9103/3592/6300/9114/10333/3109/3108/1432/3552</code></pre>
+## hsa04218                                                                                                                                                                                                                                                             2305/4605/9133/890/983/51806/1111/891/993/3576/1978/898/9134/4609/1869/1029/22808/3804/1871/5499/91860/292/1019/11200/1875
+## hsa04210                                                                                                                                                                                               597/332/3002/4001/1515/1521/1075/5551/84823/330/7277/1520/54205/578/1439/84790/637/1514/10376/142/468/5604/7124/1509/8772/843/7186/9131/8739/356/5605/5594/4792/10018/7185/5366/4893/835
+## hsa04062                                                                                                                                                                                                              3627/10563/6373/4283/6362/6355/2921/6364/3576/6352/10663/1230/6772/6347/6351/3055/1237/1236/4067/6354/114/3702/6361/1794/1234/6367/6375/6374/2919/409/4793/2792/6360/5880</code></pre>
 </div>
 <div id="kegg-module-over-representation-test" class="section level2">
 <h2><span class="header-section-number">6.3</span> KEGG Module over-representation test</h2>
 <p><a href="http://www.genome.jp/kegg/module.html">KEGG Module</a> is a collection of manually defined function units. In some situation, KEGG Modules have a more straightforward interpretation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mkk &lt;-<span class="st"> </span><span class="kw">enrichMKEGG</span>(<span class="dt">gene =</span> gene,
-                   <span class="dt">organism =</span> <span class="st">&#39;hsa&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mkk &lt;-<span class="st"> </span><span class="kw">enrichMKEGG</span>(<span class="dt">gene =</span> gene,
+                   <span class="dt">organism =</span> <span class="st">&#39;hsa&#39;</span>)</code></pre>
 </div>
 <div id="kegg-module-gene-set-enrichment-analysis" class="section level2">
 <h2><span class="header-section-number">6.4</span> KEGG Module Gene Set Enrichment Analysis</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mkk2 &lt;-<span class="st"> </span><span class="kw">gseMKEGG</span>(<span class="dt">geneList =</span> geneList,
-                 <span class="dt">species =</span> <span class="st">&#39;hsa&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mkk2 &lt;-<span class="st"> </span><span class="kw">gseMKEGG</span>(<span class="dt">geneList =</span> geneList,
+                 <span class="dt">species =</span> <span class="st">&#39;hsa&#39;</span>)</code></pre>
 
 </div>
 </div>
@@ -389,7 +423,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Biological theme comparison | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 11 Biological theme comparison | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Biological theme comparison | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,41 +57,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -209,9 +235,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="chapter11" class="section level1">
 <h1><span class="header-section-number">Chapter 11</span> Biological theme comparison</h1>
-<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> was developed for biological theme comparison<span class="citation">(Yu et al. <a href="#ref-yu2012">2012</a>)</span>, and it provides a function, <code>compareCluster</code>, to automatically calculate enriched functional categories of each gene clusters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
-<span class="kw">lapply</span>(gcSample, head)</code></pre></div>
+<p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> was developed for biological theme comparison<span class="citation">(Yu et al. <a href="#ref-yu2012" role="doc-biblioref">2012</a>)</span>, and it provides a function, <code>compareCluster</code>, to automatically calculate enriched functional categories of each gene clusters.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gcSample)
+<span class="kw">lapply</span>(gcSample, head)</code></pre>
 <pre><code>## $X1
 ## [1] &quot;4597&quot;  &quot;7111&quot;  &quot;5266&quot;  &quot;2175&quot;  &quot;755&quot;   &quot;23046&quot;
 ## 
@@ -236,8 +262,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## $X8
 ## [1] &quot;2665&quot; &quot;4735&quot; &quot;1327&quot; &quot;3192&quot; &quot;5573&quot; &quot;9528&quot;</code></pre>
 <p>The input for <em>geneCluster</em> parameter should be a named list of gene IDs. To speed up the compilation of this document, we set <code>use_internal_data = TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ck &lt;-<span class="st"> </span><span class="kw">compareCluster</span>(<span class="dt">geneCluster =</span> gcSample, <span class="dt">fun =</span> <span class="st">&quot;enrichKEGG&quot;</span>)
-<span class="kw">head</span>(<span class="kw">as.data.frame</span>(ck))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ck &lt;-<span class="st"> </span><span class="kw">compareCluster</span>(<span class="dt">geneCluster =</span> gcSample, <span class="dt">fun =</span> <span class="st">&quot;enrichKEGG&quot;</span>)
+<span class="kw">head</span>(<span class="kw">as.data.frame</span>(ck))</code></pre>
 <pre><code>##   Cluster       ID                            Description
 ## 1      X2 hsa04110                             Cell cycle
 ## 2      X2 hsa05169           Epstein-Barr virus infection
@@ -246,12 +272,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 5      X3 hsa04060 Cytokine-cytokine receptor interaction
 ## 6      X3 hsa04151             PI3K-Akt signaling pathway
 ##   GeneRatio  BgRatio       pvalue    p.adjust      qvalue
-## 1    18/377 124/7856 2.307387e-05 0.006668348 0.006266377
-## 2    23/377 201/7856 8.833345e-05 0.012764183 0.011994752
-## 3     8/377  37/7856 2.956604e-04 0.028481954 0.026765048
-## 4     9/182  86/7856 1.562255e-04 0.039525054 0.036671883
-## 5    17/182 294/7856 4.486588e-04 0.044324307 0.041124695
-## 6    19/182 354/7856 5.255847e-04 0.044324307 0.041124695
+## 1    18/377 124/7860 2.291905e-05 0.006646525 0.006248457
+## 2    23/377 201/7860 8.766396e-05 0.012711274 0.011949982
+## 3     8/377  37/7860 2.946454e-04 0.028482387 0.026776546
+## 4     9/182  86/7860 1.556335e-04 0.039530901 0.036696734
+## 5    17/182 294/7860 4.460763e-04 0.044225143 0.041054422
+## 6    19/182 354/7860 5.223442e-04 0.044225143 0.041054422
 ##                                                                                                      geneID
 ## 1                   991/1869/890/1871/701/990/10926/9088/8317/9700/9134/1029/2810/699/11200/23594/8555/4173
 ## 2 4067/3383/7128/1869/890/1871/578/864/637/9641/6891/355/9134/5971/916/956/6850/7187/3551/919/4734/958/6772
@@ -269,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="formula-interface-of-comparecluster" class="section level2">
 <h2><span class="header-section-number">11.1</span> Formula interface of compareCluster</h2>
 <p><code>compareCluster</code> also supports passing a formula (the code to support formula has been contributed by Giovanni Dall’Olio) of type <span class="math inline">\(Entrez \sim group\)</span> or <span class="math inline">\(Entrez \sim group + othergroup\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Entrez=</span><span class="kw">names</span>(geneList), <span class="dt">FC=</span>geneList)
+<pre class="sourceCode r"><code class="sourceCode r">mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Entrez=</span><span class="kw">names</span>(geneList), <span class="dt">FC=</span>geneList)
 mydf &lt;-<span class="st"> </span>mydf[<span class="kw">abs</span>(mydf<span class="op">$</span>FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>,]
 mydf<span class="op">$</span>group &lt;-<span class="st"> &quot;upregulated&quot;</span>
 mydf<span class="op">$</span>group[mydf<span class="op">$</span>FC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> &quot;downregulated&quot;</span>
@@ -278,7 +304,7 @@ mydf<span class="op">$</span>othergroup[<span class="kw">abs</span>(mydf<span cl
 
 formula_res &lt;-<span class="st"> </span><span class="kw">compareCluster</span>(Entrez<span class="op">~</span>group<span class="op">+</span>othergroup, <span class="dt">data=</span>mydf, <span class="dt">fun=</span><span class="st">&quot;enrichKEGG&quot;</span>)
 
-<span class="kw">head</span>(<span class="kw">as.data.frame</span>(formula_res))</code></pre></div>
+<span class="kw">head</span>(<span class="kw">as.data.frame</span>(formula_res))</code></pre>
 <pre><code>##           Cluster         group othergroup       ID
 ## 1 downregulated.A downregulated          A hsa04974
 ## 2 downregulated.A downregulated          A hsa04510
@@ -287,19 +313,19 @@ formula_res &lt;-<span class="st"> </span><span class="kw">compareCluster</span>
 ## 5 downregulated.A downregulated          A hsa05414
 ## 6 downregulated.A downregulated          A hsa04010
 ##                        Description GeneRatio  BgRatio
-## 1 Protein digestion and absorption    15/301  90/7856
-## 2                   Focal adhesion    20/301 199/7856
-## 3       PI3K-Akt signaling pathway    28/301 354/7856
-## 4         ECM-receptor interaction    11/301  86/7856
-## 5     Dilated cardiomyopathy (DCM)    11/301  91/7856
-## 6           MAPK signaling pathway    23/301 295/7856
+## 1 Protein digestion and absorption    15/301  90/7860
+## 2                   Focal adhesion    20/301 199/7860
+## 3       PI3K-Akt signaling pathway    28/301 354/7860
+## 4         ECM-receptor interaction    11/301  86/7860
+## 5     Dilated cardiomyopathy (DCM)    11/301  91/7860
+## 6           MAPK signaling pathway    23/301 295/7860
 ##         pvalue     p.adjust       qvalue
-## 1 1.352987e-06 0.0003531296 0.0003289895
-## 2 7.126863e-05 0.0093005568 0.0086647656
-## 3 1.998489e-04 0.0173868578 0.0161982825
-## 4 4.095273e-04 0.0267216576 0.0248949502
-## 5 6.684394e-04 0.0348925392 0.0325072658
-## 6 9.083874e-04 0.0395148504 0.0368135932
+## 1 1.344499e-06 0.0003522588 0.0003283409
+## 2 7.077437e-05 0.0092714429 0.0086419235
+## 3 1.981832e-04 0.0173080014 0.0161328097
+## 4 4.077778e-04 0.0267094465 0.0248959083
+## 5 6.656413e-04 0.0348796030 0.0325113214
+## 6 9.022253e-04 0.0393971730 0.0367221540
 ##                                                                                                                                             geneID
 ## 1                                                                      1281/50509/1290/477/1294/1360/1289/1292/23428/1359/1300/1287/6505/2006/7373
 ## 2                                         55742/2317/7058/25759/56034/3693/3480/5159/857/1292/3908/3909/63923/3913/1287/3679/7060/3479/10451/80310
@@ -318,31 +344,41 @@ formula_res &lt;-<span class="st"> </span><span class="kw">compareCluster</span>
 <div id="visualization-of-profile-comparison" class="section level2">
 <h2><span class="header-section-number">11.2</span> Visualization of profile comparison</h2>
 <p>We can visualize the result using <code>dotplot</code> method.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(ck)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(ck)</code></pre>
 <p><img src="clusterProfiler_files/figure-html/unnamed-chunk-44-1.png" width="864" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(formula_res)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(formula_res)</code></pre>
 <p><img src="clusterProfiler_files/figure-html/unnamed-chunk-45-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(formula_res, <span class="dt">x=</span><span class="op">~</span>group) <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">facet_grid</span>(<span class="op">~</span>othergroup)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(formula_res, <span class="dt">x=</span><span class="op">~</span>group) <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">facet_grid</span>(<span class="op">~</span>othergroup)</code></pre>
 <p><img src="clusterProfiler_files/figure-html/unnamed-chunk-45-2.png" width="960" /></p>
-<p>By default, only top 5 (most significant) categories of each cluster was plotted. User can changes the parameter <em>showCategory</em> to specify how many categories of each cluster to be plotted, and if <em>showCategory</em> was set to <em>NULL</em>, the whole result will be plotted.</p>
+<p>By default, only top 5 (most significant) categories of each cluster
+was plotted. User can changes the parameter <em>showCategory</em> to
+specify how many categories of each cluster to be plotted, and if
+<em>showCategory</em> was set to <em>NULL</em>, the whole result will
+be plotted.</p>
 <p>The <em>plot</em> function accepts a parameter <em>by</em> for setting the scale of dot sizes. The default parameter <em>by</em> is setting to “geneRatio”, which corresponding to the “GeneRatio” column of the output. If it was setting to <em>count</em>, the comparison will be based on gene counts, while if setting to <em>rowPercentage</em>, the dot sizes will be normalized by <em>count/(sum of each row)</em></p>
 <p>To provide the full information, we also provide number of identified genes in each category (numbers in parentheses) when <em>by</em> is setting to <em>rowPercentage</em> and number of gene clusters in each cluster label (numbers in parentheses) when <em>by</em> is setting to <em>geneRatio</em>, as shown in Figure 3. If the dot sizes were based on <em>count</em>, the row numbers will not shown.</p>
-<p>The p-values indicate that which categories are more likely to have biological meanings. The dots in the plot are color-coded based on their corresponding p-values. Color gradient ranging from red to blue correspond to in order of increasing p-values. That is, red indicate low p-values (high enrichment), and blue indicate high p-values (low enrichment). P-values and adjusted p-values were filtered out by the threshold giving by parameter <em>pvalueCutoff</em>, and FDR can be estimated by <em>qvalue</em>.</p>
-<p>User can refer to the example in Yu (2012)<span class="citation">(Yu et al. <a href="#ref-yu2012">2012</a>)</span>; we analyzed the publicly available expression dataset of breast tumour tissues from 200 patients (GSE11121, Gene Expression Omnibus)<span class="citation">(Schmidt et al. <a href="#ref-schmidt2008">2008</a>)</span>. We identified 8 gene clusters from differentially expressed genes, and using <code>compareCluster</code> to compare these gene clusters by their enriched biological process.</p>
-<p>The comparison function was designed as a framework for comparing gene clusters of any kind of ontology associations, not only <code>groupGO</code>, <code>enrichGO</code>, <code>enrichKEGG</code> and <code>enricher</code> provided in this package, but also other biological and biomedical ontologies, for instance, <code>enrichDO</code> from <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span>, <code>enrichMeSH</code> from <a href="https://www.bioconductor.org/packages/meshes">meshes</a> and <code>enrichPathway</code> from <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a> work fine with <code>compareCluster</code> for comparing biological themes in disease and reactome pathway perspective. More details can be found in the vignettes of <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015">2015</a>)</span> and <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a>.</p>
+<p>The p-values indicate that which categories are more likely to have biological meanings. The dots in the plot are color-coded based on their corresponding p-values. Color gradient ranging from red to blue correspond to in order of increasing p-values. That is, red indicate low p-values (high enrichment), and blue indicate high p-values (low enrichment). P-values and adjusted p-values were filtered out by the threshold giving by
+parameter <em>pvalueCutoff</em>, and FDR can be estimated by <em>qvalue</em>.</p>
+<p>User can refer to the example in Yu (2012)<span class="citation">(Yu et al. <a href="#ref-yu2012" role="doc-biblioref">2012</a>)</span>; we analyzed the publicly available expression dataset of breast tumour tissues from 200 patients (GSE11121, Gene Expression Omnibus)<span class="citation">(Schmidt et al. <a href="#ref-schmidt2008" role="doc-biblioref">2008</a>)</span>. We identified 8 gene clusters from differentially expressed genes, and using <code>compareCluster</code> to compare these gene clusters by their enriched biological process.</p>
+<p>The comparison function was designed as a framework for comparing gene
+clusters of any kind of ontology associations, not only <code>groupGO</code>,
+<code>enrichGO</code>, <code>enrichKEGG</code> and <code>enricher</code> provided in this package, but
+also other biological and biomedical ontologies, for instance,
+<code>enrichDO</code> from <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span>, <code>enrichMeSH</code> from
+<a href="https://www.bioconductor.org/packages/meshes">meshes</a> and <code>enrichPathway</code> from <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a> work fine with <code>compareCluster</code> for comparing biological themes in disease and reactome pathway perspective. More details can be found in the vignettes of <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span> and <a href="https://www.bioconductor.org/packages/ReactomePA">ReactomePA</a>.</p>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-schmidt2008">
-<p>Schmidt, Marcus, Daniel B?hm, Christian von T?rne, Eric Steiner, Alexander Puhl, Henryk Pilch, Hans-Anton Lehr, Jan G. Hengstler, Heinz K?lbl, and Mathias Gehrmann. 2008. “The Humoral Immune System Has a Key Prognostic Impact in Node-Negative Breast Cancer.” <em>Cancer Research</em> 68 (13): 5405–13. doi:<a href="https://doi.org/10.1158/0008-5472.CAN-07-5206">10.1158/0008-5472.CAN-07-5206</a>.</p>
+<p>Schmidt, Marcus, Daniel B?hm, Christian von T?rne, Eric Steiner, Alexander Puhl, Henryk Pilch, Hans-Anton Lehr, Jan G. Hengstler, Heinz K?lbl, and Mathias Gehrmann. 2008. “The Humoral Immune System Has a Key Prognostic Impact in Node-Negative Breast Cancer.” <em>Cancer Research</em> 68 (13): 5405–13. <a href="https://doi.org/10.1158/0008-5472.CAN-07-5206">https://doi.org/10.1158/0008-5472.CAN-07-5206</a>.</p>
 </div>
 <div id="ref-yu2012">
-<p>Yu, Guangchuang, Le-Gen Wang, Yanyan Han, and Qing-Yu He. 2012. “ClusterProfiler: An R Package for Comparing Biological Themes Among Gene Clusters.” <em>OMICS: A Journal of Integrative Biology</em> 16 (5): 284–87. doi:<a href="https://doi.org/10.1089/omi.2011.0118">10.1089/omi.2011.0118</a>.</p>
+<p>Yu, Guangchuang, Le-Gen Wang, Yanyan Han, and Qing-Yu He. 2012. “ClusterProfiler: An R Package for Comparing Biological Themes Among Gene Clusters.” <em>OMICS: A Journal of Integrative Biology</em> 16 (5): 284–87. <a href="https://doi.org/10.1089/omi.2011.0118">https://doi.org/10.1089/omi.2011.0118</a>.</p>
 </div>
 <div id="ref-yu_dose_2015">
-<p>Yu, Guangchuang, Li-Gen Wang, Guang-Rong Yan, and Qing-Yu He. 2015. “DOSE: An R/Bioconductor Package for Disease Ontology Semantic and Enrichment Analysis.” <em>Bioinformatics</em> 31 (4): 608–9. doi:<a href="https://doi.org/10.1093/bioinformatics/btu684">10.1093/bioinformatics/btu684</a>.</p>
+<p>Yu, Guangchuang, Li-Gen Wang, Guang-Rong Yan, and Qing-Yu He. 2015. “DOSE: An R/Bioconductor Package for Disease Ontology Semantic and Enrichment Analysis.” <em>Bioinformatics</em> 31 (4): 608–9. <a href="https://doi.org/10.1093/bioinformatics/btu684">https://doi.org/10.1093/bioinformatics/btu684</a>.</p>
 </div>
 </div>
             </section>
@@ -401,7 +437,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
