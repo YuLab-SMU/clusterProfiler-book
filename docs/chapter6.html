@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 KEGG analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 6 KEGG analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 KEGG analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -239,16 +240,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With this new feature, organism is not restricted to those supported in previous release, it can be any species that have KEGG annotation data available in KEGG database. User should pass abbreviation of academic name to the <em>organism</em> parameter. The full list of KEGG supported organisms can be accessed via <a href="http://www.genome.jp/kegg/catalog/org_list.html">http://www.genome.jp/kegg/catalog/org_list.html</a>.
 <a href="https://www.genome.jp/kegg/ko.html">KEGG Orthology</a> (KO) Database is also supported by specifying <code>organism = "ko"</code>.</p>
 <p><a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides <code>search_kegg_organism()</code> function to help searching supported organisms.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(clusterProfiler)
-<span class="kw">search_kegg_organism</span>(<span class="st">&#39;ece&#39;</span>, <span class="dt">by=</span><span class="st">&#39;kegg_code&#39;</span>)</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="chapter6.html#cb62-1"></a><span class="kw">library</span>(clusterProfiler)</span>
+<span id="cb62-2"><a href="chapter6.html#cb62-2"></a><span class="kw">search_kegg_organism</span>(<span class="st">&#39;ece&#39;</span>, <span class="dt">by=</span><span class="st">&#39;kegg_code&#39;</span>)</span></code></pre></div>
 <pre><code>##     kegg_code                        scientific_name
 ## 366       ece Escherichia coli O157:H7 EDL933 (EHEC)
 ##     common_name
 ## 366        &lt;NA&gt;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">ecoli &lt;-<span class="st"> </span><span class="kw">search_kegg_organism</span>(<span class="st">&#39;Escherichia coli&#39;</span>, <span class="dt">by=</span><span class="st">&#39;scientific_name&#39;</span>)
-<span class="kw">dim</span>(ecoli)</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="chapter6.html#cb64-1"></a>ecoli &lt;-<span class="st"> </span><span class="kw">search_kegg_organism</span>(<span class="st">&#39;Escherichia coli&#39;</span>, <span class="dt">by=</span><span class="st">&#39;scientific_name&#39;</span>)</span>
+<span id="cb64-2"><a href="chapter6.html#cb64-2"></a><span class="kw">dim</span>(ecoli)</span></code></pre></div>
 <pre><code>## [1] 65  3</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ecoli)</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="chapter6.html#cb66-1"></a><span class="kw">head</span>(ecoli)</span></code></pre></div>
 <pre><code>##     kegg_code                        scientific_name
 ## 361       eco           Escherichia coli K-12 MG1655
 ## 362       ecj            Escherichia coli K-12 W3110
@@ -265,13 +266,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 366        &lt;NA&gt;</code></pre>
 <div id="kegg-over-representation-test" class="section level2">
 <h2><span class="header-section-number">6.1</span> KEGG over-representation test</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
-
-kk &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(<span class="dt">gene         =</span> gene,
-                 <span class="dt">organism     =</span> <span class="st">&#39;hsa&#39;</span>,
-                 <span class="dt">pvalueCutoff =</span> <span class="fl">0.05</span>)
-<span class="kw">head</span>(kk)</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="chapter6.html#cb68-1"></a><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)</span>
+<span id="cb68-2"><a href="chapter6.html#cb68-2"></a>gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</span>
+<span id="cb68-3"><a href="chapter6.html#cb68-3"></a></span>
+<span id="cb68-4"><a href="chapter6.html#cb68-4"></a>kk &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(<span class="dt">gene         =</span> gene,</span>
+<span id="cb68-5"><a href="chapter6.html#cb68-5"></a>                 <span class="dt">organism     =</span> <span class="st">&#39;hsa&#39;</span>,</span>
+<span id="cb68-6"><a href="chapter6.html#cb68-6"></a>                 <span class="dt">pvalueCutoff =</span> <span class="fl">0.05</span>)</span>
+<span id="cb68-7"><a href="chapter6.html#cb68-7"></a><span class="kw">head</span>(kk)</span></code></pre></div>
 <pre><code>##                ID
 ## hsa04110 hsa04110
 ## hsa04114 hsa04114
@@ -318,13 +319,13 @@ kk &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(<span class=
 </div>
 <div id="kegg-gene-set-enrichment-analysis" class="section level2">
 <h2><span class="header-section-number">6.2</span> KEGG Gene Set Enrichment Analysis</h2>
-<pre class="sourceCode r"><code class="sourceCode r">kk2 &lt;-<span class="st"> </span><span class="kw">gseKEGG</span>(<span class="dt">geneList     =</span> geneList,
-               <span class="dt">organism     =</span> <span class="st">&#39;hsa&#39;</span>,
-               <span class="dt">nPerm        =</span> <span class="dv">1000</span>,
-               <span class="dt">minGSSize    =</span> <span class="dv">120</span>,
-               <span class="dt">pvalueCutoff =</span> <span class="fl">0.05</span>,
-               <span class="dt">verbose      =</span> <span class="ot">FALSE</span>)
-<span class="kw">head</span>(kk2)</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="chapter6.html#cb70-1"></a>kk2 &lt;-<span class="st"> </span><span class="kw">gseKEGG</span>(<span class="dt">geneList     =</span> geneList,</span>
+<span id="cb70-2"><a href="chapter6.html#cb70-2"></a>               <span class="dt">organism     =</span> <span class="st">&#39;hsa&#39;</span>,</span>
+<span id="cb70-3"><a href="chapter6.html#cb70-3"></a>               <span class="dt">nPerm        =</span> <span class="dv">1000</span>,</span>
+<span id="cb70-4"><a href="chapter6.html#cb70-4"></a>               <span class="dt">minGSSize    =</span> <span class="dv">120</span>,</span>
+<span id="cb70-5"><a href="chapter6.html#cb70-5"></a>               <span class="dt">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb70-6"><a href="chapter6.html#cb70-6"></a>               <span class="dt">verbose      =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb70-7"><a href="chapter6.html#cb70-7"></a><span class="kw">head</span>(kk2)</span></code></pre></div>
 <pre><code>##                ID                 Description setSize
 ## hsa04510 hsa04510              Focal adhesion     188
 ## hsa04151 hsa04151  PI3K-Akt signaling pathway     322
@@ -357,13 +358,13 @@ kk &lt;-<span class="st"> </span><span class="kw">enrichKEGG</span>(<span class=
 <div id="kegg-module-over-representation-test" class="section level2">
 <h2><span class="header-section-number">6.3</span> KEGG Module over-representation test</h2>
 <p><a href="http://www.genome.jp/kegg/module.html">KEGG Module</a> is a collection of manually defined function units. In some situation, KEGG Modules have a more straightforward interpretation.</p>
-<pre class="sourceCode r"><code class="sourceCode r">mkk &lt;-<span class="st"> </span><span class="kw">enrichMKEGG</span>(<span class="dt">gene =</span> gene,
-                   <span class="dt">organism =</span> <span class="st">&#39;hsa&#39;</span>)</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="chapter6.html#cb72-1"></a>mkk &lt;-<span class="st"> </span><span class="kw">enrichMKEGG</span>(<span class="dt">gene =</span> gene,</span>
+<span id="cb72-2"><a href="chapter6.html#cb72-2"></a>                   <span class="dt">organism =</span> <span class="st">&#39;hsa&#39;</span>)</span></code></pre></div>
 </div>
 <div id="kegg-module-gene-set-enrichment-analysis" class="section level2">
 <h2><span class="header-section-number">6.4</span> KEGG Module Gene Set Enrichment Analysis</h2>
-<pre class="sourceCode r"><code class="sourceCode r">mkk2 &lt;-<span class="st"> </span><span class="kw">gseMKEGG</span>(<span class="dt">geneList =</span> geneList,
-                 <span class="dt">species =</span> <span class="st">&#39;hsa&#39;</span>)</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="chapter6.html#cb73-1"></a>mkk2 &lt;-<span class="st"> </span><span class="kw">gseMKEGG</span>(<span class="dt">geneList =</span> geneList,</span>
+<span id="cb73-2"><a href="chapter6.html#cb73-2"></a>                 <span class="dt">species =</span> <span class="st">&#39;hsa&#39;</span>)</span></code></pre></div>
 
 </div>
 </div>

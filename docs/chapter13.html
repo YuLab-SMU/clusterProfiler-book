@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 dplyr verbs for clusterProfiler | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -236,15 +237,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="chapter13" class="section level1">
 <h1><span class="header-section-number">Chapter 13</span> dplyr verbs for clusterProfiler</h1>
 <p><a href="https://github.com/YuLab-SMU/clusterProfiler.dplyr">clusterProfiler.dplyr</a> package.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DOSE)
-<span class="kw">data</span>(geneList)
-de =<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
-x =<span class="st"> </span><span class="kw">enrichDO</span>(de)</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chapter13.html#cb118-1"></a><span class="kw">library</span>(DOSE)</span>
+<span id="cb118-2"><a href="chapter13.html#cb118-2"></a><span class="kw">data</span>(geneList)</span>
+<span id="cb118-3"><a href="chapter13.html#cb118-3"></a>de =<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]</span>
+<span id="cb118-4"><a href="chapter13.html#cb118-4"></a>x =<span class="st"> </span><span class="kw">enrichDO</span>(de)</span></code></pre></div>
 <div id="filter" class="section level2">
 <h2><span class="header-section-number">13.1</span> filter</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(clusterProfiler.dplyr)
-
-<span class="kw">filter</span>(x, p.adjust <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>, qvalue <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.2</span>)</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="chapter13.html#cb119-1"></a><span class="kw">library</span>(clusterProfiler.dplyr)</span>
+<span id="cb119-2"><a href="chapter13.html#cb119-2"></a></span>
+<span id="cb119-3"><a href="chapter13.html#cb119-3"></a><span class="kw">filter</span>(x, p.adjust <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>, qvalue <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.2</span>)</span></code></pre></div>
 <pre><code>## #
 ## # over-representation test
 ## #
@@ -271,8 +272,8 @@ x =<span class="st"> </span><span class="kw">enrichDO</span>(de)</code></pre>
 </div>
 <div id="arrange" class="section level2">
 <h2><span class="header-section-number">13.2</span> arrange</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(x, <span class="dt">geneRatio =</span> <span class="kw">parse_ratio</span>(GeneRatio)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(geneRatio))</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="chapter13.html#cb121-1"></a><span class="kw">mutate</span>(x, <span class="dt">geneRatio =</span> <span class="kw">parse_ratio</span>(GeneRatio)) <span class="op">%&gt;%</span></span>
+<span id="cb121-2"><a href="chapter13.html#cb121-2"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(geneRatio))</span></code></pre></div>
 <pre><code>## #
 ## # over-representation test
 ## #
@@ -300,7 +301,7 @@ x =<span class="st"> </span><span class="kw">enrichDO</span>(de)</code></pre>
 </div>
 <div id="select" class="section level2">
 <h2><span class="header-section-number">13.3</span> select</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(x, <span class="op">-</span>geneID) <span class="op">%&gt;%</span><span class="st"> </span>head</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="chapter13.html#cb123-1"></a><span class="kw">select</span>(x, <span class="op">-</span>geneID) <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
 <pre><code>##                        ID                   Description
 ## DOID:0060071 DOID:0060071        pre-malignant neoplasm
 ## DOID:5295       DOID:5295            intestinal disease
@@ -325,8 +326,8 @@ x =<span class="st"> </span><span class="kw">enrichDO</span>(de)</code></pre>
 </div>
 <div id="mutate" class="section level2">
 <h2><span class="header-section-number">13.4</span> mutate</h2>
-<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">mutate</span>(x, <span class="dt">richFactor =</span> Count <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(<span class="st">&quot;/</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;&quot;</span>, BgRatio)))
-y</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter13.html#cb125-1"></a>y &lt;-<span class="st"> </span><span class="kw">mutate</span>(x, <span class="dt">richFactor =</span> Count <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(<span class="st">&quot;/</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;&quot;</span>, BgRatio)))</span>
+<span id="cb125-2"><a href="chapter13.html#cb125-2"></a>y</span></code></pre></div>
 <pre><code>## #
 ## # over-representation test
 ## #
@@ -351,34 +352,34 @@ y</code></pre>
 ##   Guangchuang Yu, Li-Gen Wang, Guang-Rong Yan, Qing-Yu He. DOSE: an
 ##   R/Bioconductor package for Disease Ontology Semantic and Enrichment
 ##   analysis. Bioinformatics 2015, 31(4):608-609</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(forcats)
-<span class="kw">library</span>(enrichplot)
-
-<span class="kw">ggplot</span>(y, <span class="dt">showCategory =</span> <span class="dv">20</span>, 
-  <span class="kw">aes</span>(richFactor, <span class="kw">fct_reorder</span>(Description, richFactor))) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span><span class="dv">0</span>, <span class="dt">yend =</span> Description)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>p.adjust, <span class="dt">size =</span> Count)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_viridis_c</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_size_continuous</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">10</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;rich factor&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Enriched Disease Ontology&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="chapter13.html#cb127-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb127-2"><a href="chapter13.html#cb127-2"></a><span class="kw">library</span>(forcats)</span>
+<span id="cb127-3"><a href="chapter13.html#cb127-3"></a><span class="kw">library</span>(enrichplot)</span>
+<span id="cb127-4"><a href="chapter13.html#cb127-4"></a></span>
+<span id="cb127-5"><a href="chapter13.html#cb127-5"></a><span class="kw">ggplot</span>(y, <span class="dt">showCategory =</span> <span class="dv">20</span>, </span>
+<span id="cb127-6"><a href="chapter13.html#cb127-6"></a>  <span class="kw">aes</span>(richFactor, <span class="kw">fct_reorder</span>(Description, richFactor))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb127-7"><a href="chapter13.html#cb127-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span><span class="dv">0</span>, <span class="dt">yend =</span> Description)) <span class="op">+</span></span>
+<span id="cb127-8"><a href="chapter13.html#cb127-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>p.adjust, <span class="dt">size =</span> Count)) <span class="op">+</span></span>
+<span id="cb127-9"><a href="chapter13.html#cb127-9"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb127-10"><a href="chapter13.html#cb127-10"></a><span class="st">  </span><span class="kw">scale_size_continuous</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb127-11"><a href="chapter13.html#cb127-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb127-12"><a href="chapter13.html#cb127-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;rich factor&quot;</span>) <span class="op">+</span></span>
+<span id="cb127-13"><a href="chapter13.html#cb127-13"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb127-14"><a href="chapter13.html#cb127-14"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Enriched Disease Ontology&quot;</span>)</span></code></pre></div>
 <p><img src="clusterProfiler_files/figure-html/dot-richfactor-1.png" width="672" /></p>
 </div>
 <div id="summarise" class="section level2">
 <h2><span class="header-section-number">13.5</span> summarise</h2>
-<pre class="sourceCode r"><code class="sourceCode r">pi=<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out=</span><span class="dv">11</span>)
-
-<span class="kw">mutate</span>(x, <span class="dt">pp =</span> <span class="kw">cut</span>(pvalue, pi)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(pp) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">cnt =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(pp, cnt)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;p value intervals&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;p value distribution&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chapter13.html#cb128-1"></a>pi=<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out=</span><span class="dv">11</span>)</span>
+<span id="cb128-2"><a href="chapter13.html#cb128-2"></a></span>
+<span id="cb128-3"><a href="chapter13.html#cb128-3"></a><span class="kw">mutate</span>(x, <span class="dt">pp =</span> <span class="kw">cut</span>(pvalue, pi)) <span class="op">%&gt;%</span></span>
+<span id="cb128-4"><a href="chapter13.html#cb128-4"></a><span class="st">  </span><span class="kw">group_by</span>(pp) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-5"><a href="chapter13.html#cb128-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">cnt =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-6"><a href="chapter13.html#cb128-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(pp, cnt)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb128-7"><a href="chapter13.html#cb128-7"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb128-8"><a href="chapter13.html#cb128-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;p value intervals&quot;</span>) <span class="op">+</span></span>
+<span id="cb128-9"><a href="chapter13.html#cb128-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb128-10"><a href="chapter13.html#cb128-10"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;p value distribution&quot;</span>)</span></code></pre></div>
 <p><img src="clusterProfiler_files/figure-html/p-bar-1.png" width="768" /></p>
 
 </div>

@@ -8,9 +8,7 @@
 
 ### Gene sets and pathway
 
-Gene sets are simple lists of usually functional related genes without further specification of relationships between genes.
-
-Pathways can be interpreted as specific gene sets, typically representing a group of genes that work together in a biological process. 
+A gene set is an unordered collection of genes that are functional related. A pathway can be interpreted as a gene set by ignoring functional relationships among genes.
 
 ### Gene Ontology (GO)
 
@@ -29,7 +27,7 @@ GO terms are organized in a directed acyclic graph, where edge between the terms
 
 ### Kyoto Encyclopedia of Genes and Genomes (KEGG)
 
-[KEGG](https://www.genome.jp/kegg/) is a collection of manually drawn pathway maps representing molecular interaction and reaction networks. These pathways cover a wide range of biochemical processes that can be divided in 7 broad categories: metabolism, genetic and environmental information processing, cellular processes, organismal systems, human diseases, and drug development.
+[KEGG](https://www.genome.jp/kegg/) is a collection of manually drawn pathway maps representing molecular interaction and reaction networks. These pathways cover a wide range of biochemical processes that can be divided in 7 broad categories: metabolism, genetic and environmental information processing, cellular processes, organismal systems, human diseases, and drug development^[<https://pathview.uncc.edu/data/khier.tsv>].
 
 ### Other gene sets
 

@@ -17,15 +17,12 @@ are annotated to the gene set. The background distribution by default is
 all the genes that have annotation. _P_-values should be adjusted for [multiple comparison](https://en.wikipedia.org/wiki/Multiple_comparisons_problem).
 
 
-**Example:** Microarray study, in which 11,812 genes have been tested for differential expression between two sample conditions and 202 genes were found DE.
+**Example:** Suppose we have 17,980 genes detected in a Microarray study and 57 genes were differentially expressed. Among the differential expressed genes, 28 are annotated to a gene set^[example adopted from <https://guangchuangyu.github.io/cn/2012/04/enrichment-analysis/>]. 
 
-Among the DE genes, 25 are annotated to a specific functional gene set, which contains in total 262 genes. This setup corresponds to a 2x2 contingency table:
 
 ```{r}
-d <-  matrix(c(25, 237, 177, 11323), 
-          nrow = 2, 
-          dimnames = list(c("DE", "Not DE"),
-                        c("In GS", "Not in GS")))
+d <- data.frame(gene.not.interest=c(2613, 15310), gene.in.interest=c(28, 29))
+row.names(d) <- c("In_category", "not_in_category")
 d
 ```                        
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Functional Enrichment Analysis Methods | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 2 Functional Enrichment Analysis Methods | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Functional Enrichment Analysis Methods | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -245,18 +246,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>n</code> is the size of the list of genes of interest and <code>k</code> is the number of genes within that list which
 are annotated to the gene set. The background distribution by default is
 all the genes that have annotation. <em>P</em>-values should be adjusted for <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple comparison</a>.</p>
-<p><strong>Example:</strong> Microarray study, in which 11,812 genes have been tested for differential expression between two sample conditions and 202 genes were found DE.</p>
-<p>Among the DE genes, 25 are annotated to a specific functional gene set, which contains in total 262 genes. This setup corresponds to a 2x2 contingency table:</p>
-<pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st">  </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">237</span>, <span class="dv">177</span>, <span class="dv">11323</span>), 
-          <span class="dt">nrow =</span> <span class="dv">2</span>, 
-          <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;Not DE&quot;</span>),
-                        <span class="kw">c</span>(<span class="st">&quot;In GS&quot;</span>, <span class="st">&quot;Not in GS&quot;</span>)))
-d</code></pre>
-<pre><code>##        In GS Not in GS
-## DE        25       177
-## Not DE   237     11323</code></pre>
+<p><strong>Example:</strong> Suppose we have 17,980 genes detected in a Microarray study and 57 genes were differentially expressed. Among the differential expressed genes, 28 are annotated to a gene set<a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="chapter2.html#cb1-1"></a>d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gene.not.interest=</span><span class="kw">c</span>(<span class="dv">2613</span>, <span class="dv">15310</span>), <span class="dt">gene.in.interest=</span><span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">29</span>))</span>
+<span id="cb1-2"><a href="chapter2.html#cb1-2"></a><span class="kw">row.names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;In_category&quot;</span>, <span class="st">&quot;not_in_category&quot;</span>)</span>
+<span id="cb1-3"><a href="chapter2.html#cb1-3"></a>d</span></code></pre></div>
+<pre><code>##                 gene.not.interest gene.in.interest
+## In_category                  2613               28
+## not_in_category             15310               29</code></pre>
 <p>whether the overlap of 25 genes are significantly over represented in the gene set can be assessed using hypergeometric distribution. This corresponding to a one-sided version of Fisher’s exact test.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fisher.test</span>(d, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="chapter2.html#cb3-1"></a><span class="kw">fisher.test</span>(d, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 

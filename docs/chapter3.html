@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Universal enrichment analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 3 Universal enrichment analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Universal enrichment analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -248,45 +249,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>sorted vector: number should be sorted in decreasing order</li>
 </ol>
 <p>Suppose you are importing your own data from a <em>csv</em> file and the file contains two columns, one for gene ID (no duplicated allowed) and another one for fold change, you can prepare your own <code>geneList</code> via the following command:</p>
-<pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(your_csv_file)
-<span class="co">## assume that 1st column is ID</span>
-<span class="co">## 2nd column is fold change</span>
-
-<span class="co">## feature 1: numeric vector</span>
-geneList &lt;-<span class="st"> </span>d[,<span class="dv">2</span>]
-
-<span class="co">## feature 2: named vector</span>
-<span class="kw">names</span>(geneList) &lt;-<span class="st"> </span><span class="kw">as.character</span>(d[,<span class="dv">1</span>])
-
-<span class="co">## feature 3: decreasing order</span>
-geneList &lt;-<span class="st"> </span><span class="kw">sort</span>(geneList, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="chapter3.html#cb5-1"></a>d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(your_csv_file)</span>
+<span id="cb5-2"><a href="chapter3.html#cb5-2"></a><span class="co">## assume that 1st column is ID</span></span>
+<span id="cb5-3"><a href="chapter3.html#cb5-3"></a><span class="co">## 2nd column is fold change</span></span>
+<span id="cb5-4"><a href="chapter3.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="chapter3.html#cb5-5"></a><span class="co">## feature 1: numeric vector</span></span>
+<span id="cb5-6"><a href="chapter3.html#cb5-6"></a>geneList &lt;-<span class="st"> </span>d[,<span class="dv">2</span>]</span>
+<span id="cb5-7"><a href="chapter3.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="chapter3.html#cb5-8"></a><span class="co">## feature 2: named vector</span></span>
+<span id="cb5-9"><a href="chapter3.html#cb5-9"></a><span class="kw">names</span>(geneList) &lt;-<span class="st"> </span><span class="kw">as.character</span>(d[,<span class="dv">1</span>])</span>
+<span id="cb5-10"><a href="chapter3.html#cb5-10"></a></span>
+<span id="cb5-11"><a href="chapter3.html#cb5-11"></a><span class="co">## feature 3: decreasing order</span></span>
+<span id="cb5-12"><a href="chapter3.html#cb5-12"></a>geneList &lt;-<span class="st"> </span><span class="kw">sort</span>(geneList, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>We can load the sample data into R via:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-<span class="kw">head</span>(geneList)</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="chapter3.html#cb6-1"></a><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)</span>
+<span id="cb6-2"><a href="chapter3.html#cb6-2"></a><span class="kw">head</span>(geneList)</span></code></pre></div>
 <pre><code>##     4312     8318    10874    55143    55388      991 
 ## 4.572613 4.514594 4.418218 4.144075 3.876258 3.677857</code></pre>
 <p>Suppose we define fold change greater than 2 as DEGs:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
-<span class="kw">head</span>(gene)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chapter3.html#cb8-1"></a>gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</span>
+<span id="cb8-2"><a href="chapter3.html#cb8-2"></a><span class="kw">head</span>(gene)</span></code></pre></div>
 <pre><code>## [1] &quot;4312&quot;  &quot;8318&quot;  &quot;10874&quot; &quot;55143&quot; &quot;55388&quot; &quot;991&quot;</code></pre>
 </div>
 <div id="wikipathways-analysis" class="section level2">
 <h2><span class="header-section-number">3.2</span> WikiPathways analysis</h2>
 <p><a href="https://www.wikipathways.org">WikiPathways</a> is a continuously updated pathway database curated by a community of researchers and pathway enthusiasts. WikiPathways produces monthly releases of gmt files for supported organisms at <a href="http://data.wikipathways.org/current/gmt/">data.wikipathways.org</a>. Download the appropriate gmt file and then generate <code>TERM2GENE</code> and <code>TERM2NAME</code> to use <code>enricher</code> and <code>GSEA</code> functions.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
-<span class="kw">library</span>(clusterProfiler)
-
-<span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
-
-wpgmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/wikipathways-20180810-gmt-Homo_sapiens.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)
-wp2gene &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(wpgmtfile)
-wp2gene &lt;-<span class="st"> </span>wp2gene <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">separate</span>(ont, <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>,<span class="st">&quot;version&quot;</span>,<span class="st">&quot;wpid&quot;</span>,<span class="st">&quot;org&quot;</span>), <span class="st">&quot;%&quot;</span>)
-wpid2gene &lt;-<span class="st"> </span>wp2gene <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(wpid, gene) <span class="co">#TERM2GENE</span>
-wpid2name &lt;-<span class="st"> </span>wp2gene <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(wpid, name) <span class="co">#TERM2NAME</span>
-
-ewp &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE =</span> wpid2gene, <span class="dt">TERM2NAME =</span> wpid2name)
-<span class="kw">head</span>(ewp)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="chapter3.html#cb10-1"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb10-2"><a href="chapter3.html#cb10-2"></a><span class="kw">library</span>(clusterProfiler)</span>
+<span id="cb10-3"><a href="chapter3.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="chapter3.html#cb10-4"></a><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)</span>
+<span id="cb10-5"><a href="chapter3.html#cb10-5"></a>gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</span>
+<span id="cb10-6"><a href="chapter3.html#cb10-6"></a></span>
+<span id="cb10-7"><a href="chapter3.html#cb10-7"></a>wpgmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/wikipathways-20180810-gmt-Homo_sapiens.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)</span>
+<span id="cb10-8"><a href="chapter3.html#cb10-8"></a>wp2gene &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(wpgmtfile)</span>
+<span id="cb10-9"><a href="chapter3.html#cb10-9"></a>wp2gene &lt;-<span class="st"> </span>wp2gene <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">separate</span>(ont, <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>,<span class="st">&quot;version&quot;</span>,<span class="st">&quot;wpid&quot;</span>,<span class="st">&quot;org&quot;</span>), <span class="st">&quot;%&quot;</span>)</span>
+<span id="cb10-10"><a href="chapter3.html#cb10-10"></a>wpid2gene &lt;-<span class="st"> </span>wp2gene <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(wpid, gene) <span class="co">#TERM2GENE</span></span>
+<span id="cb10-11"><a href="chapter3.html#cb10-11"></a>wpid2name &lt;-<span class="st"> </span>wp2gene <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(wpid, name) <span class="co">#TERM2NAME</span></span>
+<span id="cb10-12"><a href="chapter3.html#cb10-12"></a></span>
+<span id="cb10-13"><a href="chapter3.html#cb10-13"></a>ewp &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE =</span> wpid2gene, <span class="dt">TERM2NAME =</span> wpid2name)</span>
+<span id="cb10-14"><a href="chapter3.html#cb10-14"></a><span class="kw">head</span>(ewp)</span></code></pre></div>
 <pre><code>##            ID
 ## WP2446 WP2446
 ## WP2361 WP2361
@@ -329,8 +330,8 @@ ewp &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span c
 ## WP3942     7
 ## WP4240     4
 ## WP2328     7</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">ewp2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE =</span> wpid2gene, <span class="dt">TERM2NAME =</span> wpid2name, <span class="dt">verbose=</span><span class="ot">FALSE</span>)
-<span class="kw">head</span>(ewp2)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chapter3.html#cb12-1"></a>ewp2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE =</span> wpid2gene, <span class="dt">TERM2NAME =</span> wpid2name, <span class="dt">verbose=</span><span class="ot">FALSE</span>)</span>
+<span id="cb12-2"><a href="chapter3.html#cb12-2"></a><span class="kw">head</span>(ewp2)</span></code></pre></div>
 <pre><code>##            ID
 ## WP3932 WP3932
 ## WP306   WP306
@@ -374,10 +375,10 @@ ewp &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span c
 ## WP2911                                                                                                                                                                                                                                                                                                      3672/7057/3915/3910/1291/1278/1293/1281/50509/1290/7058/3693/1289/1292/3913
 ## WP3664                                                                                                                                                                                                                                                                                                                                     8658/8325/8321/1499/324/27122/6925/4035/6424</code></pre>
 <p>You may want to convert the gene IDs to gene symbols, which can be done by <code>setReadable</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(org.Hs.eg.db)
-ewp &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ewp, org.Hs.eg.db, <span class="dt">keyType =</span> <span class="st">&quot;ENTREZID&quot;</span>)
-ewp2 &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ewp2, org.Hs.eg.db, <span class="dt">keyType =</span> <span class="st">&quot;ENTREZID&quot;</span>)
-<span class="kw">head</span>(ewp)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1"></a><span class="kw">library</span>(org.Hs.eg.db)</span>
+<span id="cb14-2"><a href="chapter3.html#cb14-2"></a>ewp &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ewp, org.Hs.eg.db, <span class="dt">keyType =</span> <span class="st">&quot;ENTREZID&quot;</span>)</span>
+<span id="cb14-3"><a href="chapter3.html#cb14-3"></a>ewp2 &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ewp2, org.Hs.eg.db, <span class="dt">keyType =</span> <span class="st">&quot;ENTREZID&quot;</span>)</span>
+<span id="cb14-4"><a href="chapter3.html#cb14-4"></a><span class="kw">head</span>(ewp)</span></code></pre></div>
 <pre><code>##            ID
 ## WP2446 WP2446
 ## WP2361 WP2361
@@ -420,7 +421,7 @@ ewp2 &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ewp2, org
 ## WP3942     7
 ## WP4240     4
 ## WP2328     7</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ewp2)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="chapter3.html#cb16-1"></a><span class="kw">head</span>(ewp2)</span></code></pre></div>
 <pre><code>##            ID
 ## WP3932 WP3932
 ## WP306   WP306
@@ -467,11 +468,11 @@ ewp2 &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ewp2, org
 </div>
 <div id="cell-marker" class="section level2">
 <h2><span class="header-section-number">3.3</span> Cell Marker</h2>
-<pre class="sourceCode r"><code class="sourceCode r">cell_markers &lt;-<span class="st"> </span>vroom<span class="op">::</span><span class="kw">vroom</span>(<span class="st">&#39;http://bio-bigdata.hrbmu.edu.cn/CellMarker/download/Human_cell_markers.txt&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">   </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="st">&quot;cellMarker&quot;</span>, tissueType, cancerType, cellName, <span class="dt">sep=</span><span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(cellMarker, geneID) <span class="op">%&gt;%</span>
-<span class="st">   </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="kw">strsplit</span>(geneID, <span class="st">&#39;, &#39;</span>))
-cell_markers</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter3.html#cb18-1"></a>cell_markers &lt;-<span class="st"> </span>vroom<span class="op">::</span><span class="kw">vroom</span>(<span class="st">&#39;http://bio-bigdata.hrbmu.edu.cn/CellMarker/download/Human_cell_markers.txt&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb18-2"><a href="chapter3.html#cb18-2"></a><span class="st">   </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="st">&quot;cellMarker&quot;</span>, tissueType, cancerType, cellName, <span class="dt">sep=</span><span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb18-3"><a href="chapter3.html#cb18-3"></a><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(cellMarker, geneID) <span class="op">%&gt;%</span></span>
+<span id="cb18-4"><a href="chapter3.html#cb18-4"></a><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="kw">strsplit</span>(geneID, <span class="st">&#39;, &#39;</span>))</span>
+<span id="cb18-5"><a href="chapter3.html#cb18-5"></a>cell_markers</span></code></pre></div>
 <pre><code>## # A tibble: 2,868 x 2
 ##    cellMarker                                       geneID  
 ##    &lt;chr&gt;                                            &lt;list&gt;  
@@ -486,8 +487,8 @@ cell_markers</code></pre>
 ##  9 Primitive streak, Normal, Primitive streak cell  &lt;chr [2…
 ## 10 Adipose tissue, Normal, Stromal vascular fracti… &lt;chr [1…
 ## # … with 2,858 more rows</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>cell_markers, <span class="dt">minGSSize=</span><span class="dv">1</span>)
-DT<span class="op">::</span><span class="kw">datatable</span>(<span class="kw">as.data.frame</span>(y))</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter3.html#cb20-1"></a>y &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>cell_markers, <span class="dt">minGSSize=</span><span class="dv">1</span>)</span>
+<span id="cb20-2"><a href="chapter3.html#cb20-2"></a>DT<span class="op">::</span><span class="kw">datatable</span>(<span class="kw">as.data.frame</span>(y))</span></code></pre></div>
 <div id="htmlwidget-59153d1e0524b8887186" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-59153d1e0524b8887186">{"x":{"filter":"none","data":[["Embryonic prefrontal cortex, Normal, Neural progenitor cell","Large intestine, Normal, MKI67+ progenitor cell","Kidney, Normal, Neutrophil","Large intestine, Normal, DCLK1+ progenitor cell","Kidney, Renal Cell Carcinoma, Neutrophil","Fetal gonad, Normal, Endothelial cell"],["Embryonic prefrontal cortex, Normal, Neural progenitor cell","Large intestine, Normal, MKI67+ progenitor cell","Kidney, Normal, Neutrophil","Large intestine, Normal, DCLK1+ progenitor cell","Kidney, Renal Cell Carcinoma, Neutrophil","Fetal gonad, Normal, Endothelial cell"],["Embryonic prefrontal cortex, Normal, Neural progenitor cell","Large intestine, Normal, MKI67+ progenitor cell","Kidney, Normal, Neutrophil","Large intestine, Normal, DCLK1+ progenitor cell","Kidney, Renal Cell Carcinoma, Neutrophil","Fetal gonad, Normal, Endothelial cell"],["33/153","20/153","6/153","7/153","6/153","9/153"],["166/11582","111/11582","42/11582","99/11582","77/11582","209/11582"],[4.43518066168319e-30,1.42606245514518e-17,1.70645935795602e-05,0.000329875455341899,0.0005276542867749,0.00181179940206466],[6.34230834620697e-28,1.0196346554288e-15,0.000813412293959037,0.0117930475284729,0.0150909126017621,0.0431812190825411],[4.80866955950915e-28,7.7307596252607e-16,0.000616720399542001,0.00894136102637251,0.0114417666395399,0.0327395330548526],["991/9493/9833/9133/10403/7153/259266/6241/9787/11065/55355/55872/51203/83461/22974/10460/79019/55839/890/983/4085/5080/332/3832/9212/51659/9055/891/4174/9232/1602/2018/4137","991/9133/10403/7153/259266/6241/9787/11065/51203/22974/10460/890/983/332/9212/9055/891/9232/2167/51705","6280/6279/597/7850/6286/366","1307/730/54829/10234/79901/57758/4969","6280/6279/597/7850/6286/366","9493/23397/9787/10460/55839/332/7272/4521/9232"],[33,20,6,7,6,9]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID<\/th>\n      <th>Description<\/th>\n      <th>GeneRatio<\/th>\n      <th>BgRatio<\/th>\n      <th>pvalue<\/th>\n      <th>p.adjust<\/th>\n      <th>qvalue<\/th>\n      <th>geneID<\/th>\n      <th>Count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[5,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -507,8 +508,8 @@ DT<span class="op">::</span><span class="kw">datatable</span>(<span class="kw">a
 <p>Users can download GMT files from <a href="http://software.broadinstitute.org/gsea/msigdb">Broad Institute</a> and use <code>read.gmt</code> to parse the file to be used in <code>enricher()</code> and <code>GSEA()</code>.</p>
 <p>There is an R package, <a href="https://cran.r-project.org/package=msigdbr">msigdbr</a>, that already packed the MSigDB gene sets in tidy data format that can be used directly with <em>clusterProfiler</em>.</p>
 <p>It supports several specices:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(msigdbr)
-<span class="kw">msigdbr_show_species</span>()</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter3.html#cb21-1"></a><span class="kw">library</span>(msigdbr)</span>
+<span id="cb21-2"><a href="chapter3.html#cb21-2"></a><span class="kw">msigdbr_show_species</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;Bos taurus&quot;               &quot;Caenorhabditis elegans&quot;  
 ##  [3] &quot;Canis lupus familiaris&quot;   &quot;Danio rerio&quot;             
 ##  [5] &quot;Drosophila melanogaster&quot;  &quot;Gallus gallus&quot;           
@@ -516,8 +517,8 @@ DT<span class="op">::</span><span class="kw">datatable</span>(<span class="kw">a
 ##  [9] &quot;Rattus norvegicus&quot;        &quot;Saccharomyces cerevisiae&quot;
 ## [11] &quot;Sus scrofa&quot;</code></pre>
 <p>We can retrieve all human gene sets:</p>
-<pre class="sourceCode r"><code class="sourceCode r">m_df &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>)
-<span class="kw">head</span>(m_df, <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter3.html#cb23-1"></a>m_df &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>)</span>
+<span id="cb23-2"><a href="chapter3.html#cb23-2"></a><span class="kw">head</span>(m_df, <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</span></code></pre></div>
 <pre><code>##          gs_name  gs_id gs_cat gs_subcat human_gene_symbol
 ## 1 AAACCAC_MIR140 M12609     C3       MIR             ABCC4
 ## 2 AAACCAC_MIR140 M12609     C3       MIR             ACTN4
@@ -525,9 +526,9 @@ DT<span class="op">::</span><span class="kw">datatable</span>(<span class="kw">a
 ## 1 Homo sapiens       10257       ABCC4    &lt;NA&gt;
 ## 2 Homo sapiens          81       ACTN4    &lt;NA&gt;</code></pre>
 <p>Or specific collection. Here we use C6, oncogenic gene sets as an example:</p>
-<pre class="sourceCode r"><code class="sourceCode r">m_t2g &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>, <span class="dt">category =</span> <span class="st">&quot;C6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(gs_name, entrez_gene)
-<span class="kw">head</span>(m_t2g)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter3.html#cb25-1"></a>m_t2g &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>, <span class="dt">category =</span> <span class="st">&quot;C6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb25-2"><a href="chapter3.html#cb25-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(gs_name, entrez_gene)</span>
+<span id="cb25-3"><a href="chapter3.html#cb25-3"></a><span class="kw">head</span>(m_t2g)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   gs_name              entrez_gene
 ##   &lt;chr&gt;                      &lt;int&gt;
@@ -537,9 +538,9 @@ DT<span class="op">::</span><span class="kw">datatable</span>(<span class="kw">a
 ## 4 AKT_UP_MTOR_DN.V1_DN         134
 ## 5 AKT_UP_MTOR_DN.V1_DN       55326
 ## 6 AKT_UP_MTOR_DN.V1_DN         271</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">em &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>m_t2g)
-em2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE =</span> m_t2g)
-<span class="kw">head</span>(em)</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter3.html#cb27-1"></a>em &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>m_t2g)</span>
+<span id="cb27-2"><a href="chapter3.html#cb27-2"></a>em2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE =</span> m_t2g)</span>
+<span id="cb27-3"><a href="chapter3.html#cb27-3"></a><span class="kw">head</span>(em)</span></code></pre></div>
 <pre><code>##                                            ID
 ## RPS14_DN.V1_DN                 RPS14_DN.V1_DN
 ## GCNP_SHH_UP_LATE.V1_UP GCNP_SHH_UP_LATE.V1_UP
@@ -582,7 +583,7 @@ em2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span c
 ## PRC2_EZH2_UP.V1_DN        14
 ## CSR_LATE_UP.V1_UP         12
 ## E2F1_UP.V1_UP             12</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(em2)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chapter3.html#cb29-1"></a><span class="kw">head</span>(em2)</span></code></pre></div>
 <pre><code>##                              ID     Description setSize
 ## RAF_UP.V1_DN       RAF_UP.V1_DN    RAF_UP.V1_DN     189
 ## LEF1_UP.V1_DN     LEF1_UP.V1_DN   LEF1_UP.V1_DN     188
@@ -619,9 +620,9 @@ em2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span c
 ## IL2_UP.V1_DN                                                  10858/5333/2977/79874/10014/7773/64798/26959/6588/579/777/5158/23361/9915/5087/64759/2535/6123/7010/51285/126353/80201/79841/1028/2322/4222/947/9187/225/9976/5592/54996/3202/55779/23148/5334/8605/57326/26115/54453/55766/64927/6591/55204/9940/57608/653483/9886/10279/55805/10628/901/9891/7102/27244/79921/4674/8292/5125/79843/6857/79940/23541/3357/50853/9863/79932/90362/55663/4250
 ## ATF2_S_UP.V1_DN                                                              53616/55667/51279/4642/7130/7139/2/710/80352/4608/11145/881/2252/3399/22846/10687/12/1397/1301/3554/2619/26011/78987/9284/1306/6586/9627/4054/54813/115207/55890/26249/4803/11075/3400/79789/8527/2353/10580/79987/80760/5493/90865/3485/3751/2202/2199/10610/1047/1294/23492/3908/5364/658/5350/2121/2331/4330/9737/4982/57088/8490/9358/6424/1307/3708/125/1311/56521/10351</code></pre>
 <p>We can test with other collections, for example, using C3 to test whether the genes are up/down-regulated by sharing specific motif.</p>
-<pre class="sourceCode r"><code class="sourceCode r">m_t2g &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>, <span class="dt">category =</span> <span class="st">&quot;C3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(gs_name, entrez_gene)
-<span class="kw">head</span>(m_t2g)</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="chapter3.html#cb31-1"></a>m_t2g &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>, <span class="dt">category =</span> <span class="st">&quot;C3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb31-2"><a href="chapter3.html#cb31-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(gs_name, entrez_gene)</span>
+<span id="cb31-3"><a href="chapter3.html#cb31-3"></a><span class="kw">head</span>(m_t2g)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   gs_name        entrez_gene
 ##   &lt;chr&gt;                &lt;int&gt;
@@ -631,8 +632,8 @@ em2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span c
 ## 4 AAACCAC_MIR140        8754
 ## 5 AAACCAC_MIR140       11096
 ## 6 AAACCAC_MIR140         177</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">em3 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE =</span> m_t2g)
-<span class="kw">head</span>(em3)</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter3.html#cb33-1"></a>em3 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE =</span> m_t2g)</span>
+<span id="cb33-2"><a href="chapter3.html#cb33-2"></a><span class="kw">head</span>(em3)</span></code></pre></div>
 <pre><code>##                                                            ID
 ## TGACATY_UNKNOWN                               TGACATY_UNKNOWN
 ## WTGAAAT_UNKNOWN                               WTGAAAT_UNKNOWN

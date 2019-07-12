@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 MeSH Enrichment Analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -241,11 +242,11 @@ annotation. Data source from <code>gendoo</code>, <code>gene2pubmed</code> and <
 supported. User can selecte interesting category to test. All 16
 categories are supported. The analysis supports &gt;70 species listed in <a href="https://bioconductor.org/packages/release/BiocViews.html#___MeSHDb">MeSHDb BiocView</a>.</p>
 <p>For algorithm details, please refer to the vignettes of <a href="http://bioconductor.org/packages/DOSE">DOSE</a><span class="citation">(Yu et al. <a href="#ref-yu_dose_2015" role="doc-biblioref">2015</a>)</span> package.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(meshes)
-<span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-de &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]
-x &lt;-<span class="st"> </span><span class="kw">enrichMeSH</span>(de, <span class="dt">MeSHDb =</span> <span class="st">&quot;MeSH.Hsa.eg.db&quot;</span>, <span class="dt">database=</span><span class="st">&#39;gendoo&#39;</span>, <span class="dt">category =</span> <span class="st">&#39;C&#39;</span>)
-<span class="kw">head</span>(x)</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="chapter9.html#cb78-1"></a><span class="kw">library</span>(meshes)</span>
+<span id="cb78-2"><a href="chapter9.html#cb78-2"></a><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)</span>
+<span id="cb78-3"><a href="chapter9.html#cb78-3"></a>de &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]</span>
+<span id="cb78-4"><a href="chapter9.html#cb78-4"></a>x &lt;-<span class="st"> </span><span class="kw">enrichMeSH</span>(de, <span class="dt">MeSHDb =</span> <span class="st">&quot;MeSH.Hsa.eg.db&quot;</span>, <span class="dt">database=</span><span class="st">&#39;gendoo&#39;</span>, <span class="dt">category =</span> <span class="st">&#39;C&#39;</span>)</span>
+<span id="cb78-5"><a href="chapter9.html#cb78-5"></a><span class="kw">head</span>(x)</span></code></pre></div>
 <pre><code>##              ID              Description GeneRatio
 ## D043171 D043171  Chromosomal Instability     16/96
 ## D000782 D000782               Aneuploidy     17/96
@@ -276,8 +277,8 @@ x &lt;-<span class="st"> </span><span class="kw">enrichMeSH</span>(de, <span cla
 ## D019698    11</code></pre>
 <p>In the over-representation analysis, we use data source from <code>gendoo</code> and <code>C</code> (Diseases) category.</p>
 <p>In the following example, we use data source from <code>gene2pubmed</code> and test category <code>G</code> (Phenomena and Processes) using GSEA.</p>
-<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">gseMeSH</span>(geneList, <span class="dt">MeSHDb =</span> <span class="st">&quot;MeSH.Hsa.eg.db&quot;</span>, <span class="dt">database =</span> <span class="st">&#39;gene2pubmed&#39;</span>, <span class="dt">category =</span> <span class="st">&quot;G&quot;</span>)
-<span class="kw">head</span>(y)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="chapter9.html#cb80-1"></a>y &lt;-<span class="st"> </span><span class="kw">gseMeSH</span>(geneList, <span class="dt">MeSHDb =</span> <span class="st">&quot;MeSH.Hsa.eg.db&quot;</span>, <span class="dt">database =</span> <span class="st">&#39;gene2pubmed&#39;</span>, <span class="dt">category =</span> <span class="st">&quot;G&quot;</span>)</span>
+<span id="cb80-2"><a href="chapter9.html#cb80-2"></a><span class="kw">head</span>(y)</span></code></pre></div>
 <pre><code>##              ID        Description setSize enrichmentScore
 ## D009043 D009043     Motor Activity     462      -0.3223426
 ## D009119 D009119 Muscle Contraction     437      -0.3248434
@@ -307,9 +308,9 @@ x &lt;-<span class="st"> </span><span class="kw">enrichMeSH</span>(de, <span cla
 ## D001846                                                                                                                                              8945/7157/57798/79048/627/6500/8038/4057/860/2752/4882/3371/2915/5745/63971/54455/3791/819/57045/596/2034/54808/80781/1280/64388/2261/4054/11059/3483/9900/26234/4734/9452/4208/4322/253461/1278/7048/51280/10903/30008/7869/1277/3953/10516/10411/8835/79776/11167/2317/3485/3952/5274/54681/4488/10486/1009/2202/91851/2099/5764/23327/3339/8817/83716/6678/4915/633/658/54361/5744/165/5654/10631/3487/367/4982/3667/79971/1634/3479/114899/9370/652/8614/4969
 ## D015430                                                                                                                                                                                                                                                  627/2908/5563/108/1387/2752/3910/2571/5914/12/2915/4153/2863/1129/7466/3350/596/181/2746/3067/1621/9627/590/3087/6785/5176/3953/5950/2166/1293/5243/5468/54551/4023/7350/3952/5577/3176/79068/3625/2944/9369/6720/2099/3991/857/2690/6571/4915/1191/32/9135/5654/347/2697/3357/2952/2891/367/25802/4128/9607/3572/150/7166/3479/6505/4129/9370/2167/5346/5241</code></pre>
 <p>User can use visualization methods implemented in <a href="http://bioconductor.org/packages/enrichplot">enrichplot</a> (i.e.<code>barplot</code>, <code>dotplot</code>, <code>cnetplot</code>, <code>emapplot</code> and <code>gseaplot</code>) to visualize these enrichment results. With these visualization methods, it’s much easier to interpret enriched results.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(x)</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="chapter9.html#cb82-1"></a><span class="kw">dotplot</span>(x)</span></code></pre></div>
 <p><img src="clusterProfiler_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gseaplot</span>(y, y[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">title=</span>y[<span class="dv">1</span>,<span class="dv">2</span>])</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="chapter9.html#cb83-1"></a><span class="kw">gseaplot</span>(y, y[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">title=</span>y[<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div>
 <p><img src="clusterProfiler_files/figure-html/unnamed-chunk-39-2.png" width="672" /></p>
 
 </div>

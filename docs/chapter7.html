@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -247,14 +248,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>C7: immunologic signatures</li>
 </ul>
 <p>Users can use <code>enricher</code> and <code>GSEA</code> function to analyze gene set collections downloaded from Molecular Signatures Database (<a href="http://www.broadinstitute.org/gsea/msigdb/index.jsp">MSigDb</a>). <a href="https://www.bioconductor.org/packages/clusterProfiler">clusterProfiler</a> provides a function, <code>read.gmt</code>, to parse the <a href="www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">gmt file</a> into a <em>TERM2GENE</em> <code>data.frame</code> that is ready for both <code>enricher</code> and <code>GSEA</code> functions.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)
-gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
-
-gmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;c5.cc.v5.0.entrez.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)
-c5 &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(gmtfile)
-
-egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>c5)
-<span class="kw">head</span>(egmt)</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="chapter7.html#cb74-1"></a><span class="kw">data</span>(geneList, <span class="dt">package=</span><span class="st">&quot;DOSE&quot;</span>)</span>
+<span id="cb74-2"><a href="chapter7.html#cb74-2"></a>gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</span>
+<span id="cb74-3"><a href="chapter7.html#cb74-3"></a></span>
+<span id="cb74-4"><a href="chapter7.html#cb74-4"></a>gmtfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;c5.cc.v5.0.entrez.gmt&quot;</span>, <span class="dt">package=</span><span class="st">&quot;clusterProfiler&quot;</span>)</span>
+<span id="cb74-5"><a href="chapter7.html#cb74-5"></a>c5 &lt;-<span class="st"> </span><span class="kw">read.gmt</span>(gmtfile)</span>
+<span id="cb74-6"><a href="chapter7.html#cb74-6"></a></span>
+<span id="cb74-7"><a href="chapter7.html#cb74-7"></a>egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span class="dt">TERM2GENE=</span>c5)</span>
+<span id="cb74-8"><a href="chapter7.html#cb74-8"></a><span class="kw">head</span>(egmt)</span></code></pre></div>
 <pre><code>##                                                ID
 ## SPINDLE                                   SPINDLE
 ## MICROTUBULE_CYTOSKELETON MICROTUBULE_CYTOSKELETON
@@ -297,8 +298,8 @@ egmt &lt;-<span class="st"> </span><span class="kw">enricher</span>(gene, <span 
 ## SPINDLE_MICROTUBULE          5
 ## MICROTUBULE                  6
 ## CYTOSKELETON                16</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">egmt2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE=</span>c5, <span class="dt">verbose=</span><span class="ot">FALSE</span>)
-<span class="kw">head</span>(egmt2)</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="chapter7.html#cb76-1"></a>egmt2 &lt;-<span class="st"> </span><span class="kw">GSEA</span>(geneList, <span class="dt">TERM2GENE=</span>c5, <span class="dt">verbose=</span><span class="ot">FALSE</span>)</span>
+<span id="cb76-2"><a href="chapter7.html#cb76-2"></a><span class="kw">head</span>(egmt2)</span></code></pre></div>
 <pre><code>##                                                                    ID
 ## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
 ## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART

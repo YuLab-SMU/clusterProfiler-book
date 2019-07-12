@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Disease analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 4 Disease analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Disease analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -57,26 +57,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -240,21 +241,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="enrichdo-function" class="section level2">
 <h2><span class="header-section-number">4.1</span> <code>enrichDO</code> function</h2>
 <p>In the following example, we selected fold change above 1 as the differential genes and analyzing their disease association.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DOSE)
-<span class="kw">data</span>(geneList)
-gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.5</span>]
-<span class="kw">head</span>(gene)</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="chapter4.html#cb35-1"></a><span class="kw">library</span>(DOSE)</span>
+<span id="cb35-2"><a href="chapter4.html#cb35-2"></a><span class="kw">data</span>(geneList)</span>
+<span id="cb35-3"><a href="chapter4.html#cb35-3"></a>gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.5</span>]</span>
+<span id="cb35-4"><a href="chapter4.html#cb35-4"></a><span class="kw">head</span>(gene)</span></code></pre></div>
 <pre><code>## [1] &quot;4312&quot;  &quot;8318&quot;  &quot;10874&quot; &quot;55143&quot; &quot;55388&quot; &quot;991&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">enrichDO</span>(<span class="dt">gene          =</span> gene,
-              <span class="dt">ont           =</span> <span class="st">&quot;DO&quot;</span>,
-              <span class="dt">pvalueCutoff  =</span> <span class="fl">0.05</span>,
-              <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,
-              <span class="dt">universe      =</span> <span class="kw">names</span>(geneList),
-              <span class="dt">minGSSize     =</span> <span class="dv">5</span>,
-              <span class="dt">maxGSSize     =</span> <span class="dv">500</span>,
-              <span class="dt">qvalueCutoff  =</span> <span class="fl">0.05</span>,
-              <span class="dt">readable      =</span> <span class="ot">FALSE</span>)
-<span class="kw">head</span>(x)</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="chapter4.html#cb37-1"></a>x &lt;-<span class="st"> </span><span class="kw">enrichDO</span>(<span class="dt">gene          =</span> gene,</span>
+<span id="cb37-2"><a href="chapter4.html#cb37-2"></a>              <span class="dt">ont           =</span> <span class="st">&quot;DO&quot;</span>,</span>
+<span id="cb37-3"><a href="chapter4.html#cb37-3"></a>              <span class="dt">pvalueCutoff  =</span> <span class="fl">0.05</span>,</span>
+<span id="cb37-4"><a href="chapter4.html#cb37-4"></a>              <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb37-5"><a href="chapter4.html#cb37-5"></a>              <span class="dt">universe      =</span> <span class="kw">names</span>(geneList),</span>
+<span id="cb37-6"><a href="chapter4.html#cb37-6"></a>              <span class="dt">minGSSize     =</span> <span class="dv">5</span>,</span>
+<span id="cb37-7"><a href="chapter4.html#cb37-7"></a>              <span class="dt">maxGSSize     =</span> <span class="dv">500</span>,</span>
+<span id="cb37-8"><a href="chapter4.html#cb37-8"></a>              <span class="dt">qvalueCutoff  =</span> <span class="fl">0.05</span>,</span>
+<span id="cb37-9"><a href="chapter4.html#cb37-9"></a>              <span class="dt">readable      =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb37-10"><a href="chapter4.html#cb37-10"></a><span class="kw">head</span>(x)</span></code></pre></div>
 <pre><code>##                    ID                    Description
 ## DOID:170     DOID:170         endocrine gland cancer
 ## DOID:10283 DOID:10283                prostate cancer
@@ -296,8 +297,8 @@ gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span
 <p>The <code>minGSSize</code> (and <code>maxGSSize</code>) indicates that only those DO terms that have more than <code>minGSSize</code> (and less than <code>maxGSSize</code>) genes annotated will be tested.</p>
 <p>The <code>readable</code> is a logical parameter, indicates whether the entrezgene IDs will mapping to gene symbols or not.</p>
 <p>We also implement <code>setReadable</code> function that helps the user to convert entrezgene IDs to gene symbols.</p>
-<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">setReadable</span>(x, <span class="st">&#39;org.Hs.eg.db&#39;</span>)
-<span class="kw">head</span>(x)</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chapter4.html#cb39-1"></a>x &lt;-<span class="st"> </span><span class="kw">setReadable</span>(x, <span class="st">&#39;org.Hs.eg.db&#39;</span>)</span>
+<span id="cb39-2"><a href="chapter4.html#cb39-2"></a><span class="kw">head</span>(x)</span></code></pre></div>
 <pre><code>##                    ID                    Description
 ## DOID:170     DOID:170         endocrine gland cancer
 ## DOID:10283 DOID:10283                prostate cancer
@@ -337,9 +338,9 @@ gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span
 <div id="enrichncg-function" class="section level2">
 <h2><span class="header-section-number">4.2</span> <code>enrichNCG</code> function</h2>
 <p><a href="http://ncg.kcl.ac.uk/">Network of Cancer Gene</a> (NCG)<span class="citation">(A. et al. <a href="#ref-omer_ncg" role="doc-biblioref">2016</a>)</span> is a manually curated repository of cancer genes. NCG release 5.0 (Aug. 2015) collects 1,571 cancer genes from 175 published studies. <a href="http://bioconductor.org/packages/DOSE">DOSE</a> supports analyzing gene list and determine whether they are enriched in genes known to be mutated in a given cancer type.</p>
-<pre class="sourceCode r"><code class="sourceCode r">gene2 &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]
-ncg &lt;-<span class="st"> </span><span class="kw">enrichNCG</span>(gene2)
-<span class="kw">head</span>(ncg)</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter4.html#cb41-1"></a>gene2 &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]</span>
+<span id="cb41-2"><a href="chapter4.html#cb41-2"></a>ncg &lt;-<span class="st"> </span><span class="kw">enrichNCG</span>(gene2)</span>
+<span id="cb41-3"><a href="chapter4.html#cb41-3"></a><span class="kw">head</span>(ncg)</span></code></pre></div>
 <pre><code>##                                        ID
 ## soft_tissue_sarcomas soft_tissue_sarcomas
 ## bladder                           bladder
@@ -365,8 +366,8 @@ ncg &lt;-<span class="st"> </span><span class="kw">enrichNCG</span>(gene2)
 <h2><span class="header-section-number">4.3</span> <code>enrichDGN</code> and <code>enrichDGNv</code> functions</h2>
 <p><a href="http://disgenet.org/">DisGeNET</a><span class="citation">(Janet et al. <a href="#ref-janet_disgenet" role="doc-biblioref">2015</a>)</span> is an integrative and comprehensive resources of gene-disease associations from several public data sources and the literature. It contains gene-disease associations and snp-gene-disease associations.</p>
 <p>The enrichment analysis of disease-gene associations is supported by the <code>enrichDGN</code> function and analysis of snp-gene-disease associations is supported by the <code>enrichDGNv</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r">dgn &lt;-<span class="st"> </span><span class="kw">enrichDGN</span>(gene)
-<span class="kw">head</span>(dgn)</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chapter4.html#cb43-1"></a>dgn &lt;-<span class="st"> </span><span class="kw">enrichDGN</span>(gene)</span>
+<span id="cb43-2"><a href="chapter4.html#cb43-2"></a><span class="kw">head</span>(dgn)</span></code></pre></div>
 <pre><code>##                          ID
 ## umls:C1134719 umls:C1134719
 ## umls:C0032460 umls:C0032460
@@ -409,12 +410,12 @@ ncg &lt;-<span class="st"> </span><span class="kw">enrichNCG</span>(gene2)
 ## umls:C0007138    35
 ## umls:C0031099    28
 ## umls:C0005695    36</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">snp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rs1401296&quot;</span>, <span class="st">&quot;rs9315050&quot;</span>, <span class="st">&quot;rs5498&quot;</span>, <span class="st">&quot;rs1524668&quot;</span>, <span class="st">&quot;rs147377392&quot;</span>,
-         <span class="st">&quot;rs841&quot;</span>, <span class="st">&quot;rs909253&quot;</span>, <span class="st">&quot;rs7193343&quot;</span>, <span class="st">&quot;rs3918232&quot;</span>, <span class="st">&quot;rs3760396&quot;</span>,
-         <span class="st">&quot;rs2231137&quot;</span>, <span class="st">&quot;rs10947803&quot;</span>, <span class="st">&quot;rs17222919&quot;</span>, <span class="st">&quot;rs386602276&quot;</span>, <span class="st">&quot;rs11053646&quot;</span>,
-         <span class="st">&quot;rs1805192&quot;</span>, <span class="st">&quot;rs139564723&quot;</span>, <span class="st">&quot;rs2230806&quot;</span>, <span class="st">&quot;rs20417&quot;</span>, <span class="st">&quot;rs966221&quot;</span>)
-dgnv &lt;-<span class="st"> </span><span class="kw">enrichDGNv</span>(snp)
-<span class="kw">head</span>(dgnv)</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chapter4.html#cb45-1"></a>snp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rs1401296&quot;</span>, <span class="st">&quot;rs9315050&quot;</span>, <span class="st">&quot;rs5498&quot;</span>, <span class="st">&quot;rs1524668&quot;</span>, <span class="st">&quot;rs147377392&quot;</span>,</span>
+<span id="cb45-2"><a href="chapter4.html#cb45-2"></a>         <span class="st">&quot;rs841&quot;</span>, <span class="st">&quot;rs909253&quot;</span>, <span class="st">&quot;rs7193343&quot;</span>, <span class="st">&quot;rs3918232&quot;</span>, <span class="st">&quot;rs3760396&quot;</span>,</span>
+<span id="cb45-3"><a href="chapter4.html#cb45-3"></a>         <span class="st">&quot;rs2231137&quot;</span>, <span class="st">&quot;rs10947803&quot;</span>, <span class="st">&quot;rs17222919&quot;</span>, <span class="st">&quot;rs386602276&quot;</span>, <span class="st">&quot;rs11053646&quot;</span>,</span>
+<span id="cb45-4"><a href="chapter4.html#cb45-4"></a>         <span class="st">&quot;rs1805192&quot;</span>, <span class="st">&quot;rs139564723&quot;</span>, <span class="st">&quot;rs2230806&quot;</span>, <span class="st">&quot;rs20417&quot;</span>, <span class="st">&quot;rs966221&quot;</span>)</span>
+<span id="cb45-5"><a href="chapter4.html#cb45-5"></a>dgnv &lt;-<span class="st"> </span><span class="kw">enrichDGNv</span>(snp)</span>
+<span id="cb45-6"><a href="chapter4.html#cb45-6"></a><span class="kw">head</span>(dgnv)</span></code></pre></div>
 <pre><code>##                          ID
 ## umls:C3272363 umls:C3272363
 ## umls:C0948008 umls:C0948008
@@ -461,15 +462,15 @@ dgnv &lt;-<span class="st"> </span><span class="kw">enrichDGNv</span>(snp)
 <div id="gsedo-fuction" class="section level2">
 <h2><span class="header-section-number">4.4</span> <code>gseDO</code> fuction</h2>
 <p>In the following example, in order to speedup the compilation of this document, only gene sets with size above 120 were tested and only 100 permutations were performed.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DOSE)
-<span class="kw">data</span>(geneList)
-y &lt;-<span class="st"> </span><span class="kw">gseDO</span>(geneList,
-           <span class="dt">nPerm         =</span> <span class="dv">100</span>,
-           <span class="dt">minGSSize     =</span> <span class="dv">120</span>,
-           <span class="dt">pvalueCutoff  =</span> <span class="fl">0.2</span>,
-           <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,
-           <span class="dt">verbose       =</span> <span class="ot">FALSE</span>)
-<span class="kw">head</span>(y, <span class="dv">3</span>)</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chapter4.html#cb47-1"></a><span class="kw">library</span>(DOSE)</span>
+<span id="cb47-2"><a href="chapter4.html#cb47-2"></a><span class="kw">data</span>(geneList)</span>
+<span id="cb47-3"><a href="chapter4.html#cb47-3"></a>y &lt;-<span class="st"> </span><span class="kw">gseDO</span>(geneList,</span>
+<span id="cb47-4"><a href="chapter4.html#cb47-4"></a>           <span class="dt">nPerm         =</span> <span class="dv">100</span>,</span>
+<span id="cb47-5"><a href="chapter4.html#cb47-5"></a>           <span class="dt">minGSSize     =</span> <span class="dv">120</span>,</span>
+<span id="cb47-6"><a href="chapter4.html#cb47-6"></a>           <span class="dt">pvalueCutoff  =</span> <span class="fl">0.2</span>,</span>
+<span id="cb47-7"><a href="chapter4.html#cb47-7"></a>           <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb47-8"><a href="chapter4.html#cb47-8"></a>           <span class="dt">verbose       =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb47-9"><a href="chapter4.html#cb47-9"></a><span class="kw">head</span>(y, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                        ID
 ## DOID:114         DOID:114
 ## DOID:374         DOID:374
@@ -497,14 +498,14 @@ y &lt;-<span class="st"> </span><span class="kw">gseDO</span>(geneList,
 </div>
 <div id="gsencg-fuction" class="section level2">
 <h2><span class="header-section-number">4.5</span> <code>gseNCG</code> fuction</h2>
-<pre class="sourceCode r"><code class="sourceCode r">ncg &lt;-<span class="st"> </span><span class="kw">gseNCG</span>(geneList,
-              <span class="dt">nPerm         =</span> <span class="dv">100</span>,
-              <span class="dt">minGSSize     =</span> <span class="dv">120</span>,
-              <span class="dt">pvalueCutoff  =</span> <span class="fl">0.2</span>,
-              <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,
-              <span class="dt">verbose       =</span> <span class="ot">FALSE</span>)
-ncg &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ncg, <span class="st">&#39;org.Hs.eg.db&#39;</span>)
-<span class="kw">head</span>(ncg, <span class="dv">3</span>)</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="chapter4.html#cb49-1"></a>ncg &lt;-<span class="st"> </span><span class="kw">gseNCG</span>(geneList,</span>
+<span id="cb49-2"><a href="chapter4.html#cb49-2"></a>              <span class="dt">nPerm         =</span> <span class="dv">100</span>,</span>
+<span id="cb49-3"><a href="chapter4.html#cb49-3"></a>              <span class="dt">minGSSize     =</span> <span class="dv">120</span>,</span>
+<span id="cb49-4"><a href="chapter4.html#cb49-4"></a>              <span class="dt">pvalueCutoff  =</span> <span class="fl">0.2</span>,</span>
+<span id="cb49-5"><a href="chapter4.html#cb49-5"></a>              <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb49-6"><a href="chapter4.html#cb49-6"></a>              <span class="dt">verbose       =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb49-7"><a href="chapter4.html#cb49-7"></a>ncg &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ncg, <span class="st">&#39;org.Hs.eg.db&#39;</span>)</span>
+<span id="cb49-8"><a href="chapter4.html#cb49-8"></a><span class="kw">head</span>(ncg, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                ID Description setSize enrichmentScore
 ## lung         lung        lung     173      -0.3880662
 ## breast     breast      breast     133      -0.4869070
@@ -524,14 +525,14 @@ ncg &lt;-<span class="st"> </span><span class="kw">setReadable</span>(ncg, <span
 </div>
 <div id="gsedgn-fuction" class="section level2">
 <h2><span class="header-section-number">4.6</span> <code>gseDGN</code> fuction</h2>
-<pre class="sourceCode r"><code class="sourceCode r">dgn &lt;-<span class="st"> </span><span class="kw">gseDGN</span>(geneList,
-              <span class="dt">nPerm         =</span> <span class="dv">100</span>,
-              <span class="dt">minGSSize     =</span> <span class="dv">120</span>,
-              <span class="dt">pvalueCutoff  =</span> <span class="fl">0.2</span>,
-              <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,
-              <span class="dt">verbose       =</span> <span class="ot">FALSE</span>)
-dgn &lt;-<span class="st"> </span><span class="kw">setReadable</span>(dgn, <span class="st">&#39;org.Hs.eg.db&#39;</span>)
-<span class="kw">head</span>(dgn, <span class="dv">3</span>)</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="chapter4.html#cb51-1"></a>dgn &lt;-<span class="st"> </span><span class="kw">gseDGN</span>(geneList,</span>
+<span id="cb51-2"><a href="chapter4.html#cb51-2"></a>              <span class="dt">nPerm         =</span> <span class="dv">100</span>,</span>
+<span id="cb51-3"><a href="chapter4.html#cb51-3"></a>              <span class="dt">minGSSize     =</span> <span class="dv">120</span>,</span>
+<span id="cb51-4"><a href="chapter4.html#cb51-4"></a>              <span class="dt">pvalueCutoff  =</span> <span class="fl">0.2</span>,</span>
+<span id="cb51-5"><a href="chapter4.html#cb51-5"></a>              <span class="dt">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb51-6"><a href="chapter4.html#cb51-6"></a>              <span class="dt">verbose       =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb51-7"><a href="chapter4.html#cb51-7"></a>dgn &lt;-<span class="st"> </span><span class="kw">setReadable</span>(dgn, <span class="st">&#39;org.Hs.eg.db&#39;</span>)</span>
+<span id="cb51-8"><a href="chapter4.html#cb51-8"></a><span class="kw">head</span>(dgn, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                          ID         Description setSize
 ## umls:C0011581 umls:C0011581 Depressive disorder     464
 ## umls:C0029456 umls:C0029456        Osteoporosis     375
