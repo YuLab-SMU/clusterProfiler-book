@@ -64,6 +64,14 @@ ggplot(y, showCategory = 20,
   ggtitle("Enriched Disease Ontology")
 ```
 
+
+A very similar concept is Fold Enrichment, which is defined as the ratio of two proportions, (k/n) / (M/N). Using `mutate` to add the fold enrichment variable is also easy:
+
+```r
+mutate(x, FoldEnrichment = parse_ratio(GeneRatio) / parse_ratio(BgRatio))
+```
+
+
 ## summarise
 
 
