@@ -15,7 +15,7 @@ In addition, [DOSE](https://www.bioconductor.org/packages/DOSE) also supports en
 
 ## `enrichDO` function
 
-In the following example, we selected fold change above 1 as the differential genes and analyzing their disease association.
+In the following example, we selected fold change above 1.5 as the differential genes and analyzing their disease association.
 
 ```{r}
 library(DOSE)

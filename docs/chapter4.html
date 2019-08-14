@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Disease analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 4 Disease analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Disease analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -240,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In addition, <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a> also supports enrichment analysis of <a href="http://ncg.kcl.ac.uk/">Network of Cancer Gene</a> (NCG)<span class="citation">(A. et al. <a href="#ref-omer_ncg" role="doc-biblioref">2016</a>)</span> and <a href="http://disgenet.org/">Disease Gene Network</a><span class="citation">(Janet et al. <a href="#ref-janet_disgenet" role="doc-biblioref">2015</a>)</span>, please refer to the <a href="https://www.bioconductor.org/packages/DOSE">DOSE</a> vignettes.</p>
 <div id="enrichdo-function" class="section level2">
 <h2><span class="header-section-number">4.1</span> <code>enrichDO</code> function</h2>
-<p>In the following example, we selected fold change above 1 as the differential genes and analyzing their disease association.</p>
+<p>In the following example, we selected fold change above 1.5 as the differential genes and analyzing their disease association.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="chapter4.html#cb35-1"></a><span class="kw">library</span>(DOSE)</span>
 <span id="cb35-2"><a href="chapter4.html#cb35-2"></a><span class="kw">data</span>(geneList)</span>
 <span id="cb35-3"><a href="chapter4.html#cb35-3"></a>gene &lt;-<span class="st"> </span><span class="kw">names</span>(geneList)[<span class="kw">abs</span>(geneList) <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.5</span>]</span>
