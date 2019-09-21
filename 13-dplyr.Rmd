@@ -71,6 +71,39 @@ A very similar concept is Fold Enrichment, which is defined as the ratio of two 
 mutate(x, FoldEnrichment = parse_ratio(GeneRatio) / parse_ratio(BgRatio))
 ```
 
+## slice
+
+We can use `slice` to choose rows by their ordinal position in the enrichment result. Grouped result use the ordinal position with the group.
+
+In the following example, a GSEA result of Reactome pathway was sorted by the absolute values of NES and the result was grouped by the sign of NES. We then extracted first 5 rows of each groups. The result was displayed in Figure \@ref(fig:sliceNES).
+
+
+(ref:sliceNESscap) Choose pathways by ordinal positions.
+
+(ref:sliceNEScap) **Choose pathways by ordinal positions.** 
+
+
+```{r sliceNES, fig.width=9, fig.height=5, fig.cap="(ref:sliceNEScap)", fig.scap="(ref:sliceNESscap)"}
+library(ReactomePA)
+data(geneList)
+x <- gsePathway(geneList)
+
+library(clusterProfiler.dplyr)
+y <- arrange(x, abs(NES)) %>% 
+        group_by(sign(NES)) %>% 
+        slice(1:5)
+
+library(forcats)
+library(ggplot2)
+library(ggstance)
+library(enrichplot)
+
+ggplot(y, aes(NES, fct_reorder(Description, NES), fill=qvalues), showCategory=10) + 
+    geom_barh(stat='identity') + 
+    scale_fill_continuous(low='red', high='blue') + 
+    theme_minimal() + ylab(NULL)
+```
+
 
 ## summarise
 
