@@ -56,7 +56,7 @@ ggplot(y, showCategory = 20,
   aes(richFactor, fct_reorder(Description, richFactor))) + 
   geom_segment(aes(xend=0, yend = Description)) +
   geom_point(aes(color=p.adjust, size = Count)) +
-  scale_color_viridis_c() +
+  scale_color_viridis_c(guide=guide_colorbar(reverse=TRUE)) +
   scale_size_continuous(range=c(2, 10)) +
   theme_minimal() + 
   xlab("rich factor") +
@@ -100,7 +100,7 @@ library(enrichplot)
 
 ggplot(y, aes(NES, fct_reorder(Description, NES), fill=qvalues), showCategory=10) + 
     geom_barh(stat='identity') + 
-    scale_fill_continuous(low='red', high='blue') + 
+    scale_fill_continuous(low='red', high='blue', guide=guide_colorbar(reverse=TRUE)) + 
     theme_minimal() + ylab(NULL)
 ```
 
