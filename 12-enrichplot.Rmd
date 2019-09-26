@@ -67,6 +67,9 @@ cnetplot(edox, foldChange=geneList, circular = TRUE, colorEdge = TRUE)
 ```
 
 
+If you would like label the categories but not the genes, you can pass `node_label = FALSE` to the `cnetplot()` function.
+
+
 ## Heatmap-like functional classification
 
 
