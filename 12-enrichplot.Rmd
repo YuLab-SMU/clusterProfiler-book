@@ -67,7 +67,20 @@ cnetplot(edox, foldChange=geneList, circular = TRUE, colorEdge = TRUE)
 ```
 
 
-If you would like label the categories but not the genes, you can pass `node_label = FALSE` to the `cnetplot()` function.
+If you would like label subset of the nodes, you can use the `node_label` parameter, which supports 4 possible selections (i.e. "category", "gene", "all" and "none"), as demonstrated in Figure \@ref(fig:cnetNodeLabel).
+
+
+(ref:cnetNodeLabelscap) Labelling nodes by selected subset.
+
+(ref:cnetNodeLabelcap) **Labelling nodes by selected subset.** gene category (A), gene name (B), both gene category and gene name (C, default) and not to label at all (D).
+
+```{r cnetNodeLabel, fig.height=12, fig.width=16, fig.cap="(ref:cnetNodeLabelcap)", fig.scap="(ref:cnetNodeLabelscap)"}
+p1 <- cnetplot(edox, node_label="category") 
+p2 <- cnetplot(edox, node_label="gene") 
+p3 <- cnetplot(edox, node_label="all") 
+p4 <- cnetplot(edox, node_label="none") 
+cowplot::plot_grid(p1, p2, p3, p4, ncol=2, labels=LETTERS[1:4])
+```
 
 
 ## Heatmap-like functional classification
