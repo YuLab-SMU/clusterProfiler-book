@@ -202,4 +202,4 @@ enrichMeSH -> comparecluster[ltail=clusterB]
 x
 
 #yyplot::gv2file(x,  file = 'clusterProfiler.pdf')
-yyplot::gv2file(x, file = 'figures/clusterProfiler.png' )
+yyplot::gv2file(x, file = 'figures/clusterProfiler-diagram.png' )

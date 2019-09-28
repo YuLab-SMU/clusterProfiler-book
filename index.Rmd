@@ -56,7 +56,7 @@ options(width=60)
 
 hello
 
-![](figures/clusterProfiler.png)
+![](figures/clusterProfiler-diagram.png)
 
 <!--
 In recently years, high-throughput experimental techniques such as
