@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Useful utilities | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,14 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.6/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.9/datatables.js"></script>
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.19/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
@@ -306,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 Z5100       AAG58814</code></pre>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chapter14.html#cb147-1"></a><span class="kw">bitr_kegg</span>(<span class="st">&quot;Z5100&quot;</span>, <span class="dt">fromType=</span><span class="st">&quot;kegg&quot;</span>, <span class="dt">toType=</span><span class="st">&#39;uniprot&#39;</span>, <span class="dt">organism=</span><span class="st">&#39;ece&#39;</span>)</span></code></pre></div>
 <pre><code>##    kegg    uniprot
-## 1 Z5100 A0A3G4X4E3</code></pre>
+## 1 Z5100 A0A4Q2TPW7</code></pre>
 </div>
 </div>
 <div id="setReadable" class="section level2">
@@ -321,13 +324,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb149-7"><a href="chapter14.html#cb149-7"></a><span class="co">## The geneID column is ENTREZID</span></span>
 <span id="cb149-8"><a href="chapter14.html#cb149-8"></a><span class="kw">head</span>(x, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                ID         Description GeneRatio  BgRatio
-## hsa04110 hsa04110          Cell cycle      8/48 124/7860
-## hsa04218 hsa04218 Cellular senescence      7/48 160/7860
-## hsa04114 hsa04114      Oocyte meiosis      6/48 125/7860
+## hsa04110 hsa04110          Cell cycle      8/48 124/7932
+## hsa04218 hsa04218 Cellular senescence      7/48 160/7932
+## hsa04114 hsa04114      Oocyte meiosis      6/48 128/7932
 ##                pvalue     p.adjust       qvalue
-## hsa04110 6.804611e-07 7.689211e-05 7.091121e-05
-## hsa04218 4.636787e-05 2.619785e-03 2.416010e-03
-## hsa04114 1.018994e-04 3.838210e-03 3.539662e-03
+## hsa04110 6.356283e-07 7.182599e-05 6.490099e-05
+## hsa04218 4.377944e-05 2.473538e-03 2.235055e-03
+## hsa04114 1.105828e-04 4.165285e-03 3.763695e-03
 ##                                        geneID Count
 ## hsa04110 8318/991/9133/890/983/4085/7272/1111     8
 ## hsa04218    2305/4605/9133/890/983/51806/1111     7
@@ -336,13 +339,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb151-2"><a href="chapter14.html#cb151-2"></a><span class="co">## The geneID column is translated to symbol</span></span>
 <span id="cb151-3"><a href="chapter14.html#cb151-3"></a><span class="kw">head</span>(y, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                ID         Description GeneRatio  BgRatio
-## hsa04110 hsa04110          Cell cycle      8/48 124/7860
-## hsa04218 hsa04218 Cellular senescence      7/48 160/7860
-## hsa04114 hsa04114      Oocyte meiosis      6/48 125/7860
+## hsa04110 hsa04110          Cell cycle      8/48 124/7932
+## hsa04218 hsa04218 Cellular senescence      7/48 160/7932
+## hsa04114 hsa04114      Oocyte meiosis      6/48 128/7932
 ##                pvalue     p.adjust       qvalue
-## hsa04110 6.804611e-07 7.689211e-05 7.091121e-05
-## hsa04218 4.636787e-05 2.619785e-03 2.416010e-03
-## hsa04114 1.018994e-04 3.838210e-03 3.539662e-03
+## hsa04110 6.356283e-07 7.182599e-05 6.490099e-05
+## hsa04218 4.377944e-05 2.473538e-03 2.235055e-03
+## hsa04114 1.105828e-04 4.165285e-03 3.763695e-03
 ##                                                 geneID
 ## hsa04110 CDC45/CDC20/CCNB2/CCNA2/CDK1/MAD2L1/TTK/CHEK1
 ## hsa04218     FOXM1/MYBL2/CCNB2/CCNA2/CDK1/CALML5/CHEK1
@@ -370,11 +373,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

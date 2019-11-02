@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 MSigDb analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,14 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.6/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.9/datatables.js"></script>
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.19/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
@@ -303,59 +306,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##                                                                    ID
 ## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
 ## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
-## CELL_PROJECTION                                       CELL_PROJECTION
 ## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
+## CELL_PROJECTION                                       CELL_PROJECTION
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
 ## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
 ##                                                           Description
 ## EXTRACELLULAR_REGION                             EXTRACELLULAR_REGION
 ## EXTRACELLULAR_REGION_PART                   EXTRACELLULAR_REGION_PART
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
-## CELL_PROJECTION                                       CELL_PROJECTION
 ## EXTRACELLULAR_MATRIX                             EXTRACELLULAR_MATRIX
+## CELL_PROJECTION                                       CELL_PROJECTION
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX PROTEINACEOUS_EXTRACELLULAR_MATRIX
 ## EXTRACELLULAR_MATRIX_PART                   EXTRACELLULAR_MATRIX_PART
 ##                                    setSize enrichmentScore
 ## EXTRACELLULAR_REGION                   401      -0.3860230
 ## EXTRACELLULAR_REGION_PART              310      -0.4101043
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX      93      -0.6355317
-## CELL_PROJECTION                         87      -0.4729701
 ## EXTRACELLULAR_MATRIX                    95      -0.6229461
+## CELL_PROJECTION                         87      -0.4729701
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX      93      -0.6355317
 ## EXTRACELLULAR_MATRIX_PART               54      -0.5908035
 ##                                          NES      pvalue
-## EXTRACELLULAR_REGION               -1.706579 0.001267427
-## EXTRACELLULAR_REGION_PART          -1.777988 0.001312336
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX -2.371763 0.001564945
-## CELL_PROJECTION                    -1.752701 0.001569859
-## EXTRACELLULAR_MATRIX               -2.311324 0.001597444
-## EXTRACELLULAR_MATRIX_PART          -2.022947 0.001600000
+## EXTRACELLULAR_REGION               -1.694969 0.001240695
+## EXTRACELLULAR_REGION_PART          -1.764536 0.001310616
+## EXTRACELLULAR_MATRIX               -2.324445 0.001451379
+## CELL_PROJECTION                    -1.741796 0.001455604
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX -2.360635 0.001466276
+## EXTRACELLULAR_MATRIX_PART          -1.980073 0.001562500
 ##                                      p.adjust    qvalues
-## EXTRACELLULAR_REGION               0.02422577 0.01879699
-## EXTRACELLULAR_REGION_PART          0.02422577 0.01879699
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX 0.02422577 0.01879699
-## CELL_PROJECTION                    0.02422577 0.01879699
-## EXTRACELLULAR_MATRIX               0.02422577 0.01879699
-## EXTRACELLULAR_MATRIX_PART          0.02422577 0.01879699
+## EXTRACELLULAR_REGION               0.03159609 0.02468712
+## EXTRACELLULAR_REGION_PART          0.03159609 0.02468712
+## EXTRACELLULAR_MATRIX               0.03159609 0.02468712
+## CELL_PROJECTION                    0.03159609 0.02468712
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX 0.03159609 0.02468712
+## EXTRACELLULAR_MATRIX_PART          0.03159609 0.02468712
 ##                                    rank
 ## EXTRACELLULAR_REGION               1797
 ## EXTRACELLULAR_REGION_PART          1897
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX 1473
-## CELL_PROJECTION                    2280
 ## EXTRACELLULAR_MATRIX               1473
+## CELL_PROJECTION                    2280
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX 1473
 ## EXTRACELLULAR_MATRIX_PART          1794
 ##                                                      leading_edge
 ## EXTRACELLULAR_REGION               tags=29%, list=14%, signal=26%
 ## EXTRACELLULAR_REGION_PART          tags=32%, list=15%, signal=28%
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX tags=49%, list=12%, signal=44%
-## CELL_PROJECTION                    tags=28%, list=18%, signal=23%
 ## EXTRACELLULAR_MATRIX               tags=48%, list=12%, signal=43%
+## CELL_PROJECTION                    tags=28%, list=18%, signal=23%
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX tags=49%, list=12%, signal=44%
 ## EXTRACELLULAR_MATRIX_PART          tags=59%, list=14%, signal=51%
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       core_enrichment
-## EXTRACELLULAR_REGION               3910/51162/2878/2717/3373/4153/10406/1301/6750/7474/4925/7450/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/11005/4256/3483/7482/8910/23037/27122/7042/3912/4322/167/2817/9353/6037/1278/2934/5176/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/4023/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/3625/2199/6444/6320/1294/3075/4653/5764/3991/3263/1462/1289/3908/4016/3909/4053/8817/7033/8292/5125/2162/5744/1842/5654/10631/2331/3730/2487/347/6863/5104/3913/27123/4982/1300/2200/9607/1287/7060/1489/9723/6424/1307/1311/4693/4148/1101/2922/10647
-## EXTRACELLULAR_REGION_PART                                                                                                  268/3567/57124/3910/2878/3373/4153/10406/1301/6750/7474/4925/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/4256/3483/7482/8910/27122/3912/4322/167/2817/1278/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/2199/6444/1294/3075/4653/5764/3991/3263/1462/1289/3908/3909/4053/8817/8292/5125/5744/1842/5654/10631/2331/3730/347/6863/3913/27123/1300/2200/9607/1287/7060/9723/6424/1307/1311/4693/4148/1101/2922/10647
-## PROTEINACEOUS_EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                              1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
-## CELL_PROJECTION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             4763/57147/64064/80184/322/54997/7248/5311/7042/323/4747/4744/1012/11346/2191/4741/4646/9576/114327/51466/27124/4137/7802
-## EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                                            1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
-## EXTRACELLULAR_MATRIX_PART                                                                                                                                                                                                                                                                                                                                                                                                                                                              3915/6443/55914/3910/1301/80781/1306/8082/8910/3912/1278/4060/283/30008/22795/1293/1295/1281/50509/1290/6444/1294/1289/3908/3909/8292/3913/1300/2200/1287/1307</code></pre>
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             core_enrichment
+## EXTRACELLULAR_REGION               57124/3910/51162/2878/2717/3373/4153/10406/1301/6750/7474/4925/7450/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/11005/4256/3483/7482/8910/23037/27122/7042/3912/4322/167/2817/9353/6037/1278/2934/5176/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/4023/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/3625/2199/6444/6320/1294/3075/4653/5764/3991/3263/1462/1289/3908/4016/3909/4053/8817/7033/8292/5125/2162/5744/1842/5654/10631/2331/3730/2487/347/6863/5104/3913/27123/4982/1300/2200/9607/1287/7060/1489/9723/6424/1307/1311/4693/4148/1101/2922/10647
+## EXTRACELLULAR_REGION_PART                                                                                                   4017/268/3567/57124/3910/2878/3373/4153/10406/1301/6750/7474/4925/80781/1490/1306/3931/4314/6586/3964/10272/8425/8082/4256/3483/7482/8910/27122/3912/4322/167/2817/1278/4060/283/30008/5549/5950/22795/727/10516/23452/1293/2247/1295/1012/6469/2192/1281/54360/50509/11167/4319/1290/9365/3952/10879/11096/2202/4313/2199/6444/1294/3075/4653/5764/3991/3263/1462/1289/3908/3909/4053/8817/8292/5125/5744/1842/5654/10631/2331/3730/347/6863/3913/27123/1300/2200/9607/1287/7060/9723/6424/1307/1311/4693/4148/1101/2922/10647
+## EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                                            80781/1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
+## CELL_PROJECTION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              9732/4763/57147/64064/80184/322/54997/7248/5311/7042/323/4747/4744/1012/11346/2191/4741/4646/9576/114327/51466/27124/4137/7802
+## PROTEINACEOUS_EXTRACELLULAR_MATRIX                                                                                                                                                                                                                                                                                                                                                                              80781/1490/1306/8425/8082/4256/8910/3912/1278/4060/283/30008/5549/22795/10516/1293/1295/2192/1281/50509/4319/1290/11096/2202/2199/6444/1294/1462/1289/3908/3909/4053/8292/1842/10631/2331/3730/3913/1300/2200/1287/7060/1307/1311/4148/1101
+## EXTRACELLULAR_MATRIX_PART                                                                                                                                                                                                                                                                                                                                                                                                                                                               1298/3915/6443/55914/3910/1301/80781/1306/8082/8910/3912/1278/4060/283/30008/22795/1293/1295/1281/50509/1290/6444/1294/1289/3908/3909/8292/3913/1300/2200/1287/1307</code></pre>
 
 </div>
             </section>
@@ -369,11 +372,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

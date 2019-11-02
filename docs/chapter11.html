@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Biological theme comparison | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 11 Biological theme comparison | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Biological theme comparison | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,14 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.6/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.9/datatables.js"></script>
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.19/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
@@ -273,12 +276,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      X3 hsa04060 Cytokine-cytokine receptor interaction
 ## 6      X3 hsa04151             PI3K-Akt signaling pathway
 ##   GeneRatio  BgRatio       pvalue    p.adjust      qvalue
-## 1    18/377 124/7860 2.291905e-05 0.006646525 0.006248457
-## 2    23/377 201/7860 8.766396e-05 0.012711274 0.011949982
-## 3     8/377  37/7860 2.946454e-04 0.028482387 0.026776546
-## 4     9/182  86/7860 1.556335e-04 0.039530901 0.036696734
-## 5    17/182 294/7860 4.460763e-04 0.044225143 0.041054422
-## 6    19/182 354/7860 5.223442e-04 0.044225143 0.041054422
+## 1    18/377 124/7932 2.031082e-05 0.005991692 0.005580131
+## 2    23/377 201/7932 7.646699e-05 0.011278881 0.010504149
+## 3     8/377  38/7932 3.365801e-04 0.033097039 0.030823648
+## 4     9/184  88/7932 1.886148e-04 0.046098793 0.043070680
+## 5    17/184 294/7932 4.568593e-04 0.046098793 0.043070680
+## 6    19/184 354/7932 5.360325e-04 0.046098793 0.043070680
 ##                                                                                                      geneID
 ## 1                   991/1869/890/1871/701/990/10926/9088/8317/9700/9134/1029/2810/699/11200/23594/8555/4173
 ## 2 4067/3383/7128/1869/890/1871/578/864/637/9641/6891/355/9134/5971/916/956/6850/7187/3551/919/4734/958/6772
@@ -311,36 +314,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 downregulated.A downregulated          A hsa04510
 ## 3 downregulated.A downregulated          A hsa04151
 ## 4 downregulated.A downregulated          A hsa04512
-## 5 downregulated.A downregulated          A hsa05414
-## 6 downregulated.A downregulated          A hsa04010
+## 5 downregulated.B downregulated          B hsa03320
+## 6   upregulated.A   upregulated          A hsa04110
 ##                        Description GeneRatio  BgRatio
-## 1 Protein digestion and absorption    15/301  90/7860
-## 2                   Focal adhesion    20/301 199/7860
-## 3       PI3K-Akt signaling pathway    28/301 354/7860
-## 4         ECM-receptor interaction    11/301  86/7860
-## 5     Dilated cardiomyopathy (DCM)    11/301  91/7860
-## 6           MAPK signaling pathway    23/301 295/7860
+## 1 Protein digestion and absorption    15/307  95/7932
+## 2                   Focal adhesion    20/307 199/7932
+## 3       PI3K-Akt signaling pathway    28/307 354/7932
+## 4         ECM-receptor interaction    11/307  88/7932
+## 5           PPAR signaling pathway      5/41  76/7932
+## 6                       Cell cycle    20/218 124/7932
 ##         pvalue     p.adjust       qvalue
-## 1 1.344499e-06 0.0003522588 0.0003283409
-## 2 7.077437e-05 0.0092714429 0.0086419235
-## 3 1.981832e-04 0.0173080014 0.0161328097
-## 4 4.077778e-04 0.0267094465 0.0248959083
-## 5 6.656413e-04 0.0348796030 0.0325113214
-## 6 9.022253e-04 0.0393971730 0.0367221540
+## 1 3.114113e-06 8.345823e-04 7.834453e-04
+## 2 8.223661e-05 1.101971e-02 1.034450e-02
+## 3 2.376469e-04 2.122979e-02 1.992898e-02
+## 4 5.455340e-04 3.655078e-02 3.431122e-02
+## 5 4.047669e-05 5.909597e-03 5.453701e-03
+## 6 1.223342e-10 2.899321e-08 2.588334e-08
 ##                                                                                                                                             geneID
 ## 1                                                                      1281/50509/1290/477/1294/1360/1289/1292/23428/1359/1300/1287/6505/2006/7373
 ## 2                                         55742/2317/7058/25759/56034/3693/3480/5159/857/1292/3908/3909/63923/3913/1287/3679/7060/3479/10451/80310
 ## 3 55970/5618/7058/10161/56034/3693/4254/3480/4908/5159/1292/3908/2690/3909/8817/9223/4915/3551/2791/63923/3913/9863/3667/1287/3679/7060/3479/80310
 ## 4                                                                                          7058/3693/3339/1292/3908/3909/63923/3913/1287/3679/7060
-## 5                                                                                          55799/27092/6444/3693/775/3908/5350/7043/3679/3479/9254
-## 6                          55799/3306/2317/4214/55970/56034/27092/4254/3480/4908/3305/5159/775/8817/4915/3551/7786/7043/57551/3479/9254/1846/80310
+## 5                                                                                                                         9370/5105/2167/3158/5346
+## 6                                                  4171/993/990/5347/701/9700/898/23594/4998/9134/4175/4173/10926/6502/994/699/4609/5111/1869/1029
 ##   Count
 ## 1    15
 ## 2    20
 ## 3    28
 ## 4    11
-## 5    11
-## 6    23</code></pre>
+## 5     5
+## 6    20</code></pre>
 </div>
 <div id="visualization-of-profile-comparison" class="section level2">
 <h2><span class="header-section-number">11.2</span> Visualization of profile comparison</h2>
@@ -393,11 +396,13 @@ also other biological and biomedical ontologies, for instance,
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

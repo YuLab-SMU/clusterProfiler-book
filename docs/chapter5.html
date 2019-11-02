@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Gene Ontology Analysis | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 5 Gene Ontology Analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Gene Ontology Analysis | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,14 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.6/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.9/datatables.js"></script>
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.19/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
@@ -268,25 +271,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb55-6"><a href="chapter5.html#cb55-6"></a></span>
 <span id="cb55-7"><a href="chapter5.html#cb55-7"></a><span class="kw">head</span>(ggo)</span></code></pre></div>
 <pre><code>##                    ID                    Description Count
-## GO:0005886 GO:0005886                plasma membrane    52
+## GO:0005886 GO:0005886                plasma membrane    55
 ## GO:0005628 GO:0005628              prospore membrane     0
 ## GO:0005789 GO:0005789 endoplasmic reticulum membrane     8
-## GO:0019867 GO:0019867                 outer membrane     2
-## GO:0031090 GO:0031090             organelle membrane    13
+## GO:0019867 GO:0019867                 outer membrane     3
+## GO:0031090 GO:0031090             organelle membrane    16
 ## GO:0034357 GO:0034357        photosynthetic membrane     0
 ##            GeneRatio
-## GO:0005886    52/207
+## GO:0005886    55/207
 ## GO:0005628     0/207
 ## GO:0005789     8/207
-## GO:0019867     2/207
-## GO:0031090    13/207
+## GO:0019867     3/207
+## GO:0031090    16/207
 ## GO:0034357     0/207
-##                                                                                                                                                                                                                                                                                                                                  geneID
-## GO:0005886 S100A9/MELK/S100A8/MARCO/ASPM/CXCL10/LAMP3/CEP55/UGT8/UBE2C/SLC7A5/CXCL9/FADS2/MSLN/IL1R2/KIF18A/S100P/GZMB/TRAT1/GABRP/AQP9/GPR19/SLC2A6/KIF20A/LAG3/NUDT1/CACNA1D/VSTM4/CORIN/KCNK15/CA12/KCNE4/HLA-DQA1/ADH1B/PDZK1/C7/ACKR1/COL17A1/PSD3/EMCN/SLC44A4/LRP2/NLGN4X/MAPT/ERBB4/CX3CR1/LAMP5/ABCA8/STEAP4/PTPRT/TMC5/CYBRD1
-## GO:0005628                                                                                                                                                                                                                                                                                                                             
-## GO:0005789                                                                                                                                                                                                                                                                           FADS2/CDK1/CHODL/ITPR1/HLA-DQA1/CYP4F8/CYP4B1/FMO5
-## GO:0019867                                                                                                                                                                                                                                                                                                                     MAOB/PGR
-## GO:0031090                                                                                                                                                                                                                                                 MARCO/LAMP3/DUSP2/DTL/NUDT1/MAOB/ITPR1/GASK1B/HLA-DQA1/LRP2/LAMP5/STEAP4/PGR
+##                                                                                                                                                                                                                                                                                                                                                      geneID
+## GO:0005886 S100A9/MELK/S100A8/MARCO/ASPM/CXCL10/LAMP3/CEP55/UGT8/UBE2C/SLC7A5/CXCL9/FADS2/MSLN/IL1R2/KIF18A/S100P/GZMB/TRAT1/GABRP/AQP9/GPR19/SLC2A6/KIF20A/LAG3/NUDT1/CACNA1D/VSTM4/ITPR1/SYT17/SLC16A4/CORIN/KCNK15/CA12/KCNE4/HLA-DQA1/ADH1B/PDZK1/C7/ACKR1/COL17A1/PSD3/EMCN/SLC44A4/LRP2/NLGN4X/MAPT/ERBB4/CX3CR1/LAMP5/ABCA8/STEAP4/PTPRT/TMC5/CYBRD1
+## GO:0005628                                                                                                                                                                                                                                                                                                                                                 
+## GO:0005789                                                                                                                                                                                                                                                                                               FADS2/CDK1/CHODL/ITPR1/HLA-DQA1/CYP4F8/CYP4B1/FMO5
+## GO:0019867                                                                                                                                                                                                                                                                                                                                  BCL2A1/MAOB/PGR
+## GO:0031090                                                                                                                                                                                                                                                MARCO/BCL2A1/LAMP3/DUSP2/SLC2A6/DTL/NUDT1/MAOB/ITPR1/GASK1B/HLA-DQA1/LRP2/LAMP5/STEAP4/PGR/CYBRD1
 ## GO:0034357</code></pre>
 <p>The input parameters of <em>gene</em> is a vector of gene IDs (can be any ID type that supported by corresponding <code>OrgDb</code>).</p>
 <p>If <em>readable</em> is setting to <em>TRUE</em>, the input gene IDs will be converted to gene symbols.</p>
@@ -304,47 +307,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb57-8"><a href="chapter5.html#cb57-8"></a>        <span class="dt">readable      =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb57-9"><a href="chapter5.html#cb57-9"></a><span class="kw">head</span>(ego)</span></code></pre></div>
 <pre><code>##                    ID
-## GO:0000779 GO:0000779
-## GO:0000776 GO:0000776
-## GO:0000775 GO:0000775
-## GO:0000793 GO:0000793
 ## GO:0005819 GO:0005819
-## GO:0098687 GO:0098687
+## GO:0005876 GO:0005876
+## GO:0000779 GO:0000779
+## GO:0072686 GO:0072686
+## GO:0000775 GO:0000775
+## GO:0000776 GO:0000776
 ##                                         Description
-## GO:0000779 condensed chromosome, centromeric region
-## GO:0000776                              kinetochore
-## GO:0000775           chromosome, centromeric region
-## GO:0000793                     condensed chromosome
 ## GO:0005819                                  spindle
-## GO:0098687                       chromosomal region
+## GO:0005876                      spindle microtubule
+## GO:0000779 condensed chromosome, centromeric region
+## GO:0072686                          mitotic spindle
+## GO:0000775           chromosome, centromeric region
+## GO:0000776                              kinetochore
 ##            GeneRatio   BgRatio       pvalue     p.adjust
-## GO:0000779    14/197  85/11434 1.662431e-10 3.802012e-08
-## GO:0000776    15/197 104/11434 2.551686e-10 3.802012e-08
-## GO:0000775    17/197 147/11434 5.495085e-10 5.458451e-08
-## GO:0000793    17/197 154/11434 1.141189e-09 8.501857e-08
-## GO:0005819    21/197 256/11434 2.923725e-09 1.742540e-07
-## GO:0098687    21/197 265/11434 5.435150e-09 2.699458e-07
+## GO:0005819    25/200 272/11816 4.695505e-12 1.493171e-09
+## GO:0005876    12/200  48/11816 1.623758e-11 2.581776e-09
+## GO:0000779    15/200  91/11816 2.808998e-11 2.628919e-09
+## GO:0072686    15/200  92/11816 3.306816e-11 2.628919e-09
+## GO:0000775    18/200 154/11816 1.061302e-10 6.749884e-09
+## GO:0000776    15/200 107/11816 3.047081e-10 1.614953e-08
 ##                  qvalue
-## GO:0000779 3.572360e-08
-## GO:0000776 3.572360e-08
-## GO:0000775 5.128746e-08
-## GO:0000793 7.988322e-08
-## GO:0005819 1.637286e-07
-## GO:0098687 2.536403e-07
-##                                                                                                                                geneID
-## GO:0000779                                         CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/CDT1/BIRC5/NCAPG/AURKB/CCNB1
-## GO:0000776                                    CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/KIF18A/CDT1/BIRC5/TTK/AURKB/CCNB1
-## GO:0000775                        CDCA8/CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/KIF18A/CDT1/BIRC5/TTK/NCAPG/AURKB/CCNB1
-## GO:0000793                       CENPE/NDC80/TOP2A/NCAPH/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/CDT1/BIRC5/NCAPG/AURKB/CHEK1/CCNB1
-## GO:0005819 CDC20/KIF23/CENPE/ASPM/DLGAP5/SKA1/TPX2/TACC3/NEK2/CDK1/MAD2L1/KIF18A/KIF11/TTK/AURKB/PRC1/KIF18B/KIF20A/AURKA/CCNB1/KIF4A
-## GO:0098687   CDCA8/CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/CDK1/ERCC6L/MAD2L1/KIF18A/CDT1/BIRC5/EZH2/TTK/NCAPG/AURKB/CHEK1/CCNB1/MCM5
+## GO:0005819 1.378996e-09
+## GO:0005876 2.384361e-09
+## GO:0000779 2.427899e-09
+## GO:0072686 2.427899e-09
+## GO:0000775 6.233756e-09
+## GO:0000776 1.491466e-08
+##                                                                                                                                                         geneID
+## GO:0005819 CDCA8/CDC20/KIF23/CENPE/ASPM/DLGAP5/SKA1/NUSAP1/TPX2/TACC3/NEK2/CDK1/MAD2L1/KIF18A/BIRC5/KIF11/TTK/AURKB/PRC1/KIFC1/KIF18B/KIF20A/AURKA/CCNB1/KIF4A
+## GO:0005876                                                                             CENPE/SKA1/NUSAP1/CDK1/KIF18A/BIRC5/KIF11/AURKB/PRC1/KIF18B/AURKA/KIF4A
+## GO:0000779                                                            CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/CDT1/BIRC5/NCAPG/AURKB/AURKA/CCNB1
+## GO:0072686                                                           KIF23/CENPE/ASPM/SKA1/NUSAP1/TPX2/TACC3/CDK1/MAD2L1/KIF18A/KIF11/AURKB/KIFC1/KIF18B/AURKA
+## GO:0000775                                           CDCA8/CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/KIF18A/CDT1/BIRC5/TTK/NCAPG/AURKB/AURKA/CCNB1
+## GO:0000776                                                             CENPE/NDC80/HJURP/SKA1/NEK2/CENPM/CENPN/ERCC6L/MAD2L1/KIF18A/CDT1/BIRC5/TTK/AURKB/CCNB1
 ##            Count
-## GO:0000779    14
-## GO:0000776    15
-## GO:0000775    17
-## GO:0000793    17
-## GO:0005819    21
-## GO:0098687    21</code></pre>
+## GO:0005819    25
+## GO:0005876    12
+## GO:0000779    15
+## GO:0072686    15
+## GO:0000775    18
+## GO:0000776    15</code></pre>
 <p>As I mentioned before, any gene ID type that supported in <code>OrgDb</code> can be directly used in GO analyses. User need to specify the <code>keyType</code> parameter to specify the input gene ID type.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="chapter5.html#cb59-1"></a>ego2 &lt;-<span class="st"> </span><span class="kw">enrichGO</span>(<span class="dt">gene         =</span> gene.df<span class="op">$</span>ENSEMBL,</span>
 <span id="cb59-2"><a href="chapter5.html#cb59-2"></a>                <span class="dt">OrgDb         =</span> org.Hs.eg.db,</span>
@@ -417,11 +420,13 @@ page</a>.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
