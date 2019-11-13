@@ -1,3 +1,9 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
 # Visualization of Functional Enrichment Result {#chapter12}
 
 
@@ -85,7 +91,6 @@ cowplot::plot_grid(p1, p2, p3, p4, ncol=2, labels=LETTERS[1:4])
 
 ## Heatmap-like functional classification
 
-
 The `heatplot` is similar to `cnetplot`, while displaying the relationships as a
 heatmap. The gene-concept network may become too complicated if user want to
 show a large number significant terms. The `heatplot` can simplify the result
@@ -100,7 +105,6 @@ heatplot(edox, foldChange=geneList)
 
 ## Enrichment Map
 
-
 Enrichment map organizes enriched terms into a network with edges connecting
 overlapping gene sets. In this way, mutually overlapping gene sets are tend to
 cluster together, making it easy to identify functional module.
@@ -110,10 +114,41 @@ The `emapplot` function supports results obtained from hypergeometric test and g
 emapplot(edo)
 ```
 
+The `emapplot` function also supports results obtained from `compareCluster` 
+function of `clusterProfiler` package.
 
+```{r fig.width=12, fig.height=10}
+library(clusterProfiler)
+data(gcSample)
+xx <- compareCluster(gcSample, fun="enrichKEGG",
+                     organism="hsa", pvalueCutoff=0.05)
+emapplot(xx)
+```
+The number of circles in the bottom left corner can be adjusted using the `legend_n` parameter.
+```{r fig.width=12, fig.height=10}
+emapplot(xx,legend_n=2)
+```
+Proportion of clusters in the pie chart can be adjusted using the `pie` parameter,
+when `pie="count"`, the proportion of clusters in the pie chart is determined by
+the number of genes.
+
+```{r fig.width=12, fig.height=10}
+emapplot(xx,pie="count")
+```
+The pie_scale parameter can be used to resize nodes.
+```{r fig.width=12, fig.height=10}
+emapplot(edo, pie_scale=2)
+```
+```{r fig.width=12, fig.height=10}
+emapplot(xx,pie="count", pie_scale=1.5)
+```
+You can use the `layout` parameter to adjust the layout of the pie chart.
+
+```{r fig.width=12, fig.height=10}
+emapplot(xx,pie="count", pie_scale=1.5, layout="kk")
+```
 
 ## UpSet Plot
-
 
 The `upsetplot` is an alternative to `cnetplot` for visualizing the complex
 association between genes and gene sets. It emphasizes the gene overlapping
