@@ -71,7 +71,7 @@ with only core enriched genes displayed.
 
 (ref:Networkplotcap) **Network plot of enriched terms.** 
 
-```{r Networkplot, fig.width=12, fig.height=18, fig.cap="(ref:Networkplotcap)", fig.scap="(ref:Networkplotscap)", fig.align="center"}
+```{r Networkplot, fig.width=12, fig.height=25, fig.cap="(ref:Networkplotcap)", fig.scap="(ref:Networkplotscap)", fig.align="center"}
 ## convert gene ID to Symbol
 edox <- setReadable(edo, 'org.Hs.eg.db', 'ENTREZID')
 p1 <- cnetplot(edox, foldChange=geneList)
@@ -128,8 +128,7 @@ Enrichment map organizes enriched terms into a network with edges connecting
 overlapping gene sets. In this way, mutually overlapping gene sets are tend to
 cluster together, making it easy to identify functional module.
 
-The `emapplot` function supports results obtained from hypergeometric test and gene set enrichment analysis.The `pie_scale` parameter can be used to resize nodes and
-the `layout` parameter can adjust the layout.
+The `emapplot` function supports results obtained from hypergeometric test and gene set enrichment analysis.The `pie_scale` parameter can be used to resize nodes, as demonstrated in Figure \@ref(fig:Enrichment) B,and the `layout` parameter can adjust the layout, as demonstrated in Figure \@ref(fig:Enrichment) C and D.
 
 (ref:Enrichmentscap) Plot for results obtained from hypergeometric test and gene set enrichment analysis.
 
@@ -143,7 +142,7 @@ p4 <- emapplot(edo, pie_scale=1.5,layout="kk")
 cowplot::plot_grid(p1, p2, p3, p4, ncol=2, labels=LETTERS[1:4])
 ```
 
-The `emapplot` function also supports results obtained from `compareCluster` function of `clusterProfiler` package. In addition to `pie_scale` and `layout` parameters, the number of circles in the bottom left corner can be adjusted  using the `legend_n` parameter. And proportion of clusters in the pie chart can be adjusted using the `pie` parameter, when `pie="count"`, the proportion of  clusters in the pie chart is determined by the number of genes.
+The `emapplot` function also supports results obtained from `compareCluster` function of `clusterProfiler` package. In addition to `pie_scale` and `layout` parameters, the number of circles in the bottom left corner can be adjusted  using the `legend_n` parameteras, as demonstrated in Figure \@ref(fig:Enrichment2) B. And proportion of clusters in the pie chart can be adjusted using the `pie` parameter, when `pie="count"`, the proportion of  clusters in the pie chart is determined by the number of genes, as demonstrated in Figure \@ref(fig:Enrichment2) C and D.
 
 
 (ref:Enrichment2scap) Plot for results obtained from `compareCluster` function of `clusterProfiler` package.
