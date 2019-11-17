@@ -128,7 +128,7 @@ Enrichment map organizes enriched terms into a network with edges connecting
 overlapping gene sets. In this way, mutually overlapping gene sets are tend to
 cluster together, making it easy to identify functional module.
 
-The `emapplot` function supports results obtained from hypergeometric test and gene set enrichment analysis.The `pie_scale` parameter can be used to resize nodes, as demonstrated in Figure \@ref(fig:Enrichment) B,and the `layout` parameter can adjust the layout, as demonstrated in Figure \@ref(fig:Enrichment) C and D.
+The `emapplot` function supports results obtained from hypergeometric test and gene set enrichment analysis. The `pie_scale` parameter can be used to resize nodes, as demonstrated in Figure \@ref(fig:Enrichment) B, and the `layout` parameter can adjust the layout, as demonstrated in Figure \@ref(fig:Enrichment) C and D.
 
 (ref:Enrichmentscap) Plot for results obtained from hypergeometric test and gene set enrichment analysis.
 
