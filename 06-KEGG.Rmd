@@ -66,5 +66,5 @@ mkk <- enrichMKEGG(gene = gene,
 
 ```{r eval=FALSE}
 mkk2 <- gseMKEGG(geneList = geneList,
-                 species = 'hsa')
+                 organism = 'hsa')
 ```

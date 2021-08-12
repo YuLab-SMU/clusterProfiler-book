@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Functional Enrichment Analysis Methods | clusterProfiler: universal enrichment tool for functional and comparative study</title>
   <meta name="description" content="Chapter 2 Functional Enrichment Analysis Methods | clusterProfiler: universal enrichment tool for functional and comparative study" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Functional Enrichment Analysis Methods | clusterProfiler: universal enrichment tool for functional and comparative study" />
   <meta property="og:type" content="book" />
@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>n</code> is the size of the list of genes of interest and <code>k</code> is the number of genes within that list which
 are annotated to the gene set. The background distribution by default is
 all the genes that have annotation. <em>P</em>-values should be adjusted for <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple comparison</a>.</p>
-<p><strong>Example:</strong> Suppose we have 17,980 genes detected in a Microarray study and 57 genes were differentially expressed. Among the differential expressed genes, 28 are annotated to a gene set<a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p><strong>Example:</strong> Suppose we have 17,980 genes detected in a Microarray study and 57 genes were differentially expressed. Among the differential expressed genes, 28 are annotated to a gene set<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="chapter2.html#cb1-1"></a>d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gene.not.interest=</span><span class="kw">c</span>(<span class="dv">2613</span>, <span class="dv">15310</span>), <span class="dt">gene.in.interest=</span><span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">29</span>))</span>
 <span id="cb1-2"><a href="chapter2.html#cb1-2"></a><span class="kw">row.names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;In_category&quot;</span>, <span class="st">&quot;not_in_category&quot;</span>)</span>
 <span id="cb1-3"><a href="chapter2.html#cb1-3"></a>d</span></code></pre></div>
@@ -316,6 +316,12 @@ All genes can be used in GSEA; GSEA aggregates the per gene statistics across ge
 <p>Yu, Guangchuang, Li-Gen Wang, Guang-Rong Yan, and Qing-Yu He. 2015. “DOSE: An R/Bioconductor Package for Disease Ontology Semantic and Enrichment Analysis.” <em>Bioinformatics</em> 31 (4): 608–9. <a href="https://doi.org/10.1093/bioinformatics/btu684">https://doi.org/10.1093/bioinformatics/btu684</a>.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>example adopted from <a href="https://guangchuangyu.github.io/cn/2012/04/enrichment-analysis/" class="uri">https://guangchuangyu.github.io/cn/2012/04/enrichment-analysis/</a><a href="chapter2.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -341,12 +347,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -358,6 +363,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
